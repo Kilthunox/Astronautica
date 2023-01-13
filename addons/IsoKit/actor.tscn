@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkndly0vkbsfd"]
+
+[ext_resource type="Script" path="res://addons/IsoKit/actor.gd" id="1_ddo0k"]
+
+[node name="Actor" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_ddo0k")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+playing = true
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
