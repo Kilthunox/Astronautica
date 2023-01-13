@@ -4,6 +4,7 @@ const POSITION_PRESICION: float = 9.9
 
 @onready var origin: Vector2 = position
 @onready var destination: Vector2 = position
+@onready var Self = preload("res://addons/IsoKit/IsoKit.gd").instantiate()
 var speed: float = 3000
 var heading: Vector2
 var state: String = "idle"
@@ -37,13 +38,12 @@ func set_state(value: String) -> void:
 
 
 func handle_animation():
-	$AnimatedSprite.set_animation("%s:%s" % [state, IsoKit.map_radial(heading.angle())])
+	$AnimatedSprite.set_animation("%s:%s" % [state, Self.map_radial(heading.angle())])
 
 
 func handle_movement(delta):
 	if (destination.distance_to(position) > 0):
-		velocity = heading * speed * delta * IsoKit.isometric_factor(heading.angle())
-#		$AnimatedSprite.set_animation("%s:%s" % [state, IsoKit.map_radial(velocity.angle())])
+		velocity = heading * speed * delta * Self.isometric_factor(heading.angle())
 	else:
 		velocity = Vector2(0, 0)
 		destination = position

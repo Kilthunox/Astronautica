@@ -14,6 +14,14 @@ config/name="Godot-wild-jam-53"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+IsoKit="*res://addons/IsoKit/IsoKit.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/IsoKit/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
