@@ -8,7 +8,6 @@ var polygon: PackedVector2Array
 @onready var area = get_node("Area")
 var speed: float = 3000
 var heading: Vector2
-var radial: float
 var state: String = "idle"
 var threat: int
 
@@ -73,7 +72,6 @@ func set_heading(value: Vector2):
 	destination = position + heading * speed
 	
 func set_state(value: String) -> void:
-	radial = heading.angle()
 	state = value
 
 
@@ -105,28 +103,22 @@ func _physics_process(delta):
 	handle_movement(delta)
 	handle_state()
 	handle_animation()
-	
+	print(size)
+	$ColorRect.position = get_front() - position
 	
 func set_sprite_frames(sprite_frames: SpriteFrames) -> void:
 	$Sprite.set_sprite_frames(sprite_frames)
 #	$Outline.set_sprite_frames(sprite_frames)
 
 func get_direction():
-	return Vector2(cos(radial), sin(radial))
+	return Vector2(cos(heading.angle()), sin(heading.angle()))
 
 func get_front(offset: Vector2 = Vector2(0, 0)):
-	return position + get_direction() + (get_direction() * (offset + size / 2))
-	
+	return position + get_direction() + (get_direction() * (offset / 2 + size / 2)) * IsoKit.isometric_factor(heading.angle())
+#	print(heading * offset * (1.2 * IsoKit.isometric_factor(heading.angle())))
 	
 func snap_to_grid(at: Vector2i, grid_size: Vector2i, offset: Vector2i = Vector2i(0, 0)):
-	if position.x < at.x:
-		position.x = snapped(at.x, grid_size.x) - offset.x
-	else:
-		position.x = snapped(at.x, grid_size.x) + offset.x
-	if position.y < at.y:
-		position.y = snapped(at.y, grid_size.y) - offset.y
-	else:
-		position.y = snapped(at.y, grid_size.y) + offset.y
+	position = IsoKit.snap_to_grid(position, at, grid_size, offset)
 
 
 func _on_area_body_entered(body):

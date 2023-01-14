@@ -5,24 +5,6 @@ const STAGED_COLLISIONS = [[], []]
 @export var  WorldNodePath: NodePath
 @onready var world: Node = get_node_or_null(WorldNodePath)
 
-@onready var prototype_building_node = IsoKit.make_actor(Runtime.ASSETS, {
-	"id": "prototype_building",
-	"sprite": "prototype_building_sprite.sprite",
-	"speed": 0.0,
-})
-
-@onready var prototype_object_node = IsoKit.make_actor(Runtime.ASSETS, {
-	"id": "prototype_object",
-	"sprite": "prototype_object_sprite.sprite",
-	"speed": 0.0,
-})
-
-@onready var assemblies = {
-	"prototype_building": prototype_building_node,
-	"prototype_object": prototype_object_node,
-}
-
-
 var invalid_assembly_placement: bool = false
 
 func _ready():
@@ -30,6 +12,7 @@ func _ready():
 	
 func _physics_process(_delta):
 	handle_movement_input()
+	
 	
 func _unhandled_input(_event):
 	handle_action_input()
@@ -68,7 +51,7 @@ func free_staged_assembly():
 		staged_node.queue_free()
 	
 func snap_node_to_grid_cprocess(args: Dictionary):
-	args["self"].snap_to_grid(get_player_actor().position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
+	args["self"].snap_to_grid(get_player_actor().get_front(args["self"].size), Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 	
 func stage_node_in_front(node: Node2D):
 	free_staged_assembly()
@@ -80,7 +63,7 @@ func stage_node_in_front(node: Node2D):
 	
 func make_assembly(id: String):
 	if !invalid_assembly_placement:
-		var assembly_node = assemblies[id].duplicate()
+		var assembly_node = Runtime.call("make_%s_node" % id)
 		assembly_node.set_collision_layer_value(1, 1)
 		assembly_node.set_collision_mask_value(1, 1)
 		place_node_in_front(assembly_node)
@@ -88,7 +71,7 @@ func make_assembly(id: String):
 	
 func stage_assembly(id: String):
 	free_staged_assembly()
-	var assembly_node = assemblies[id].duplicate()
+	var assembly_node = Runtime.call("make_%s_node" % id)
 	assembly_node.get_node("Area").set_collision_layer_value(1, 1)
 	assembly_node.get_node("Area").set_collision_mask_value(1, 1)
 	assembly_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
