@@ -5,6 +5,7 @@ var polygon: PackedVector2Array
 @onready var origin: Vector2 = position
 @onready var destination: Vector2 = position
 @onready var Self = preload("res://addons/IsoKit/IsoKit.gd").new()
+@onready var area = get_node("Area")
 var speed: float = 3000
 var heading: Vector2
 var radial: float
@@ -15,13 +16,37 @@ var margin: Vector2
 var size: Vector2
 var rect: Rect2
 
+var on_area_entered_hooks: Array[Callable] = []
+var on_area_exited_hooks: Array[Callable] = []
+
+class ComputeProcess extends Node:
+		var function: Callable
+		var args: Dictionary
+		
+		func _physics_process(delta) -> void:
+			args["delta"] = delta
+			if self.function.call(self.args):
+				self.queue_free()
+
+
+func add_compute(id: String, function: Callable, args: Dictionary = {}):
+	var cprocess: ComputeProcess = ComputeProcess.new()
+	cprocess.args = args
+	cprocess.args['self'] = self
+	cprocess.name = id
+	cprocess.function = function
+	add_child(cprocess)
+
+func set_compute(value: bool):
+	propagate_call("set_physics_process", [value])
+	
 func build_collision_shapes():
 	if polygon:
 		var shape: CollisionPolygon2D = CollisionPolygon2D.new()
-		shape.name = 'Shape'
+		shape.name = "CollisionShape"
 		shape.set_polygon(polygon)
-		add_child(shape)
-		get_node_or_null("Base").add_child(shape.duplicate())
+		add_child(shape.duplicate())
+		$Area.add_child(shape.duplicate())
 
 func _ready():
 	y_sort_enabled = true
@@ -53,7 +78,6 @@ func set_state(value: String) -> void:
 
 
 func handle_animation():
-
 	$Sprite.set_animation("%s:%s" % [state, Self.map_radial(heading.angle())])
 
 
@@ -95,5 +119,21 @@ func get_front(offset: Vector2 = Vector2(0, 0)):
 	
 	
 func snap_to_grid(at: Vector2i, grid_size: Vector2i, offset: Vector2i = Vector2i(0, 0)):
-	position.x = snapped(at.x, grid_size.x) - offset.x
-	position.y = snapped(at.y, grid_size.y) - offset.y
+	if position.x < at.x:
+		position.x = snapped(at.x, grid_size.x) - offset.x
+	else:
+		position.x = snapped(at.x, grid_size.x) + offset.x
+	if position.y < at.y:
+		position.y = snapped(at.y, grid_size.y) - offset.y
+	else:
+		position.y = snapped(at.y, grid_size.y) + offset.y
+
+
+func _on_area_body_entered(body):
+	for hook in on_area_entered_hooks:
+		hook.call()
+
+
+func _on_area_body_exited(body):
+	for hook in on_area_exited_hooks:
+		hook.call()

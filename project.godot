@@ -71,6 +71,11 @@ action_4={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="environment"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -3,9 +3,15 @@ extends Node
 const ASSETS: String = "res://assets/"
 const PLAYER_ACTOR_ID: String = "PlayerActor"
 const PLAYER_SPEED: float = 10000.0
-const GRID_SIZE: Vector2i = Vector2i(32, 16)
+const GRID_SIZE: Vector2i = Vector2i(16, 8)
 const GRID_OFFSET: Vector2i = Vector2i(16, 16)
 const STAGED: String = "StagedAssembly"
+const OPACITY: float = 0.3333
+
+enum LAYER {
+	player,
+	environment
+}
 
 enum ASSEMBLY {
 	BASE_STATION,
