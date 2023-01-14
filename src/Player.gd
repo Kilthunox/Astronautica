@@ -122,4 +122,7 @@ func handle_action_input():
 		stage_assembly("prototype_building")
 	elif Input.is_action_just_released("action_2"):
 		make_assembly("prototype_building")
+	
+	if Input.is_action_just_released("cancel"):
+		free_staged_assembly()
 		
