@@ -37,7 +37,6 @@ func build_frame(dir: String, index: int, columns: int, size: Vector2, source: S
 	return texture
 
 func make_actor(dir, data: Dictionary, threat: int = 0):
-	
 	var actor_node = actor_packed_scene.instantiate()
 	actor_node.name = data.get("id")
 	var position = Vector2(data.get("position", [0])[0], data.get("position", [0, 0])[1])
@@ -60,16 +59,14 @@ func make_actor(dir, data: Dictionary, threat: int = 0):
 		actor_node.size = Vector2(sprite_data.get("size", [0])[0], sprite_data.get("size", [0, 0])[1])
 		actor_node.margin = Vector2(sprite_data.get("margin", [0])[0], sprite_data.get("margin", [0, 0])[1])
 		var sprite_vertical_offset: float = (actor_node.size.y / 2) - actor_node.margin.y
-		actor_node.get_node("AnimatedSprite").offset.y -= sprite_vertical_offset
+		actor_node.get_node("Sprite").offset.y -= sprite_vertical_offset
 		actor_node.build_rect()
 		if sprite_data.get("polygon"):
-			var shape: CollisionPolygon2D = CollisionPolygon2D.new()
-			shape.name = 'Shape'
 			var points: PackedVector2Array = PackedVector2Array([])
 			for vertex in sprite_data.get("polygon", []):
 				points.append(Vector2(vertex[0], vertex[1]))
-			shape.set_polygon(points)
-			actor_node.add_child(shape)
+			actor_node.polygon = points
+			actor_node.build_collision_shapes()
 			
 		for state in sprite_data.get('animations', {}).keys():
 			for radial in RADIALS.keys():
@@ -92,7 +89,7 @@ func make_actor(dir, data: Dictionary, threat: int = 0):
 					)
 		actor_node.set_sprite_frames(sprite_frames)
 		if sprite_frames.get_animation_names():
-			actor_node.get_node("AnimatedSprite").set_animation(sprite_frames.get_animation_names()[0])
+			actor_node.get_node("Sprite").set_animation(sprite_frames.get_animation_names()[0])
 
 	
 	return actor_node

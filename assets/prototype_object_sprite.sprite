@@ -1,0 +1,15 @@
+{
+    "id": "prototype_object_sprite",
+    "name": "PrototypeObjectSprite",
+    "source": "placholders_tileset_3x2_32x32.png",
+    "columns": 3,
+    "size": [32, 32],
+    "margin": [0, 8],
+    "polygon": [[-16.0, 0.0], [0.0, -8.0], [18.0, 0.0], [0.0, 8.0]],
+    "animations": {
+		"idle": {
+			"E": [0]
+		},
+
+	}
+}

@@ -282,7 +282,7 @@
   <properties>
    <property name="id" value="spawn"/>
   </properties>
-  <object id="1" name="Player Spawn" x="431.75" y="1199.25">
+  <object id="1" name="Player Spawn" x="589.083" y="764.583">
    <properties>
     <property name="id" value="spawn"/>
    </properties>

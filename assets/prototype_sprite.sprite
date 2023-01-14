@@ -3,7 +3,6 @@
     "name": "PrototypeSprite",
     "source": "prototype_sprite_8x1_64x64.png",
     "columns": 8,
-    "collections": ["*"],
     "size": [64, 64],
     "margin": [30, 20],
     "polygon": [[-16.0, 0.0], [0.0, -8.0], [16.0, 0.0], [0.0, 8.0]],

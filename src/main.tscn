@@ -9,6 +9,7 @@ script = ExtResource("1_g3jcb")
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("2_nyc2x")
+WorldNodePath = NodePath("../World")
 
 [node name="World" type="Node2D" parent="."]
 z_as_relative = false

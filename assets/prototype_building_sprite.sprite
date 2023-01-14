@@ -1,0 +1,15 @@
+{
+    "id": "prototype_building_sprite",
+    "name": "PrototypeBuildingSprite",
+    "source": "prototype_building_96x96.png",
+    "columns": 1,
+    "size": [96, 96],
+    "margin": [0, 24],
+    "polygon": [[-48.0, 0.0], [0.0, -24.0], [48.0, 0.0], [0.0, 24.0]],
+    "animations": {
+		"idle": {
+			"E": [0]
+		},
+
+	}
+}
