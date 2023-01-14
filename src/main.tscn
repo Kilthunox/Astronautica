@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=4 format=3 uid="uid://brdta3nf448ru"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
+[ext_resource type="Script" path="res://src/Player.gd" id="2_nyc2x"]
+[ext_resource type="Script" path="res://src/World.gd" id="3_yneie"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_g3jcb")
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("2_nyc2x")
+
+[node name="World" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("3_yneie")

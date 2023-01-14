@@ -50,6 +50,7 @@ func make_actor(dir, data: Dictionary, threat: int = 0):
 				actor_node.position = Vector2(actor.get("position", [0])[0], actor.get("position", [0, 0])[1])
 		
 	actor_node.threat = data.get("threat", 0)
+	actor_node.speed = data.get("speed", 0)
 	
 	var sprite_source = data.get("sprite")
 	if sprite_source:
@@ -59,7 +60,7 @@ func make_actor(dir, data: Dictionary, threat: int = 0):
 		actor_node.size = Vector2(sprite_data.get("size", [0])[0], sprite_data.get("size", [0, 0])[1])
 		actor_node.margin = Vector2(sprite_data.get("margin", [0])[0], sprite_data.get("margin", [0, 0])[1])
 		var sprite_vertical_offset: float = (actor_node.size.y / 2) - actor_node.margin.y
-		actor_node.get_node("AnimatedSprite").position.y -= sprite_vertical_offset
+		actor_node.get_node("AnimatedSprite").offset.y -= sprite_vertical_offset
 		actor_node.build_rect()
 		if sprite_data.get("polygon"):
 			var shape: CollisionPolygon2D = CollisionPolygon2D.new()

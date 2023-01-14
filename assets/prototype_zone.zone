@@ -1,0 +1,14 @@
+{
+  "id": "prototype_zone",
+  "name": "prototype_zone",
+  "actors": [
+    {
+      "id": "spawn",
+      "position": [
+        -751.5,
+        815.5
+      ]
+    }
+  ],
+  "threat": 1
+}

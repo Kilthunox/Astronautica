@@ -4,7 +4,7 @@ const POSITION_PRESICION: float = 9.9
 
 @onready var origin: Vector2 = position
 @onready var destination: Vector2 = position
-@onready var Self = preload("res://addons/IsoKit/IsoKit.gd").instantiate()
+@onready var Self = preload("res://addons/IsoKit/IsoKit.gd").new()
 var speed: float = 3000
 var heading: Vector2
 var state: String = "idle"
@@ -14,6 +14,9 @@ var base: Vector2
 var margin: Vector2
 var size: Vector2
 var rect: Rect2
+
+func _ready():
+	y_sort_enabled = true
 
 func build_rect() -> void:
 	rect.size = size - margin 
@@ -28,6 +31,9 @@ func set_destination(value: Vector2):
 	
 func stop():
 	set_destination(position)
+	
+func camera_lock():
+	$Camera.set_current(true)
 	
 func set_heading(value: Vector2):
 	heading = value
