@@ -38,7 +38,10 @@ func build_frame(dir: String, index: int, columns: int, size: Vector2, source: S
 
 func make_actor(dir, data: Dictionary, threat: int = 0):
 	var actor_node = actor_packed_scene.instantiate()
-	actor_node.name = data.get("id")
+	if data.get("id"):
+		actor_node.id = data.get("id", "")
+	if data.get("name"):
+		actor_node.name = data.get("name")
 	var position = Vector2(data.get("position", [0])[0], data.get("position", [0, 0])[1])
 	if position:
 		actor_node.position = position
@@ -91,7 +94,6 @@ func make_actor(dir, data: Dictionary, threat: int = 0):
 		actor_node.set_sprite_frames(sprite_frames)
 		if sprite_frames.get_animation_names():
 			actor_node.get_node("Sprite").set_animation(sprite_frames.get_animation_names()[0])
-
 	
 	return actor_node
 

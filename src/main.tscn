@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=5 format=3 uid="uid://brdta3nf448ru"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
+[ext_resource type="Script" path="res://src/Assembly.gd" id="2_liovd"]
 [ext_resource type="Script" path="res://src/Player.gd" id="2_nyc2x"]
 [ext_resource type="Script" path="res://src/World.gd" id="3_yneie"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_g3jcb")
+
+[node name="Assembly" type="Node" parent="."]
+script = ExtResource("2_liovd")
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("2_nyc2x")
@@ -15,3 +19,5 @@ WorldNodePath = NodePath("../World")
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("3_yneie")
+
+[connection signal="assembly_placed" from="Player" to="Assembly" method="_on_player_assembly_placed"]

@@ -7,6 +7,8 @@ const STAGED_COLLISIONS = [[], []]
 
 var invalid_assembly_placement: bool = false
 
+signal assembly_placed(coords)
+
 func _ready():
 	make_player_actor_node()
 	
@@ -20,6 +22,7 @@ func _unhandled_input(_event):
 func make_player_actor_node():
 	var player_actor_node = IsoKit.make_actor(Runtime.ASSETS, {
 		"id": Runtime.PLAYER_ACTOR_ID,
+		"name": Runtime.PLAYER_ACTOR_ID,
 		"sprite": "prototype_sprite.sprite",
 		"zone": "prototype_zone.zone",
 		"spawn": "spawn",
@@ -31,7 +34,7 @@ func make_player_actor_node():
 	world.add_child(player_actor_node)
 	
 func get_player_actor():
-	return get_parent().get_node("World").get_node_or_null(Runtime.PLAYER_ACTOR_ID)
+	return world.get_node_or_null(Runtime.PLAYER_ACTOR_ID)
 	
 func place_node_in_front(node: Node2D):
 	var staged = get_staged_node()
@@ -64,6 +67,11 @@ func make_assembly(id: String):
 		assembly_node.set_collision_mask_value(1, 1)
 		place_node_in_front(assembly_node)
 		assembly_node.snap_to_grid(assembly_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
+		var x_coord = int(assembly_node.position.x) / int(Runtime.GRID_SIZE.x)
+		var y_coord = int(assembly_node.position.y) / int(Runtime.GRID_SIZE.y)
+		assembly_node.coords = Vector2i(x_coord, y_coord)
+		assembly_node.add_to_group(str(assembly_node.coords))
+		assembly_placed.emit(assembly_node.coords)
 	free_staged_assembly()
 	
 func stage_assembly(id: String):
@@ -77,10 +85,13 @@ func stage_assembly(id: String):
 
 func handle_body_entered_staged_assembly():
 	invalid_assembly_placement = true
+	get_staged_node().get_node("Sprite").set_modulate(Runtime.INVALID_COLOR)
 	# TODO - tell player bad assign
 		
 func handle_body_exited_staged_assembly():
 	invalid_assembly_placement = false
+	get_staged_node().get_node("Sprite").set_modulate(Color(1, 1, 1, Runtime.OPACITY))
+	
 
 
 func handle_movement_input(delta):
@@ -96,7 +107,6 @@ func handle_movement_input(delta):
 			get_player_actor().stop()
 	else:
 		get_player_actor().stop()
-#		Cache.offset = Cache.offset + (heading * delta * Runtime.ASSEMBLER_SPEED)
 		get_staged_node().set_heading(heading)
 
 func handle_action_input():

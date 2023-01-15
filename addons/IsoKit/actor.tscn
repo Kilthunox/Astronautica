@@ -4,6 +4,7 @@
 
 [node name="Actor" type="CharacterBody2D"]
 y_sort_enabled = true
+disable_mode = 1
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1

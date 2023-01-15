@@ -10,6 +10,8 @@ var speed: float = 3000
 var heading: Vector2
 var state: String = "idle"
 var threat: int
+var coords: Vector2i
+var id: String
 
 var margin: Vector2
 var size: Vector2
@@ -107,7 +109,6 @@ func _physics_process(delta):
 	
 func set_sprite_frames(sprite_frames: SpriteFrames) -> void:
 	$Sprite.set_sprite_frames(sprite_frames)
-#	$Outline.set_sprite_frames(sprite_frames)
 
 func get_direction():
 	return Vector2(cos(heading.angle()), sin(heading.angle()))
