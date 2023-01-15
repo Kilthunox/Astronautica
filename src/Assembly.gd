@@ -56,8 +56,8 @@ func _on_player_assembly_placed(coords):
 	
 func compile_assembly(resources, structure_id: String):
 	var structure_node = Runtime.call("make_%s_node" % structure_id)
-	structure_node.set_collision_layer_value(1, 1)
-	structure_node.set_collision_mask_value(1, 1)
+	structure_node.set_collision_layer_value(2, 1)
+	structure_node.set_collision_layer_value(3, 1)
 	structure_node.snap_to_grid(get_origin(resources) * Runtime.GRID_SIZE, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 	var x_coord = int(structure_node.position.x) / int(Runtime.GRID_SIZE.x)
 	var y_coord = int(structure_node.position.y) / int(Runtime.GRID_SIZE.y)
@@ -66,4 +66,3 @@ func compile_assembly(resources, structure_id: String):
 	for resource_coords in resources:
 		get_actor_by_coord(resource_coords).queue_free()
 	world.add_child(structure_node)
-

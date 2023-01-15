@@ -123,9 +123,9 @@ func snap_to_grid(at: Vector2i, grid_size: Vector2i, offset: Vector2i = Vector2i
 
 func _on_area_body_entered(body):
 	for hook in on_area_entered_hooks:
-		hook.call()
+		hook.call(body)
 
 
 func _on_area_body_exited(body):
 	for hook in on_area_exited_hooks:
-		hook.call()
+		hook.call(body)

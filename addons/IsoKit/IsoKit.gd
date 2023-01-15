@@ -187,6 +187,10 @@ func load_tileset(dir, path, size: Vector2i):
 	tileset_node.tile_layout = TileSet.TILE_LAYOUT_DIAMOND_DOWN
 	tileset_node.tile_size = size
 	tileset_node.add_physics_layer()
+################################################################################
+	# TODO - Allow this to be set externally, -- hard coding this for the jam
+	tileset_node.set_physics_layer_collision_layer(0, 2)
+################################################################################
 	initalize_tileatlas_tiles(
 		tileset_data.get("columns"),
 		tileset_data.get("tiles", [])

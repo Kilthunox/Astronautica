@@ -30,7 +30,7 @@ func make_player_actor_node():
 	})
 	player_actor_node.camera_lock()
 	player_actor_node.set_collision_layer_value(1, 1)
-	player_actor_node.set_collision_mask_value(1, 1)
+	player_actor_node.set_collision_mask_value(2, 1)
 	world.add_child(player_actor_node)
 	
 func get_player_actor():
@@ -63,8 +63,9 @@ func stage_node_in_front(node: Node2D):
 func make_assembly(id: String):
 	if !invalid_assembly_placement:
 		var assembly_node = Runtime.call("make_%s_node" % id)
-		assembly_node.set_collision_layer_value(1, 1)
-		assembly_node.set_collision_mask_value(1, 1)
+		assembly_node.set_collision_layer_value(2, 1)
+		assembly_node.set_collision_layer_value(3, 1)
+#		assembly_node.set_collision_mask_value(1, 1)
 		place_node_in_front(assembly_node)
 		assembly_node.snap_to_grid(assembly_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 		var x_coord = int(assembly_node.position.x) / int(Runtime.GRID_SIZE.x)
@@ -77,24 +78,25 @@ func make_assembly(id: String):
 func stage_assembly(id: String):
 	free_staged_assembly()
 	var assembly_node = Runtime.call("make_%s_node" % id)
-	assembly_node.get_node("Area").set_collision_layer_value(1, 1)
+	assembly_node.get_node("Area").set_collision_layer_value(2, 1)
 	assembly_node.get_node("Area").set_collision_mask_value(1, 1)
+	assembly_node.get_node("Area").set_collision_mask_value(2, 1)
 	assembly_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
 	assembly_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
 	stage_node_in_front(assembly_node)
 
-func handle_body_entered_staged_assembly():
+func handle_body_entered_staged_assembly(_body):
 	invalid_assembly_placement = true
 	get_staged_node().get_node("Sprite").set_modulate(Runtime.INVALID_COLOR)
 	# TODO - tell player bad assign
 		
-func handle_body_exited_staged_assembly():
+func handle_body_exited_staged_assembly(_body):
 	invalid_assembly_placement = false
 	get_staged_node().get_node("Sprite").set_modulate(Color(1, 1, 1, Runtime.OPACITY))
 	
 
 
-func handle_movement_input(delta):
+func handle_movement_input(_delta):
 	var heading = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -108,6 +110,37 @@ func handle_movement_input(delta):
 	else:
 		get_player_actor().stop()
 		get_staged_node().set_heading(heading)
+		
+func compute_destructor_node_placement(args: Dictionary):
+	args["self"].position = get_player_actor().get_front()
+	
+func compute_destructor_node_self_destruct(args: Dictionary):
+	if Time.get_unix_time_from_system() > args.destruct_time:
+		args["self"].queue_free()
+		
+func handle_destructor_contact(body):
+	body.queue_free()
+		
+func destructor_emission():
+	if !world.get_node_or_null(Runtime.DESTRUCTOR_ACTOR_ID):
+		var destructor_node = IsoKit.make_actor(Runtime.ASSETS, {
+			"id": Runtime.DESTRUCTOR_ACTOR_ID,
+			"name": Runtime.DESTRUCTOR_ACTOR_ID,
+			"sprite": "destructor_sprite.sprite",
+		})
+		destructor_node.add_compute("ComputeDestructorNodePlacement", compute_destructor_node_placement)
+		destructor_node.add_compute("ComputeDestructorNodeSelfDestruct", compute_destructor_node_self_destruct, {
+			"destruct_time":  Time.get_unix_time_from_system() + Runtime.DESTRUCTOR_ACTOR_LIFESPAN
+		})
+#		destructor_node.get_node("Area").set_collision_layer_value(1, 1)
+		destructor_node.get_node("Area").set_collision_mask_value(3, 1)
+		destructor_node.on_area_entered_hooks.append(handle_destructor_contact)
+		world.add_child(destructor_node)	
+	
+func revoke_destructor_emission():
+	var destructor_node = world.get_node_or_null(Runtime.DESTRUCTOR_ACTOR_ID)
+	if destructor_node:
+		destructor_node.queue_free()
 
 func handle_action_input():
 	if Input.is_action_just_pressed("action_1"):
@@ -118,6 +151,12 @@ func handle_action_input():
 		stage_assembly("prototype_building")
 	elif Input.is_action_just_released("action_2"):
 		make_assembly("prototype_building")
+	
+	if Input.is_action_pressed("action_3"):
+		destructor_emission()
+#	elif Input.is_action_just_released("action_3"):
+#		revoke_destructor_emission()
+	
 	
 	if Input.is_action_just_released("cancel"):
 		free_staged_assembly()

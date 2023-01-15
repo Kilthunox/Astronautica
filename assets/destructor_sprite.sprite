@@ -1,0 +1,34 @@
+{
+    "id": "destructor_sprite",
+    "name": "DestructorSprite",
+    "source": "placholders_tileset_3x2_32x32.png",
+    "columns": 3,
+    "size": [32, 32],
+    "margin": [0, 8],
+    "polygon":[[-14.0, 0.0], [0.0, -6.0], [14.0, 0.0], [0.0, 6.0]],
+    "animations": {
+	
+		"idle": {
+			"S": [3],
+			"NW": [3],
+			"E": [3],
+			"N": [3],
+			"W": [3],
+			"SE": [3],
+			"NE": [3],
+			"SW": [3]
+		},
+		"run":  {
+			"S": [3],
+			"NW": [3],
+			"E": [3],
+			"N": [3],
+			"W": [3],
+			"SE": [3],
+			"NE": [3],
+			"SW": [3]
+		}
+			
+
+	}
+}
