@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 IsoKit="*res://addons/IsoKit/IsoKit.gd"
 Runtime="*res://env/Runtime.gd"
+Cache="*res://env/cache.gd"
 
 [display]
 

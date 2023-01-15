@@ -103,7 +103,6 @@ func _physics_process(delta):
 	handle_movement(delta)
 	handle_state()
 	handle_animation()
-	print(size)
 	$ColorRect.position = get_front() - position
 	
 func set_sprite_frames(sprite_frames: SpriteFrames) -> void:
@@ -115,7 +114,7 @@ func get_direction():
 
 func get_front(offset: Vector2 = Vector2(0, 0)):
 	return position + get_direction() + (get_direction() * (offset / 2 + size / 2)) * IsoKit.isometric_factor(heading.angle())
-#	print(heading * offset * (1.2 * IsoKit.isometric_factor(heading.angle())))
+
 	
 func snap_to_grid(at: Vector2i, grid_size: Vector2i, offset: Vector2i = Vector2i(0, 0)):
 	position = IsoKit.snap_to_grid(position, at, grid_size, offset)

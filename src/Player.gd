@@ -10,8 +10,8 @@ var invalid_assembly_placement: bool = false
 func _ready():
 	make_player_actor_node()
 	
-func _physics_process(_delta):
-	handle_movement_input()
+func _physics_process(delta):
+	handle_movement_input(delta)
 	
 	
 func _unhandled_input(_event):
@@ -49,16 +49,12 @@ func free_staged_assembly():
 	invalid_assembly_placement = false
 	for staged_node in get_tree().get_nodes_in_group(Runtime.STAGED):
 		staged_node.queue_free()
-	
-func snap_node_to_grid_cprocess(args: Dictionary):
-	args["self"].snap_to_grid(get_player_actor().get_front(args["self"].size), Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
-	
+
 func stage_node_in_front(node: Node2D):
 	free_staged_assembly()
 	node.snap_to_grid(get_player_actor().get_front(node.size), Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 	node.get_node("Sprite").modulate.a = Runtime.OPACITY
 	node.add_to_group(Runtime.STAGED)
-	node.add_compute("SnapToGrid", snap_node_to_grid_cprocess)
 	world.add_child(node) 
 	
 func make_assembly(id: String):
@@ -67,6 +63,7 @@ func make_assembly(id: String):
 		assembly_node.set_collision_layer_value(1, 1)
 		assembly_node.set_collision_mask_value(1, 1)
 		place_node_in_front(assembly_node)
+		assembly_node.snap_to_grid(assembly_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 	free_staged_assembly()
 	
 func stage_assembly(id: String):
@@ -86,15 +83,21 @@ func handle_body_exited_staged_assembly():
 	invalid_assembly_placement = false
 
 
-func handle_movement_input():
+func handle_movement_input(delta):
 	var heading = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 		)
-	if heading:
-		get_player_actor().set_heading(heading)
+	if !get_staged_node():
+		Cache.offset = Vector2()
+		if heading:
+			get_player_actor().set_heading(heading)
+		else:
+			get_player_actor().stop()
 	else:
 		get_player_actor().stop()
+#		Cache.offset = Cache.offset + (heading * delta * Runtime.ASSEMBLER_SPEED)
+		get_staged_node().set_heading(heading)
 
 func handle_action_input():
 	if Input.is_action_just_pressed("action_1"):

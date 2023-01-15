@@ -7,6 +7,7 @@ const GRID_SIZE: Vector2i = Vector2i(16, 8)
 const GRID_OFFSET: Vector2i = Vector2i(0, 0)
 const STAGED: String = "StagedAssembly"
 const OPACITY: float = 0.3333
+const ASSEMBLER_SPEED: float = 1000.0
 
 enum LAYER {
 	player,
@@ -35,12 +36,12 @@ func make_prototype_building_node():
 	return IsoKit.make_actor(Runtime.ASSETS, {
 		"id": "prototype_building",
 		"sprite": "prototype_building_sprite.sprite",
-		"speed": 0.0,
+		"speed": Runtime.PLAYER_SPEED,
 	})
 	
 func make_prototype_object_node():
 	return IsoKit.make_actor(Runtime.ASSETS, {
 	"id": "prototype_object",
 	"sprite": "prototype_object_sprite.sprite",
-	"speed": 0.0,
+		"speed": Runtime.PLAYER_SPEED,
 	})
