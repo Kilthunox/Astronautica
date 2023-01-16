@@ -64,7 +64,8 @@ func stage_node_in_front(node: Node2D):
 	world.add_child(node) 
 	
 func make_assembly(id: String):
-	if !invalid_assembly_placement:
+	if !invalid_assembly_placement and Cache.get(Cache.selected_resource) > 0:
+		Cache.set(Cache.selected_resource, Cache.get(Cache.selected_resource) - 1)
 		var assembly_node = Runtime.call("make_%s_node" % id)
 		assembly_node.set_collision_layer_value(2, 1)
 		assembly_node.set_collision_layer_value(3, 1)
@@ -76,17 +77,22 @@ func make_assembly(id: String):
 		assembly_node.coords = Vector2i(x_coord, y_coord)
 		assembly_node.add_to_group(str(assembly_node.coords))
 		assembly_placed.emit(assembly_node.coords)
+	else:
+		print("TODO - tell player they are out of %s" % Cache.selected_resource)
 	free_staged_assembly()
 	
 func stage_assembly(id: String):
 	free_staged_assembly()
-	var assembly_node = Runtime.call("make_%s_node" % id)
-	assembly_node.get_node("Area").set_collision_layer_value(2, 1)
-	assembly_node.get_node("Area").set_collision_mask_value(1, 1)
-	assembly_node.get_node("Area").set_collision_mask_value(2, 1)
-	assembly_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
-	assembly_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
-	stage_node_in_front(assembly_node)
+	if Cache.get(Cache.selected_resource) > 0:
+		var assembly_node = Runtime.call("make_%s_node" % id)
+		assembly_node.get_node("Area").set_collision_layer_value(2, 1)
+		assembly_node.get_node("Area").set_collision_mask_value(1, 1)
+		assembly_node.get_node("Area").set_collision_mask_value(2, 1)
+		assembly_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
+		assembly_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
+		stage_node_in_front(assembly_node)
+	else:
+		print("TODO - tell player they are out of %s" % Cache.selected_resource)
 
 func handle_body_entered_staged_assembly(_body):
 	invalid_assembly_placement = true

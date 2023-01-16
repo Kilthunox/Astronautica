@@ -49,6 +49,7 @@ func get_recipe(coords: Vector2i, recipe: Dictionary={}):
 func _on_player_assembly_placed(coords):
 	var original_recipe = get_recipe(coords)
 	var assembly = normalize_recipe(original_recipe)
+	print(assembly)
 	for recipe in Runtime.RECIPE.keys():
 		if recipe == assembly:
 			compile_assembly(original_recipe.keys(), Runtime.RECIPE[recipe])
