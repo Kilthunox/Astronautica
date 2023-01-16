@@ -3,19 +3,24 @@ extends Timer
 signal pulse(drill)
 
 func _ready():
+	Cache.drills -= 1
 	autostart = true
 	wait_time = Runtime.DRILL_GATHERING_INTERVAL
-
+	
 func drill_gathers_resource(drill):
-	for resource_node in get_tree().get_nodes_in_group("resource"):
-		var isofactor = IsoKit.isometric_factor(drill.position.angle_to(resource_node.position))
-		var distance = drill.position.distance_to(resource_node.position)
-		if distance * isofactor <= Runtime.DRILL_RANGE:
-			match resource_node.id:
-				"ore_resource":
-					Cache.ore += 1
-					resource_node.queue_free()
-					break
+	if Cache.fuel <= Runtime.FUEL_MIN:
+		get_parent().queue_free()
+	else:
+		Cache.fuel = clamp(Cache.fuel - Runtime.DRILL_FUEL_CONSUMPTION_VALUE, Runtime.FUEL_MIN, Runtime.FUEL_MAX)
+		for resource_node in get_tree().get_nodes_in_group("resource"):
+			var isofactor = IsoKit.isometric_factor(drill.position.angle_to(resource_node.position))
+			var distance = drill.position.distance_to(resource_node.position)
+			if distance * isofactor <= Runtime.DRILL_RANGE:
+				match resource_node.id:
+					"ore":
+						Cache.ore += 1
+						resource_node.queue_free()
+						break
 
 
 func _on_timeout():

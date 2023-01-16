@@ -1,0 +1,54 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://fa2uag8fv3w1"]
+
+[ext_resource type="FontFile" uid="uid://l6k4pwwm24wq" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_small_plain.ttf" id="1_pvcit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_worx0"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb67k"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lanha"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjotf"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3dv7"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78haa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iut8d"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+draw_center = false
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjnay"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvc7d"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggqr5"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[resource]
+Button/font_sizes/font_size = 8
+Button/fonts/font = ExtResource("1_pvcit")
+Button/styles/disabled = SubResource("StyleBoxFlat_worx0")
+Button/styles/focus = SubResource("StyleBoxFlat_cb67k")
+Button/styles/hover = SubResource("StyleBoxFlat_lanha")
+Button/styles/normal = SubResource("StyleBoxFlat_rjotf")
+Label/font_sizes/font_size = 8
+Label/fonts/font = ExtResource("1_pvcit")
+Label/styles/normal = SubResource("StyleBoxFlat_j3dv7")
+ProgressBar/font_sizes/font_size = 8
+ProgressBar/fonts/font = ExtResource("1_pvcit")
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_78haa")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_iut8d")
+TextEdit/font_sizes/font_size = 8
+TextEdit/fonts/font = ExtResource("1_pvcit")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_pjnay")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_vvc7d")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_ggqr5")

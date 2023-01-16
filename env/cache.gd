@@ -14,4 +14,3 @@ var temperature: int = Runtime.STARTING_TEMPERATURE
 var oxygen: int = Runtime.STARTING_OXYGEN
 var power: int = Runtime.STARTING_POWER
 var fuel: int = Runtime.STARTING_FUEL
-var water: int = Runtime.STARTING_WATER

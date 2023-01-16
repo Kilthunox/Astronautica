@@ -290,49 +290,49 @@
   </object>
   <object id="2" name="Tilium Ore" class="ore" x="839.333" y="730">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>
   <object id="3" name="Tilium Ore" class="ore" x="809.25" y="702.75">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>
   <object id="4" name="Tilium Ore" class="ore" x="747.75" y="781.25">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>
   <object id="5" name="Tilium Ore" class="ore" x="793.75" y="720.25">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>
   <object id="6" name="Tilium Ore" class="ore" x="788.75" y="753.25">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>
   <object id="7" name="Tilium Ore" class="ore" x="759" y="705">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>
   <object id="8" name="Tilium Ore" class="ore" x="755.25" y="748.75">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>
   <object id="9" name="Tilium Ore" class="ore" x="744" y="816">
    <properties>
-    <property name="id" value="ore_resource"/>
+    <property name="id" value="ore"/>
    </properties>
    <point/>
   </object>

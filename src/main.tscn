@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=9 format=3 uid="uid://brdta3nf448ru"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
 [ext_resource type="Script" path="res://src/Assembly.gd" id="2_liovd"]
 [ext_resource type="Script" path="res://src/Player.gd" id="2_nyc2x"]
 [ext_resource type="Script" path="res://src/World.gd" id="3_yneie"]
+[ext_resource type="Script" path="res://src/UserInterface.gd" id="5_2lyn2"]
+[ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="5_7hmsa"]
+[ext_resource type="Texture2D" uid="uid://cg1wd4kdffuj4" path="res://assets/tilium_ore_icon.png" id="6_ktn2w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib3h8"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_g3jcb")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="Assembly" type="Node" parent="."]
 script = ExtResource("2_liovd")
@@ -14,6 +23,7 @@ script = ExtResource("2_liovd")
 [node name="Player" type="Node" parent="."]
 script = ExtResource("2_nyc2x")
 WorldNodePath = NodePath("../World")
+ComsNodePath = NodePath("../UserInterface/MarginContainer/HBox/VBox1/Coms")
 
 [node name="World" type="Node2D" parent="."]
 z_as_relative = false
@@ -21,6 +31,11 @@ y_sort_enabled = true
 script = ExtResource("3_yneie")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
+script = ExtResource("5_2lyn2")
+OxygenMeterNodePath = NodePath("MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter/ProgressBar")
+PowerMeterNodePath = NodePath("MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter/ProgressBar")
+FuelMeterNodePath = NodePath("MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter/ProgressBar")
+TemperatureMeterNodePath = NodePath("MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter/ProgressBar")
 
 [node name="MarginContainer" type="MarginContainer" parent="UserInterface"]
 anchors_preset = 15
@@ -29,6 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("5_7hmsa")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -54,6 +70,76 @@ size_flags_vertical = 3
 mouse_filter = 2
 alignment = 2
 
+[node name="HBox0" type="HBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+alignment = 2
+
+[node name="PowerMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter"]
+layout_mode = 2
+text = "POWER"
+
+[node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
+value = 50.0
+show_percentage = false
+
+[node name="TemperatureMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter"]
+layout_mode = 2
+text = "TEMPERATURE"
+
+[node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
+value = 50.0
+show_percentage = false
+
+[node name="FuelMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter"]
+layout_mode = 2
+text = "FUEL"
+
+[node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
+value = 50.0
+show_percentage = false
+
+[node name="OxygenMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter"]
+layout_mode = 2
+text = "OXYGEN"
+
+[node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
+value = 50.0
+show_percentage = false
+
+[node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -65,10 +151,11 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
+[node name="Coms" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
+theme_override_constants/separation = 0
 alignment = 2
 
 [node name="VBox2" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
@@ -88,4 +175,107 @@ size_flags_vertical = 3
 mouse_filter = 2
 alignment = 2
 
+[node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Margin0" type="MarginContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBox0" type="HBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Margin0" type="MarginContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0"]
+layout_mode = 2
+alignment = 2
+
+[node name="Grid" type="GridContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Button0" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_ktn2w")
+alignment = 2
+icon_alignment = 1
+
+[node name="Button1" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[node name="Button3" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[node name="Button4" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[node name="Button5" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[node name="Button6" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[node name="Button7" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[node name="Button8" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+alignment = 2
+icon_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="assebly_query" from="Player" to="Assembly" method="_on_player_assebly_query"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6gi1bjec3u7q"]
+
+[ext_resource type="Script" path="res://src/line.gd" id="1_xtd4q"]
+
+[node name="Line" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_alignment = 1
+script = ExtResource("1_xtd4q")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
