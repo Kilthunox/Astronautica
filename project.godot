@@ -83,6 +83,7 @@ cancel={
 2d_physics/layer_1="player"
 2d_physics/layer_2="environment"
 2d_physics/layer_3="destructable"
+2d_physics/layer_4="assembly"
 
 [rendering]
 

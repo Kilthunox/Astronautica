@@ -5,10 +5,11 @@ const STAGED_COLLISIONS = [[], []]
 @export var  WorldNodePath: NodePath
 @onready var world: Node = get_node_or_null(WorldNodePath)
 @onready var DrillTimer: PackedScene = preload("res://src/drill_timer.tscn")
+var emitting = false
 
 var invalid_assembly_placement: bool = false
 
-signal assembly_placed(coords)
+signal assebly_query(coords)
 signal drill_placed(coords)
 
 func _ready():
@@ -69,6 +70,7 @@ func make_assembly(id: String):
 		var assembly_node = Runtime.call("make_%s_node" % id)
 		assembly_node.set_collision_layer_value(2, 1)
 		assembly_node.set_collision_layer_value(3, 1)
+		assembly_node.set_collision_layer_value(4, 1)
 #		assembly_node.set_collision_mask_value(1, 1)
 		place_node_in_front(assembly_node)
 		assembly_node.snap_to_grid(assembly_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
@@ -76,7 +78,7 @@ func make_assembly(id: String):
 		var y_coord = int(assembly_node.position.y) / int(Runtime.GRID_SIZE.y)
 		assembly_node.coords = Vector2i(x_coord, y_coord)
 		assembly_node.add_to_group(str(assembly_node.coords))
-		assembly_placed.emit(assembly_node.coords)
+#		assembly_placed.emit(assembly_node.coords)
 	else:
 		print("TODO - tell player they are out of %s" % Cache.selected_resource)
 	free_staged_assembly()
@@ -120,12 +122,14 @@ func handle_movement_input(_delta):
 		get_player_actor().stop()
 		get_staged_node().set_heading(heading)
 		
-func compute_destructor_node_placement(args: Dictionary):
+func compute_node_placement(args: Dictionary):
 	args["self"].position = get_player_actor().get_front()
 	
-func compute_destructor_node_self_destruct(args: Dictionary):
-	if Time.get_unix_time_from_system() > args.destruct_time:
+func compute_node_self_destruct(args: Dictionary):
+	if !emitting:
 		args["self"].queue_free()
+#	if Time.get_unix_time_from_system() > args.destruct_time:
+#		args["self"].queue_free()
 		
 func handle_destructor_contact(body):
 	body.queue_free()
@@ -137,14 +141,31 @@ func destructor_emission():
 			"name": Runtime.DESTRUCTOR_ACTOR_ID,
 			"sprite": "destructor_sprite.sprite",
 		})
-		destructor_node.add_compute("ComputeDestructorNodePlacement", compute_destructor_node_placement)
-		destructor_node.add_compute("ComputeDestructorNodeSelfDestruct", compute_destructor_node_self_destruct, {
+		destructor_node.add_compute("ComputeDestructorNodePlacement", compute_node_placement)
+		destructor_node.add_compute("ComputeDestructorNodeSelfDestruct", compute_node_self_destruct, {
 			"destruct_time":  Time.get_unix_time_from_system() + Runtime.DESTRUCTOR_ACTOR_LIFESPAN
 		})
-#		destructor_node.get_node("Area").set_collision_layer_value(1, 1)
 		destructor_node.get_node("Area").set_collision_mask_value(3, 1)
 		destructor_node.on_area_entered_hooks.append(handle_destructor_contact)
-		world.add_child(destructor_node)	
+		world.add_child(destructor_node)
+		
+func handle_assembler_contact(body):
+	assebly_query.emit(body.coords)
+		
+func assembler_emission():
+	if !world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID):
+		var assembler_node = IsoKit.make_actor(Runtime.ASSETS, {
+			"id": Runtime.ASSEMBLER_ACTOR_ID,
+			"name": Runtime.ASSEMBLER_ACTOR_ID,
+			"sprite": "assembler_sprite.sprite",
+		})
+		assembler_node.add_compute("ComputeAssemblerNodePlacement", compute_node_placement)
+		assembler_node.add_compute("ComputeAssemblerNodeSelfDestruct", compute_node_self_destruct, {
+			"destruct_time":  Time.get_unix_time_from_system() + Runtime.ASSEMBLER_ACTOR_LIFESPAN
+		})
+		assembler_node.get_node("Area").set_collision_mask_value(4, 1)
+		assembler_node.on_area_entered_hooks.append(handle_assembler_contact)
+		world.add_child(assembler_node)
 	
 func revoke_destructor_emission():
 	var destructor_node = world.get_node_or_null(Runtime.DESTRUCTOR_ACTOR_ID)
@@ -153,16 +174,18 @@ func revoke_destructor_emission():
 		
 func stage_drill():
 	free_staged_assembly()
-	var drill_node = Runtime.call("make_drill_node")
-	drill_node.get_node("Area").set_collision_layer_value(2, 1)
-	drill_node.get_node("Area").set_collision_mask_value(1, 1)
-	drill_node.get_node("Area").set_collision_mask_value(2, 1)
-	drill_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
-	drill_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
-	stage_node_in_front(drill_node)
+	if Cache.drills > 0:
+		var drill_node = Runtime.call("make_drill_node")	
+		drill_node.get_node("Area").set_collision_layer_value(2, 1)
+		drill_node.get_node("Area").set_collision_mask_value(1, 1)
+		drill_node.get_node("Area").set_collision_mask_value(2, 1)
+		drill_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
+		drill_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
+		stage_node_in_front(drill_node)
 	
 func make_drill():
-	if !invalid_assembly_placement:
+	if !invalid_assembly_placement and Cache.drills > 0:
+		Cache.drills -= 1
 		var drill_node = Runtime.call("make_drill_node")
 		drill_node.set_collision_layer_value(2, 1)
 		drill_node.set_collision_layer_value(3, 1)
@@ -186,11 +209,13 @@ func handle_action_input():
 		stage_drill()
 	elif Input.is_action_just_released("action_2"):
 		make_drill()
-	
-	if Input.is_action_pressed("action_3"):
-		destructor_emission()
-#	elif Input.is_action_just_released("action_3"):
-#		revoke_destructor_emission()
+		
+	emitting = Input.is_action_pressed("action_3") or Input.is_action_pressed("action_4")
+	if !Input.is_action_pressed("action_3") or !Input.is_action_pressed("action_4"):
+		if Input.is_action_pressed("action_3"):
+			destructor_emission()
+		if Input.is_action_just_pressed("action_4"):
+			assembler_emission()
 	
 	
 	if Input.is_action_just_released("cancel"):

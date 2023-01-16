@@ -20,3 +20,7 @@ func drill_gathers_resource(drill):
 
 func _on_timeout():
 	drill_gathers_resource(self.get_parent())
+
+
+func _on_tree_exiting():
+	Cache.drills += 1

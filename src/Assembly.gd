@@ -32,7 +32,6 @@ func normalize_recipe(recipe: Dictionary):
 	var result: Dictionary = {}
 	for coord in recipe.keys():
 		result[abs(coord - origin)] = recipe[coord]
-		
 	return result
 
 func get_recipe(coords: Vector2i, recipe: Dictionary={}):
@@ -43,17 +42,6 @@ func get_recipe(coords: Vector2i, recipe: Dictionary={}):
 			for neighbor_coords in get_neighbors(actor.coords):
 				get_recipe(neighbor_coords, recipe)
 	return recipe
-	
-	
-
-func _on_player_assembly_placed(coords):
-	var original_recipe = get_recipe(coords)
-	var assembly = normalize_recipe(original_recipe)
-	print(assembly)
-	for recipe in Runtime.RECIPE.keys():
-		if recipe == assembly:
-			compile_assembly(original_recipe.keys(), Runtime.RECIPE[recipe])
-			break
 	
 func compile_assembly(resources, structure_id: String):
 	var structure_node = Runtime.call("make_%s_node" % structure_id)
@@ -66,4 +54,13 @@ func compile_assembly(resources, structure_id: String):
 	structure_node.add_to_group(str(structure_node.coords))
 	for resource_coords in resources:
 		get_actor_by_coord(resource_coords).queue_free()
-	world.add_child(structure_node)
+	world.call_deferred("add_child", structure_node)
+
+
+func _on_player_assebly_query(coords):
+	var original_recipe = get_recipe(coords)
+	var assembly = normalize_recipe(original_recipe)
+	for recipe in Runtime.RECIPE.keys():
+		if recipe == assembly:
+			compile_assembly(original_recipe.keys(), Runtime.RECIPE[recipe])
+			break
