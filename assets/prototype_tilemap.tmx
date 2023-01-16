@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="isometric" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="2">
+<map version="1.9" tiledversion="1.9.2" orientation="isometric" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="10">
  <editorsettings>
-  <export target="prototype_zone.zone" format="isometric-toolset-zone"/>
+  <export target="main.zone" format="isometric-toolset-zone"/>
  </editorsettings>
  <properties>
   <property name="tilemap" value="prototype_tilemap.tilemap"/>
@@ -285,6 +285,54 @@
   <object id="1" name="Player Spawn" x="589.083" y="764.583">
    <properties>
     <property name="id" value="spawn"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="2" name="Tilium Ore" class="ore" x="839.333" y="730">
+   <properties>
+    <property name="id" value="ore_resource"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="3" name="Tilium Ore" class="ore" x="809.25" y="702.75">
+   <properties>
+    <property name="id" value="ore_resource"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="4" name="Tilium Ore" class="ore" x="747.75" y="781.25">
+   <properties>
+    <property name="id" value="ore_resource"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="5" name="Tilium Ore" class="ore" x="793.75" y="720.25">
+   <properties>
+    <property name="id" value="ore_resource"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="6" name="Tilium Ore" class="ore" x="788.75" y="753.25">
+   <properties>
+    <property name="id" value="ore_resource"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="7" name="Tilium Ore" class="ore" x="759" y="705">
+   <properties>
+    <property name="id" value="ore_resource"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="8" name="Tilium Ore" class="ore" x="755.25" y="748.75">
+   <properties>
+    <property name="id" value="ore_resource"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="9" name="Tilium Ore" class="ore" x="744" y="816">
+   <properties>
+    <property name="id" value="ore_resource"/>
    </properties>
    <point/>
   </object>

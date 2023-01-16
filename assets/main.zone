@@ -1,0 +1,70 @@
+{
+  "id": "main",
+  "name": "main",
+  "actors": [
+    {
+      "id": "spawn",
+      "position": [
+        -159.5,
+        676.833
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        125.33299999999997,
+        784.6665
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        122.5,
+        756
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        -17.5,
+        764.5
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        89.5,
+        757
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        51.5,
+        771
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        70,
+        732
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        22.5,
+        752
+      ]
+    },
+    {
+      "id": "ore_resource",
+      "position": [
+        -56,
+        780
+      ]
+    }
+  ],
+  "threat": 1
+}

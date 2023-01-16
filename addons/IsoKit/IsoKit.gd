@@ -50,7 +50,9 @@ func make_actor(dir, data: Dictionary, threat: int = 0):
 		for actor in zone.get("actors", []):
 			if actor.get("id") == data.get("spawn"):
 				actor_node.position = Vector2(actor.get("position", [0])[0], actor.get("position", [0, 0])[1])
-		
+				break
+				# TODO - Find a better way to set spawn. 
+				
 	actor_node.threat = data.get("threat", 0)
 	actor_node.speed = data.get("speed", 0)
 	actor_node.size.x = data.get("size", [0, 0])[0]

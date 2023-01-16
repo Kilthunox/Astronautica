@@ -4,10 +4,12 @@ const STAGED_COLLISIONS = [[], []]
 
 @export var  WorldNodePath: NodePath
 @onready var world: Node = get_node_or_null(WorldNodePath)
+@onready var DrillTimer: PackedScene = preload("res://src/drill_timer.tscn")
 
 var invalid_assembly_placement: bool = false
 
 signal assembly_placed(coords)
+signal drill_placed(coords)
 
 func _ready():
 	make_player_actor_node()
@@ -24,13 +26,14 @@ func make_player_actor_node():
 		"id": Runtime.PLAYER_ACTOR_ID,
 		"name": Runtime.PLAYER_ACTOR_ID,
 		"sprite": "prototype_sprite.sprite",
-		"zone": "prototype_zone.zone",
+		"zone": "main.zone",
 		"spawn": "spawn",
 		"speed": Runtime.PLAYER_SPEED,
 	})
 	player_actor_node.camera_lock()
 	player_actor_node.set_collision_layer_value(1, 1)
 	player_actor_node.set_collision_mask_value(2, 1)
+	player_actor_node.set_collision_mask_value(4, 1)
 	world.add_child(player_actor_node)
 	
 func get_player_actor():
@@ -141,6 +144,32 @@ func revoke_destructor_emission():
 	var destructor_node = world.get_node_or_null(Runtime.DESTRUCTOR_ACTOR_ID)
 	if destructor_node:
 		destructor_node.queue_free()
+		
+func stage_drill():
+	free_staged_assembly()
+	var drill_node = Runtime.call("make_drill_node")
+	drill_node.get_node("Area").set_collision_layer_value(2, 1)
+	drill_node.get_node("Area").set_collision_mask_value(1, 1)
+	drill_node.get_node("Area").set_collision_mask_value(2, 1)
+	drill_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
+	drill_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
+	stage_node_in_front(drill_node)
+	
+func make_drill():
+	if !invalid_assembly_placement:
+		var drill_node = Runtime.call("make_drill_node")
+		drill_node.set_collision_layer_value(2, 1)
+		drill_node.set_collision_layer_value(3, 1)
+		place_node_in_front(drill_node)
+		drill_node.snap_to_grid(drill_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
+		var x_coord = int(drill_node.position.x) / int(Runtime.GRID_SIZE.x)
+		var y_coord = int(drill_node.position.y) / int(Runtime.GRID_SIZE.y)
+		drill_node.coords = Vector2i(x_coord, y_coord)
+		drill_node.add_to_group(str(drill_node.coords))
+		drill_placed.emit(drill_node.coords)
+		var timer = DrillTimer.instantiate()
+		drill_node.add_child(timer)
+	free_staged_assembly()
 
 func handle_action_input():
 	if Input.is_action_just_pressed("action_1"):
@@ -148,9 +177,9 @@ func handle_action_input():
 	elif Input.is_action_just_released("action_1"):
 		make_assembly("prototype_object")
 	if Input.is_action_just_pressed("action_2"):
-		stage_assembly("prototype_building")
+		stage_drill()
 	elif Input.is_action_just_released("action_2"):
-		make_assembly("prototype_building")
+		make_drill()
 	
 	if Input.is_action_pressed("action_3"):
 		destructor_emission()

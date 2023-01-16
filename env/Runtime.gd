@@ -12,7 +12,8 @@ const OPACITY: float = 0.45
 const INVALID_COLOR: Color = Color(1, 0.45, 0.45, 0.45)
 const ASSEMBLY_COLOR: Color = Color(0.45, 0.45, 1, 1)
 const ASSEMBLER_SPEED: float = 1000.0
-
+const DRILL_RANGE: float = 100.0
+const DRILL_GATHERING_INTERVAL: int = 9
 
 enum STRUCTURE {
 	BASE_STATION,
@@ -60,9 +61,30 @@ func make_prototype_building_node():
 		"speed": Runtime.PLAYER_SPEED,
 	})
 	
+func make_drill_node():
+	return IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "drill",
+		"sprite": "drill.sprite",
+		"speed": Runtime.PLAYER_SPEED,
+	})
+	
 func make_prototype_object_node():
 	return IsoKit.make_actor(Runtime.ASSETS, {
 	"id": "ore",
 	"sprite": "prototype_object_sprite.sprite",
 		"speed": Runtime.PLAYER_SPEED,
+	})
+	
+func make_ore_node():
+	return IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "ore",
+		"sprite": "prototype_object_sprite.sprite",
+		"speed": 0.0,
+	})
+	
+func make_ore_resource_node():
+	return IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "ore_resource",
+		"sprite": "tilium_ore_resource.sprite",
+		"speed": 0.0
 	})

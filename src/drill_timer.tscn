@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsohgvxppkmc1"]
+
+[ext_resource type="Script" path="res://src/DrillTimer.gd" id="1_hjmue"]
+
+[node name="DrillTimer" type="Timer"]
+autostart = true
+script = ExtResource("1_hjmue")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]
