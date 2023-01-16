@@ -10,9 +10,12 @@ func get_actor_by_coord(coord: Vector2i):
 		
 
 func get_origin(keys):
-	var origin: Vector2i = Vector2i(INF, INF)
+	var origin: Vector2i
 	for coords in keys:
-		origin = min(coords, origin)
+		if coords.x < 0:
+			origin = min(origin, coords)
+		else:
+			origin = max(origin, coords)
 	return origin
 
 func get_neighbors(coords: Vector2i) -> PackedVector2Array:

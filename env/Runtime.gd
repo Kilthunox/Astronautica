@@ -21,6 +21,7 @@ const STARTING_OXYGEN: int = 25
 const STARTING_POWER: int = 0
 const STARTING_FUEL: int = 0
 const STARTING_WATER: int = 25
+const INT64_MAX_LIMIT: int = 9223372036854775807
 
 
 enum STRUCTURE {
