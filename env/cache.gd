@@ -7,6 +7,9 @@ var tilemap: String = "main.tilemap"
 var drills: int = 1
 var selected_resource: String = "ore"
 var ore: int = 0
+var gas: int = 0
+var bio: int = 0
+var cry: int = 0
 
 
 

@@ -98,6 +98,15 @@ func stage_assembly(id: String):
 		assembly_node.get_node("Area").set_collision_mask_value(2, 1)
 		assembly_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
 		assembly_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
+		var timer = Timer.new()
+		timer.autostart = true
+		timer.wait_time = Runtime.LOADER_TEMPERATURE_CONSUMPTION_RATE
+		var compute_increase_temperature = func increase_temperature():
+			Cache.temperature = clamp(Cache.temperature + Runtime.LOADER_TEMPERATURE_CONSUMPTION_VALUE, Runtime.TEMPERATURE_MIN, Runtime.TEMPERATURE_MAX)
+			if Cache.temperature >= Runtime.TEMPERATURE_MAX:
+				assembly_node.queue_free()
+		timer.connect("timeout", compute_increase_temperature)		
+		assembly_node.add_child(timer)
 		stage_node_in_front(assembly_node)
 	else:
 		new_transmission("Not enough %s." % Cache.selected_resource)
@@ -155,9 +164,6 @@ func destructor_emission():
 		var compute_increase_temperature = func increase_temperature():
 			Cache.temperature = clamp(Cache.temperature + Runtime.DESTRUCTOR_TEMPERATURE_CONSUMPTION_VALUE, Runtime.TEMPERATURE_MIN, Runtime.TEMPERATURE_MAX)
 			if Cache.temperature >= Runtime.TEMPERATURE_MAX:
-				Cache.fuel = 0.0
-				Cache.power = 0.0
-				Cache.oxygen = Cache.oxygen / 2
 				destructor_node.queue_free()
 		timer.connect("timeout", compute_increase_temperature)		
 		destructor_node.add_child(timer)
@@ -182,7 +188,7 @@ func assembler_emission():
 		timer.wait_time = Runtime.ASSEMBLER_POWER_CONSUMPTION_RATE
 		var compute_consume_power = func consume_power():
 			Cache.power= clamp(Cache.power - Runtime.ASSEMBLER_POWER_CONSUMPTION_VALUE, Runtime.POWER_MIN, Runtime.POWER_MAX)
-			if Cache.temperature <= Runtime.POWER_MIN:
+			if Cache.power <= Runtime.POWER_MIN:
 				assembler_node.queue_free()
 		timer.connect("timeout", compute_consume_power)		
 		assembler_node.add_child(timer)

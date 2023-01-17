@@ -36,12 +36,16 @@ const TEMPERATURE_MIN: float = 0.0
 const TEMPERATURE_MAX: float = 100.0
 const DESTRUCTOR_TEMPERATURE_CONSUMPTION_VALUE: float = 6.666
 const DESTRUCTOR_TEMPERATURE_CONSUMPTION_RATE: float = 0.333
+const LOADER_TEMPERATURE_CONSUMPTION_VALUE: float = 1.0
+const LOADER_TEMPERATURE_CONSUMPTION_RATE: float = 1.0
 const ASSEMBLER_POWER_CONSUMPTION_VALUE: float = 0.1
 const ASSEMBLER_POWER_CONSUMPTION_RATE: float = 0.333
 const TEMPERATURE_DROP_VALUE: float = 3.0
 const SAVING_CHANCE: int = 3
-
-
+const ORE_QUANTITY_RANGE: int = 3
+const GAS_QUANTITY_RANGE: int = 2
+const BIO_QUANTITY_RANGE: int = 1
+const CRY_QUANTITY_RANGE: int = 1
 
 enum STRUCTURE {
 	BASE_STATION,
@@ -86,12 +90,13 @@ func make_oxygen_farm_node():
 		"sprite": "oxygen_farm.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	oxygen_farm_node.add_to_group("oxygen_farm")
+	oxygen_farm_node.add_to_group("structure")
 	var timer = Timer.new()
 	var compute_produce_oxygen = func produce_oxygen():
-		Cache.oxygen = clamp(Cache.oxygen + Runtime.OXYGEN_FARM_PRODUCTION_VALUE, Runtime.OXYGEN_MIN, Runtime.OXYGEN_MAX)
-		Cache.power = clamp(Cache.power - Runtime.OXYGEN_FARM_POWER_CONSUMPTION, Runtime.POWER_MIN, Runtime.POWER_MAX)
-		if Cache.power <= Runtime.POWER_MIN:
-			oxygen_farm_node.queue_free()
+		if Cache.power > Runtime.POWER_MIN:
+			Cache.oxygen = clamp(Cache.oxygen + Runtime.OXYGEN_FARM_PRODUCTION_VALUE, Runtime.OXYGEN_MIN, Runtime.OXYGEN_MAX)
+			Cache.power = clamp(Cache.power - Runtime.OXYGEN_FARM_POWER_CONSUMPTION, Runtime.POWER_MIN, Runtime.POWER_MAX)
 		
 	timer.connect("timeout", compute_produce_oxygen)
 	timer.wait_time = Runtime.OXYGEN_FARM_PRODUCTION_RATE
@@ -113,5 +118,30 @@ func make_ore_node():
 		"id": "ore",
 		"name": "TiliumOreActor0",
 		"sprite": "tilium_ore.sprite",
+		"speed": Runtime.LOADER_SPEED,
+	})
+
+
+func make_gas_node():
+	return IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "gas",
+		"name": "PlasmaGasActor0",
+		"sprite": "plasma_gas.sprite",
+		"speed": Runtime.LOADER_SPEED,
+	})
+	
+func make_bio_node():
+	return IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "bio",
+		"name": "BioMassActor0",
+		"sprite": "biomass.sprite",
+		"speed": Runtime.LOADER_SPEED,
+	})
+	
+func make_cry_node():
+	return IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "cry",
+		"name": "WarpCrystalActor0",
+		"sprite": "warp_crystal.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})

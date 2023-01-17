@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=12 format=3 uid="uid://brdta3nf448ru"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
 [ext_resource type="Script" path="res://src/Assembly.gd" id="2_liovd"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://src/UserInterface.gd" id="5_2lyn2"]
 [ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="5_7hmsa"]
 [ext_resource type="Texture2D" uid="uid://cg1wd4kdffuj4" path="res://assets/tilium_ore_icon.png" id="6_ktn2w"]
+[ext_resource type="Texture2D" uid="uid://y2makqocgma" path="res://assets/plasma_gas_icon.png" id="8_h0sjl"]
+[ext_resource type="Texture2D" uid="uid://ohollwyhljwn" path="res://assets/biomass_icon.png" id="9_oi4p3"]
+[ext_resource type="Texture2D" uid="uid://cns0cnqn4g76i" path="res://assets/warp_crystal_icon.png" id="10_ukdop"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib3h8"]
 bg_color = Color(1, 1, 1, 1)
@@ -218,6 +221,7 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+icon = ExtResource("8_h0sjl")
 alignment = 2
 icon_alignment = 1
 
@@ -226,6 +230,7 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+icon = ExtResource("9_oi4p3")
 alignment = 2
 icon_alignment = 1
 
@@ -234,6 +239,7 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+icon = ExtResource("10_ukdop")
 alignment = 2
 icon_alignment = 1
 

@@ -18,9 +18,26 @@ func drill_gathers_resource(drill):
 			if distance * isofactor <= Runtime.DRILL_RANGE:
 				match resource_node.id:
 					"ore":
-						Cache.ore += 1
+						randomize()
+						Cache.ore += (randi() % Runtime.ORE_QUANTITY_RANGE) + 1
 						resource_node.queue_free()
 						break
+					"gas":
+						randomize()
+						Cache.gas += (randi() % Runtime.GAS_QUANTITY_RANGE) + 1
+						resource_node.queue_free()
+						break
+					"bio":
+						randomize()
+						Cache.bio += (randi() % Runtime.BIO_QUANTITY_RANGE) + 1
+						resource_node.queue_free()
+						break
+					"cry":
+						randomize()
+						Cache.cry += (randi() % Runtime.CRY_QUANTITY_RANGE) + 1
+						resource_node.queue_free()
+						break
+						
 
 
 func _on_timeout():

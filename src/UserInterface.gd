@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 @onready var ore_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button0")
+@onready var gas_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button1")
+@onready var bio_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button2")
+@onready var cry_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button3")
 @onready var drill_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button7")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @export var OxygenMeterNodePath: NodePath
@@ -29,4 +32,7 @@ func _process(_delta):
 	fuel_meter.value = Cache.fuel
 	temperature_meter.value = Cache.temperature
 	ore_button.set_text(str(Cache.ore) + " ")
+	gas_button.set_text(str(Cache.gas) + " ")
+	bio_button.set_text(str(Cache.bio) + " ")
+	cry_button.set_text(str(Cache.cry) + " ")
 	drill_button.set_text(str(Cache.drills) + " ")

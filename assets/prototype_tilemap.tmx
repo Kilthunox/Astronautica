@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="isometric" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="10">
+<map version="1.9" tiledversion="1.9.2" orientation="isometric" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="50">
  <editorsettings>
   <export target="main.zone" format="isometric-toolset-zone"/>
  </editorsettings>
@@ -333,6 +333,246 @@
   <object id="9" name="Tilium Ore" class="ore" x="744" y="816">
    <properties>
     <property name="id" value="ore"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="10" name="Plasma Gas" x="467.333" y="708.667">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="11" name="Plasma Gas" x="452.667" y="722">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="12" name="Plasma Gas" x="471.333" y="683.333">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="13" name="Plasma Gas" x="471.333" y="658">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="14" name="Plasma Gas" x="411" y="635.667">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="15" name="Plasma Gas" x="406" y="668.667">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="16" name="Plasma Gas" x="422.667" y="589.333">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="17" name="Plasma Gas" x="483" y="603.667">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="18" name="Plasma Gas" x="481.333" y="625.333">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" name="Biomass" x="423.333" y="611.333">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" name="Biomass" x="412.333" y="723.667">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" name="Biomass" x="825" y="1137.67">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="22" name="Biomass" x="864" y="1186.67">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" name="Biomass" x="799.333" y="1110">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="24" name="Biomass" x="824.667" y="1114">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="25" name="Biomass" x="842" y="1064.67">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="26" name="Biomass" x="834.667" y="1074.67">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" name="Biomass" x="854" y="1048.67">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="28" name="Biomass" x="877" y="1017.67">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="29" name="Biomass" x="842" y="1014">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="30" name="Biomass" x="836" y="978.667">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="31" name="Biomass" x="859" y="946.333">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="32" name="Biomass" x="846.333" y="965.667">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="33" name="Biomass" x="871.333" y="979.333">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="Biomass" x="883" y="974.333">
+   <properties>
+    <property name="id" value="bio"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="35" name="Plasma Gas" x="870.333" y="1040.33">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="36" name="Plasma Gas" x="865.333" y="1078.67">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="37" name="Plasma Gas" x="897" y="997.667">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="38" name="Plasma Gas" x="887.667" y="1076.33">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="39" name="Plasma Gas" x="900.667" y="1062">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="40" name="Plasma Gas" x="905.333" y="1040">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="41" name="Plasma Gas" x="865" y="1155">
+   <properties>
+    <property name="id" value="gas"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="42" name="Tilium Ore" class="ore" x="886.667" y="1125.33">
+   <properties>
+    <property name="id" value="ore"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="43" name="Tilium Ore" class="ore" x="821.667" y="919.667">
+   <properties>
+    <property name="id" value="ore"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="44" name="Tilium Ore" class="ore" x="899.333" y="956.667">
+   <properties>
+    <property name="id" value="ore"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="45" name="Tilium Ore" class="ore" x="857.333" y="1092">
+   <properties>
+    <property name="id" value="ore"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="46" name="Warp Crystal" x="453.333" y="905.333">
+   <properties>
+    <property name="id" value="cry"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="47" name="Warp Crystal" x="575.667" y="431">
+   <properties>
+    <property name="id" value="cry"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="48" name="Warp Crystal" x="444.333" y="755.667">
+   <properties>
+    <property name="id" value="cry"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="49" name="Warp Crystal" x="1100.67" y="1079.33">
+   <properties>
+    <property name="id" value="cry"/>
    </properties>
    <point/>
   </object>
