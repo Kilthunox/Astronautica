@@ -15,6 +15,7 @@ func populate_zone(path: String):
 		if actor_data.get("id") != "spawn":
 			var actor_node = Runtime.call("make_%s_node" % actor_data.get("id"))
 			actor_node.set_collision_layer_value(2, 1)
+			actor_node.set_collision_layer_value(3, 1)
 			var x = actor_data.get("position", [0, 0])[0]
 			var y = actor_data.get("position", [0, 0])[1]
 			actor_node.snap_to_grid(Vector2i(x, y), Runtime.GRID_SIZE, Runtime.GRID_OFFSET)

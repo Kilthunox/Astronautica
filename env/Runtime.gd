@@ -36,6 +36,8 @@ const TEMPERATURE_MIN: float = 0.0
 const TEMPERATURE_MAX: float = 100.0
 const DESTRUCTOR_TEMPERATURE_CONSUMPTION_VALUE: float = 6.666
 const DESTRUCTOR_TEMPERATURE_CONSUMPTION_RATE: float = 0.333
+const ASSEMBLER_POWER_CONSUMPTION_VALUE: float = 0.1
+const ASSEMBLER_POWER_CONSUMPTION_RATE: float = 0.333
 const TEMPERATURE_DROP_VALUE: float = 3.0
 const SAVING_CHANCE: int = 3
 
@@ -76,22 +78,6 @@ var RECIPE: Dictionary = {
 #	}: "prototype_building",
 }
 
-func make_prototype_player_node():
-	return IsoKit.make_actor(Runtime.ASSETS, {
-		"id": Runtime.PLAYER_ACTOR_ID,
-		"name": "PlayerActor",
-		"sprite": "prototype_sprite.sprite",
-		"zone": "prototype_zone.zone",
-		"spawn": "spawn",
-		"speed": Runtime.LOADER_SPEED,
-	})
-	
-func make_prototype_building_node():
-	return IsoKit.make_actor(Runtime.ASSETS, {
-		"id": "prototype_building",
-		"sprite": "prototype_building_sprite.sprite",
-		"speed": Runtime.LOADER_SPEED,
-	})
 	
 func make_oxygen_farm_node():
 	var oxygen_farm_node = IsoKit.make_actor(Runtime.ASSETS, {
@@ -121,13 +107,6 @@ func make_drill_node():
 		"speed": Runtime.LOADER_SPEED,
 	})
 	
-func make_prototype_object_node():
-	return IsoKit.make_actor(Runtime.ASSETS, {
-	"id": "ore",
-	"name": "TiliumOreActor0",
-	"sprite": "prototype_object_sprite.sprite",
-	"speed": Runtime.LOADER_SPEED,
-	})
 	
 func make_ore_node():
 	return IsoKit.make_actor(Runtime.ASSETS, {

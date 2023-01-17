@@ -177,6 +177,15 @@ func assembler_emission():
 		assembler_node.add_compute("ComputeAssemblerNodeSelfDestruct", compute_node_self_destruct)
 		assembler_node.get_node("Area").set_collision_mask_value(4, 1)
 		assembler_node.on_area_entered_hooks.append(handle_assembler_contact)
+		var timer = Timer.new()
+		timer.autostart = true
+		timer.wait_time = Runtime.ASSEMBLER_POWER_CONSUMPTION_RATE
+		var compute_consume_power = func consume_power():
+			Cache.power= clamp(Cache.power - Runtime.ASSEMBLER_POWER_CONSUMPTION_VALUE, Runtime.POWER_MIN, Runtime.POWER_MAX)
+			if Cache.temperature <= Runtime.POWER_MIN:
+				assembler_node.queue_free()
+		timer.connect("timeout", compute_consume_power)		
+		assembler_node.add_child(timer)
 		world.add_child(assembler_node)
 	
 func revoke_destructor_emission():
@@ -213,9 +222,9 @@ func make_drill():
 
 func handle_action_input():
 	if Input.is_action_just_pressed("action_1"):
-		stage_assembly("prototype_object")
+		stage_assembly("ore")
 	elif Input.is_action_just_released("action_1"):
-		make_assembly("prototype_object")
+		make_assembly("ore")
 	if Input.is_action_just_pressed("action_2"):
 		stage_drill()
 	elif Input.is_action_just_released("action_2"):
