@@ -27,6 +27,9 @@ const TICK_RATE: float = 3.3
 const OXYGEN_FARM_PRODUCTION_VALUE: float = 1.0
 const OXYGEN_FARM_PRODUCTION_RATE: float = 3.3
 const OXYGEN_FARM_POWER_CONSUMPTION: float = 1.0
+const REACTOR_PRODUCTION_VALUE: float = 1.0
+const REACTOR_PRODUCTION_RATE: float = 3.3
+const REACTOR_CONSUMPTION_VALUE: float = 1.0
 const POWER_MIN: float = 0.0
 const POWER_MAX: float = 100.0
 const FUEL_MIN: float = 0.0
@@ -56,25 +59,23 @@ enum STRUCTURE {
 	VAPOR_COLLECTOR
 }
 
-enum RESOURCE {
-	ORE,
-	GAS,
-	MAS,
-	CRY,
-	SPI
-}
-const ORE = "ore"
-const GAS = "gas"
-const MAS = "mass"
-const CRY = "crystal"
-const SPI = "spice"
-#
+
+var RESOURCES = ["ore", "bio", "gas", "cry"]
 var RECIPE: Dictionary = {
 	{
-		Vector2i(0, 0): ORE,
-		Vector2i(1, 1): ORE,
-		Vector2i(2, 2): ORE,
+		Vector2i(0, 2): "ore",
+		Vector2i(0, 0): "ore", 
+		Vector2i(1, 1): "bio", 
+		Vector2i(2, 2): "ore",
+		Vector2i(2, 0): "ore",
 	}: "oxygen_farm",
+		{
+		Vector2i(0, 2): "ore",
+		Vector2i(0, 0): "ore", 
+		Vector2i(1, 1): "gas", 
+		Vector2i(2, 2): "ore",
+		Vector2i(2, 0): "ore",
+	}: "reactor",
 #	{
 #		Vector2i(0, 0): ORE,
 #		Vector2i(1, 1): ORE,
@@ -103,6 +104,28 @@ func make_oxygen_farm_node():
 	timer.autostart = true
 	oxygen_farm_node.add_child(timer)
 	return oxygen_farm_node
+
+func make_reactor_node():
+	var reactor_node = IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "reactor",
+		"name": "ReactorActor0",
+		"sprite": "reactor.sprite",
+		"speed": Runtime.LOADER_SPEED,
+	})
+	reactor_node.add_to_group("reactor")
+	reactor_node.add_to_group("structure")
+	var timer = Timer.new()
+	var compute_produce_power = func():
+		if Cache.fuel > Runtime.FUEL_MIN:
+			Cache.power = clamp(Cache.power + Runtime.REACTOR_PRODUCTION_VALUE, Runtime.POWER_MIN, Runtime.POWER_MAX)
+			Cache.fuel = clamp(Cache.fuel - Runtime.REACTOR_CONSUMPTION_VALUE, Runtime.FUEL_MIN, Runtime.FUEL_MAX)
+		
+		
+	timer.connect("timeout", compute_produce_power)
+	timer.wait_time = Runtime.REACTOR_PRODUCTION_RATE
+	timer.autostart = true
+	reactor_node.add_child(timer)
+	return reactor_node
 	
 func make_drill_node():
 	return IsoKit.make_actor(Runtime.ASSETS, {

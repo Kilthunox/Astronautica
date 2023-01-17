@@ -63,6 +63,7 @@ func compile_assembly(resources, structure_id: String):
 func _on_player_assebly_query(coords):
 	var original_recipe = get_recipe(coords)
 	var assembly = normalize_recipe(original_recipe)
+	print(assembly)
 	for recipe in Runtime.RECIPE.keys():
 		if recipe == assembly:
 			compile_assembly(original_recipe.keys(), Runtime.RECIPE[recipe])

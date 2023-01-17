@@ -1,7 +1,7 @@
 {
-    "id": "oxygen_farm_sprite",
-    "name": "OxygenFarmSprite",
-    "source": "oxygen_farm.png",
+    "id": "refinery_sprite",
+    "name": "RefinerySprite",
+    "source": "refinery.png",
     "columns": 1,
     "size": [96, 96],
     "margin": [0, 24],

@@ -285,3 +285,7 @@ icon_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="assebly_query" from="Player" to="Assembly" method="_on_player_assebly_query"]
+[connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button0" to="UserInterface" method="_on_button_0_button_down"]
+[connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button1" to="UserInterface" method="_on_button_1_button_down"]
+[connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button2" to="UserInterface" method="_on_button_2_button_down"]
+[connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button3" to="UserInterface" method="_on_button_3_button_down"]

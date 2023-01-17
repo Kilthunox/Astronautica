@@ -36,3 +36,19 @@ func _process(_delta):
 	bio_button.set_text(str(Cache.bio) + " ")
 	cry_button.set_text(str(Cache.cry) + " ")
 	drill_button.set_text(str(Cache.drills) + " ")
+
+
+func _on_button_0_button_down():
+	Cache.selected_resource = "ore"
+
+
+func _on_button_1_button_down():
+	Cache.selected_resource = "gas"
+
+
+func _on_button_2_button_down():
+	Cache.selected_resource = "bio"
+
+
+func _on_button_3_button_down():
+	Cache.selected_resource = "cry"

@@ -228,9 +228,9 @@ func make_drill():
 
 func handle_action_input():
 	if Input.is_action_just_pressed("action_1"):
-		stage_assembly("ore")
+		stage_assembly(Cache.selected_resource)
 	elif Input.is_action_just_released("action_1"):
-		make_assembly("ore")
+		make_assembly(Cache.selected_resource)
 	if Input.is_action_just_pressed("action_2"):
 		stage_drill()
 	elif Input.is_action_just_released("action_2"):
@@ -247,4 +247,9 @@ func handle_action_input():
 	if Input.is_action_just_released("cancel"):
 		just_canceled = true
 		free_staged_assembly()
+		
+	if Input.is_action_just_pressed("switch_right"):
+		var index = (Runtime.RESOURCES.find(Cache.selected_resource) + 1) % Runtime.RESOURCES.size()
+		Cache.selected_resource = Runtime.RESOURCES[index]
+		
 		
