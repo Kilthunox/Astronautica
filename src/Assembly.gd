@@ -47,17 +47,20 @@ func get_recipe(coords: Vector2i, recipe: Dictionary={}):
 	return recipe
 	
 func compile_assembly(resources, structure_id: String):
-	var structure_node = Runtime.call("make_%s_node" % structure_id)
-	structure_node.set_collision_layer_value(2, 1)
-	structure_node.set_collision_layer_value(3, 1)
-	structure_node.snap_to_grid(get_origin(resources) * Runtime.GRID_SIZE, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
-	var x_coord = int(structure_node.position.x) / int(Runtime.GRID_SIZE.x)
-	var y_coord = int(structure_node.position.y) / int(Runtime.GRID_SIZE.y)
-	structure_node.coords = Vector2i(x_coord, y_coord)
-	structure_node.add_to_group(str(structure_node.coords))
-	for resource_coords in resources:
-		get_actor_by_coord(resource_coords).queue_free()
-	world.call_deferred("add_child", structure_node)
+	if !Cache.assembler_lock:
+		Cache.assembler_lock = true
+		var structure_node = Runtime.call("make_%s_node" % structure_id)
+		structure_node.set_collision_layer_value(2, 1)
+		structure_node.set_collision_layer_value(3, 1)
+		structure_node.snap_to_grid(get_origin(resources) * Runtime.GRID_SIZE, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
+		var x_coord = int(structure_node.position.x) / int(Runtime.GRID_SIZE.x)
+		var y_coord = int(structure_node.position.y) / int(Runtime.GRID_SIZE.y)
+		structure_node.coords = Vector2i(x_coord, y_coord)
+		structure_node.add_to_group(str(structure_node.coords))
+		for resource_coords in resources:
+			get_actor_by_coord(resource_coords).queue_free()
+		structure_node.connect("tree_entered", func(): Cache.assembler_lock = false)
+		world.call_deferred("add_child", structure_node)
 
 
 func _on_player_assebly_query(coords):

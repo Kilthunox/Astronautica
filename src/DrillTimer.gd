@@ -9,9 +9,11 @@ func _ready():
 	
 func drill_gathers_resource(drill):
 	if Cache.fuel <= Runtime.FUEL_MIN:
-		get_parent().queue_free()
+		# TODO - animate drill that it has stopped
+		pass
 	else:
-		Cache.fuel = clamp(Cache.fuel - Runtime.DRILL_FUEL_CONSUMPTION_VALUE, Runtime.FUEL_MIN, Runtime.FUEL_MAX)
+		randomize()
+		Cache.fuel = clamp(Cache.fuel - (randi() % Runtime.DRILL_FUEL_CONSUMPTION_VALUE), Runtime.FUEL_MIN, Runtime.FUEL_MAX)
 		for resource_node in get_tree().get_nodes_in_group("resource"):
 			var isofactor = IsoKit.isometric_factor(drill.position.angle_to(resource_node.position))
 			var distance = drill.position.distance_to(resource_node.position)

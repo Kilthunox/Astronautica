@@ -1,13 +1,13 @@
 {
-    "id": "prototype_object_sprite",
-    "name": "PrototypeObjectSprite",
-    "source": "placholders_tileset_3x2_32x32.png",
-    "columns": 3,
-    "size": [32, 32],
-    "margin": [0, 8],
-    "polygon": [[-14.0, 0.0], [0.0, -6.0], [14.0, 0.0], [0.0, 6.0]],
+    "id": "solar_panel",
+    "name": "SolarPanelSprite",
+    "source": "solar_panel.png",
+    "columns": 1,
+    "size": [96, 96],
+    "margin": [0, 24],
+    "polygon": [[-48.0, 0.0], [0.0, -24.0], [48.0, 0.0], [0.0, 24.0]],
     "animations": {
-		
+	
 		"idle": {
 			"S": [0],
 			"NW": [0],
@@ -28,6 +28,7 @@
 			"NE": [0],
 			"SW": [0]
 		}
+			
 
 	}
 }

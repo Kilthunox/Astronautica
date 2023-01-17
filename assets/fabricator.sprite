@@ -1,7 +1,7 @@
 {
-    "id": "prototype_building_sprite",
-    "name": "PrototypeBuildingSprite",
-    "source": "prototype_building_96x96.png",
+    "id": "fabricator_sprite",
+    "name": "FabricatorSprite",
+    "source": "fabricator.png",
     "columns": 1,
     "size": [96, 96],
     "margin": [0, 24],

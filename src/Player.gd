@@ -170,7 +170,9 @@ func destructor_emission():
 		world.add_child(destructor_node)
 		
 func handle_assembler_contact(body):
-	assebly_query.emit(body.coords)
+	if world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID):
+		assebly_query.emit(body.coords)
+		world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID).queue_free()
 		
 func assembler_emission():
 	if !world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID):
@@ -181,6 +183,7 @@ func assembler_emission():
 		})
 		assembler_node.add_compute("ComputeAssemblerNodePlacement", compute_node_placement)
 		assembler_node.add_compute("ComputeAssemblerNodeSelfDestruct", compute_node_self_destruct)
+		assembler_node.set_collision_layer_value(1, 0)
 		assembler_node.get_node("Area").set_collision_mask_value(4, 1)
 		assembler_node.on_area_entered_hooks.append(handle_assembler_contact)
 		var timer = Timer.new()
