@@ -2,8 +2,8 @@ extends Node
 
 const ASSETS: String = "res://assets/"
 const PLAYER_ACTOR_ID: String = "PlayerActor"
-const PLAYER_SPEED: float = 10000.0
-const LOADER_SPEED: float = 5000.0
+const PLAYER_SPEED: float = 4500.0
+const LOADER_SPEED: float = 4500.0
 const DESTRUCTOR_ACTOR_ID: String = "DestructorActor"
 const ASSEMBLER_ACTOR_ID: String = "AssemblerActor"
 const GRID_SIZE: Vector2i = Vector2i(16, 8)
