@@ -32,7 +32,7 @@ func make_player_actor_node():
 	var player_actor_node = IsoKit.make_actor(Runtime.ASSETS, {
 		"id": Runtime.PLAYER_ACTOR_ID,
 		"name": Runtime.PLAYER_ACTOR_ID,
-		"sprite": "prototype_sprite.sprite",
+		"sprite": "astronaut.sprite",
 		"zone": "main.zone",
 		"spawn": "spawn",
 		"speed": Runtime.PLAYER_SPEED,
@@ -137,13 +137,12 @@ func handle_movement_input():
 		get_staged_node().set_heading(heading)
 		
 func compute_node_placement(args: Dictionary):
-	args["self"].position = get_player_actor().get_front()
+	args["self"].position = get_player_actor().get_front(Vector2(16, 16))
 	
 func compute_node_self_destruct(args: Dictionary):
 	if !emitting:
 		args["self"].queue_free()
 
-		
 func handle_destructor_contact(body):
 	body.queue_free()
 		

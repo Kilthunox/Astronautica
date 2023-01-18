@@ -9,9 +9,11 @@ func handle_temperature():
 		Cache.power = 0.0
 		Cache.oxygen = Cache.oxygen / 2
 		var structures = get_tree().get_nodes_in_group("structure")
-		randomize()
-		var random_structure = structures[randi() % structures.size()]
-		random_structure.queue_free()
+
+		if structures:
+			randomize()
+			var random_structure = structures[randi() % structures.size()]
+			random_structure.queue_free()
 			# TODO - tell player x has been destroyed
 	Cache.temperature = clamp(Cache.temperature - Runtime.TEMPERATURE_DROP_VALUE, Runtime.TEMPERATURE_MIN, Runtime.TEMPERATURE_MAX)
 
