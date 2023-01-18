@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://fa2uag8fv3w1"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://fa2uag8fv3w1"]
 
 [ext_resource type="FontFile" uid="uid://l6k4pwwm24wq" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_small_plain.ttf" id="1_pvcit"]
 
@@ -8,10 +8,13 @@ bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb67k"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lanha"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6jgr"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 0.498039)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjotf"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqdad"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3dv7"]
@@ -38,8 +41,9 @@ Button/font_sizes/font_size = 8
 Button/fonts/font = ExtResource("1_pvcit")
 Button/styles/disabled = SubResource("StyleBoxFlat_worx0")
 Button/styles/focus = SubResource("StyleBoxFlat_cb67k")
-Button/styles/hover = SubResource("StyleBoxFlat_lanha")
+Button/styles/hover = SubResource("StyleBoxFlat_d6jgr")
 Button/styles/normal = SubResource("StyleBoxFlat_rjotf")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqdad")
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_pvcit")
 Label/styles/normal = SubResource("StyleBoxFlat_j3dv7")

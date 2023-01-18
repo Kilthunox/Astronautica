@@ -9,9 +9,11 @@ func _ready():
 	
 func drill_gathers_resource(drill):
 	if Cache.fuel <= Runtime.FUEL_MIN:
+		get_parent().set_state("idle")
 		# TODO - animate drill that it has stopped
 		pass
 	else:
+		get_parent().set_state("drilling")
 		randomize()
 		Cache.fuel = clamp(Cache.fuel - (randi() % Runtime.DRILL_FUEL_CONSUMPTION_VALUE), Runtime.FUEL_MIN, Runtime.FUEL_MAX)
 		for resource_node in get_tree().get_nodes_in_group("resource"):

@@ -54,130 +54,213 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="HBox" type="HBoxContainer" parent="UserInterface/MarginContainer"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 1148.0
+offset_bottom = 644.0
 mouse_filter = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
+offset_right = 378.0
+offset_bottom = 640.0
 size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0"]
+offset_right = 378.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0"]
+offset_top = 322.0
+offset_right = 378.0
+offset_bottom = 640.0
 size_flags_vertical = 3
 mouse_filter = 2
 alignment = 2
 
 [node name="HBox0" type="HBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1"]
+offset_right = 378.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0"]
+offset_right = 187.0
+offset_bottom = 318.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 3
 alignment = 2
 
 [node name="PowerMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+offset_top = 277.0
+offset_right = 187.0
+offset_bottom = 285.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter"]
+offset_right = 187.0
+offset_bottom = 11.0
 text = "POWER"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter"]
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
 value = 50.0
 show_percentage = false
 
 [node name="TemperatureMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+offset_top = 288.0
+offset_right = 187.0
+offset_bottom = 296.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter"]
+offset_right = 187.0
+offset_bottom = 11.0
 text = "TEMPERATURE"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter"]
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
 value = 50.0
 show_percentage = false
 
 [node name="FuelMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+offset_top = 299.0
+offset_right = 187.0
+offset_bottom = 307.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter"]
+offset_right = 187.0
+offset_bottom = 11.0
 text = "FUEL"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter"]
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
 value = 50.0
 show_percentage = false
 
 [node name="OxygenMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
+offset_top = 310.0
+offset_right = 187.0
+offset_bottom = 318.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter"]
+offset_right = 187.0
+offset_bottom = 11.0
 text = "OXYGEN"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter"]
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
 value = 50.0
 show_percentage = false
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0"]
+offset_left = 191.0
+offset_right = 378.0
+offset_bottom = 318.0
 size_flags_horizontal = 3
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
+offset_left = 382.0
+offset_right = 761.0
+offset_bottom = 640.0
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 1
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
+offset_right = 379.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="Coms" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
+offset_top = 322.0
+offset_right = 379.0
+offset_bottom = 640.0
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 2
 
 [node name="VBox2" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
+offset_left = 765.0
+offset_right = 1144.0
+offset_bottom = 640.0
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2"]
+offset_right = 379.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2"]
+offset_top = 322.0
+offset_right = 379.0
+offset_bottom = 640.0
 size_flags_vertical = 3
 mouse_filter = 2
 alignment = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1"]
+offset_right = 379.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 alignment = 2
 
 [node name="Margin0" type="MarginContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0"]
+offset_right = 379.0
+offset_bottom = 157.0
 size_flags_vertical = 3
 
 [node name="HBox0" type="HBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0"]
+offset_top = 161.0
+offset_right = 379.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 alignment = 2
 
 [node name="Margin0" type="MarginContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0"]
+offset_right = 307.0
+offset_bottom = 157.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBox" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0"]
+offset_left = 311.0
+offset_right = 379.0
+offset_bottom = 157.0
 alignment = 2
 
 [node name="Grid" type="GridContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox"]
+offset_top = 89.0
+offset_right = 68.0
+offset_bottom = 157.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
 
 [node name="Button0" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("6_ktn2w")
@@ -186,6 +269,9 @@ icon_alignment = 1
 
 [node name="Button1" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_left = 24.0
+offset_right = 44.0
+offset_bottom = 20.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("8_h0sjl")
@@ -194,6 +280,9 @@ icon_alignment = 1
 
 [node name="Button2" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_left = 48.0
+offset_right = 68.0
+offset_bottom = 20.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("9_oi4p3")
@@ -202,6 +291,9 @@ icon_alignment = 1
 
 [node name="Button3" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_top = 24.0
+offset_right = 20.0
+offset_bottom = 44.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("10_ukdop")
@@ -210,13 +302,21 @@ icon_alignment = 1
 
 [node name="Button4" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 44.0
+offset_bottom = 44.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-alignment = 2
+text = "<   >"
 icon_alignment = 1
 
 [node name="Button5" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 68.0
+offset_bottom = 44.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 alignment = 2
@@ -224,6 +324,9 @@ icon_alignment = 1
 
 [node name="Button6" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_top = 48.0
+offset_right = 20.0
+offset_bottom = 68.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 alignment = 2
@@ -231,6 +334,10 @@ icon_alignment = 1
 
 [node name="Button7" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 44.0
+offset_bottom = 68.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 alignment = 2
@@ -238,6 +345,10 @@ icon_alignment = 1
 
 [node name="Button8" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 68.0
+offset_bottom = 68.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 alignment = 2
@@ -249,3 +360,4 @@ icon_alignment = 1
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button1" to="UserInterface" method="_on_button_1_button_down"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button2" to="UserInterface" method="_on_button_2_button_down"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button3" to="UserInterface" method="_on_button_3_button_down"]
+[connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button4" to="UserInterface" method="_on_button_4_button_down"]

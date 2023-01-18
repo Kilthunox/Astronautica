@@ -230,13 +230,16 @@ func make_drill():
 
 func handle_action_input():
 	if Input.is_action_just_pressed("action_1"):
-		stage_assembly(Cache.selected_resource)
-	elif Input.is_action_just_released("action_1"):
-		make_assembly(Cache.selected_resource)
-	if Input.is_action_just_pressed("action_2"):
 		stage_drill()
-	elif Input.is_action_just_released("action_2"):
+	elif Input.is_action_just_released("action_1"):
 		make_drill()
+
+	
+	if Input.is_action_just_pressed("action_2"):
+		stage_assembly(Cache.selected_resource)
+	elif Input.is_action_just_released("action_2"):
+		make_assembly(Cache.selected_resource)
+
 		
 	emitting = Input.is_action_pressed("action_3") or Input.is_action_pressed("action_4")
 	if !Input.is_action_pressed("action_3") or !Input.is_action_pressed("action_4"):

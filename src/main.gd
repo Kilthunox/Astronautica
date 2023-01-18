@@ -28,8 +28,3 @@ func handle_oxygen():
 func _on_timer_timeout():
 	handle_oxygen()
 	handle_temperature()
-
-
-
-	
-	

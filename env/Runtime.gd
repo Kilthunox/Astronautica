@@ -67,7 +67,7 @@ enum STRUCTURE {
 }
 
 
-var RESOURCES = ["ore", "bio", "gas", "cry"]
+var RESOURCES = ["ore", "gas", "bio",  "cry"]
 var RECIPE: Dictionary = {
 	{
 		Vector2i(0, 2): "ore",

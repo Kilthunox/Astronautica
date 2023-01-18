@@ -4,7 +4,8 @@ extends CanvasLayer
 @onready var gas_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button1")
 @onready var bio_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button2")
 @onready var cry_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button3")
-@onready var drill_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button7")
+@onready var toggle_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button4")
+@onready var drill_button = get_node("MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button6")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @export var OxygenMeterNodePath: NodePath
 @onready var oxygen_meter = get_node(OxygenMeterNodePath)
@@ -24,9 +25,22 @@ func _ready():
 	fuel_meter.set_min(Runtime.FUEL_MIN)
 	temperature_meter.set_max(Runtime.TEMPERATURE_MAX)
 	temperature_meter.set_min(Runtime.TEMPERATURE_MIN)
+	handle_toggle_texture()
 
+
+func handle_toggle_texture():
+	match Cache.selected_resource:
+		"ore":
+			toggle_button.icon = ore_button.icon
+		"gas":
+			toggle_button.icon = gas_button.icon
+		"bio":
+			toggle_button.icon = bio_button.icon
+		"cry":
+			toggle_button.icon = cry_button.icon
 
 func _process(_delta):
+	handle_toggle_texture()
 	oxygen_meter.value = Cache.oxygen
 	power_meter.value = Cache.power
 	fuel_meter.value = Cache.fuel
@@ -52,3 +66,8 @@ func _on_button_2_button_down():
 
 func _on_button_3_button_down():
 	Cache.selected_resource = "cry"
+
+
+func _on_button_4_button_down():
+	var index = (Runtime.RESOURCES.find(Cache.selected_resource) + 1) % Runtime.RESOURCES.size()
+	Cache.selected_resource = Runtime.RESOURCES[index]
