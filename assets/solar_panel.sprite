@@ -3,9 +3,9 @@
     "name": "SolarPanelSprite",
     "source": "solar_panel.png",
     "columns": 1,
-    "size": [96, 96],
-    "margin": [0, 24],
-    "polygon": [[-48.0, 0.0], [0.0, -24.0], [48.0, 0.0], [0.0, 24.0]],
+    "size": [64, 64],
+    "margin": [0, 16],
+    "polygon": [[-32.0, 0.0], [0.0, -16.0], [32.0, 0.0], [0.0, 16.0]],
     "animations": {
 	
 		"idle": {

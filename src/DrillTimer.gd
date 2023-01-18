@@ -3,19 +3,19 @@ extends Timer
 signal pulse(drill)
 
 func _ready():
+	get_parent().set_state("drilling")
 	Cache.drills -= 1
 	autostart = true
 	wait_time = Runtime.DRILL_GATHERING_INTERVAL
 	
 func drill_gathers_resource(drill):
-	if Cache.fuel <= Runtime.FUEL_MIN:
+	if Cache.power <= Runtime.POWER_MIN:
 		get_parent().set_state("idle")
-		# TODO - animate drill that it has stopped
-		pass
+		# TODO - notify player that drill x has stopped
 	else:
 		get_parent().set_state("drilling")
 		randomize()
-		Cache.fuel = clamp(Cache.fuel - (randi() % Runtime.DRILL_FUEL_CONSUMPTION_VALUE), Runtime.FUEL_MIN, Runtime.FUEL_MAX)
+		Cache.power = clamp(Cache.power - (randi() % Runtime.DRILL_CONSUMPTION_VALUE), Runtime.POWER_MIN, Runtime.POWER_MAX)
 		for resource_node in get_tree().get_nodes_in_group("resource"):
 			var isofactor = IsoKit.isometric_factor(drill.position.angle_to(resource_node.position))
 			var distance = drill.position.distance_to(resource_node.position)
