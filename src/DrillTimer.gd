@@ -2,7 +2,7 @@ extends Timer
 
 func _ready():
 	get_parent().set_state("drilling")
-	Cache.drills -= 1
+	Cache.drills = max(Cache.drills - 1, 0)
 	autostart = true
 	wait_time = Runtime.DRILL_GATHERING_INTERVAL
 	
@@ -34,10 +34,10 @@ func drill_gathers_resource(drill):
 					Cache.bio += 1
 					resource_node.queue_free()
 				"cry":
+					Cache.cry += 1
 					resource_node.queue_free()
 				_:
 					resource_node.queue_free()
-						
 
 
 func _on_timeout():
@@ -45,4 +45,4 @@ func _on_timeout():
 
 
 func _on_tree_exiting():
-	Cache.drills += 1
+	Cache.drills = min(Cache.drills + 1, get_tree().get_nodes_in_group("fabricator").size() + 1)

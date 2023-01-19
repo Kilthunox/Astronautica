@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=22 format=3 uid="uid://brdta3nf448ru"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
 [ext_resource type="Script" path="res://src/Assembly.gd" id="2_liovd"]
@@ -18,6 +18,15 @@
 [ext_resource type="Texture2D" uid="uid://bhfjubewpnh8w" path="res://assets/destructor_icon.png" id="13_ouebj"]
 [ext_resource type="Texture2D" uid="uid://61jvjvivbox0" path="res://assets/loader_icon.png" id="14_mx7vx"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3a52o"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqp0i"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3u0c"]
+bg_color = Color(0, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib3h8"]
 bg_color = Color(1, 1, 1, 1)
 
@@ -34,6 +43,9 @@ script = ExtResource("2_liovd")
 script = ExtResource("2_nyc2x")
 WorldNodePath = NodePath("../World")
 ComsNodePath = NodePath("../UserInterface/MarginContainer/HBox/VBox1/Coms")
+
+[node name="TransmissionCooldown" type="Timer" parent="Player"]
+one_shot = true
 
 [node name="World" type="Node2D" parent="."]
 z_as_relative = false
@@ -100,8 +112,8 @@ text = "POWER"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter"]
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
-value = 50.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_3a52o")
+value = 100.0
 show_percentage = false
 
 [node name="TemperatureMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
@@ -114,7 +126,7 @@ text = "TEMPERATURE"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter"]
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_aqp0i")
 value = 50.0
 show_percentage = false
 
@@ -128,7 +140,7 @@ text = "FUEL"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter"]
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f3u0c")
 value = 50.0
 show_percentage = false
 
@@ -157,6 +169,11 @@ mouse_filter = 2
 alignment = 1
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -294,7 +311,8 @@ icon = ExtResource("13_ouebj")
 alignment = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="assebly_query" from="Player" to="Assembly" method="_on_player_assebly_query"]
+[connection signal="assembly_query" from="Player" to="Assembly" method="_on_player_assembly_query"]
+[connection signal="timeout" from="Player/TransmissionCooldown" to="Player" method="_on_transmission_cooldown_timeout"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button0" to="UserInterface" method="_on_button_0_button_down"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button1" to="UserInterface" method="_on_button_1_button_down"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button2" to="UserInterface" method="_on_button_2_button_down"]

@@ -1,6 +1,7 @@
 extends Node
 
 @onready var world = get_node("../World")
+@onready var player = get_node("../Player")
 
 
 func get_actor_by_coord(coord: Vector2i):
@@ -74,12 +75,20 @@ func compile_assembly(resources, structure_id: String):
 		for resource_coords in resources:
 			get_actor_by_coord(resource_coords).queue_free()
 		structure_node.connect("tree_entered", func(): Cache.assembler_lock = false)
+		player.new_transmission("+%s deployed" % {
+				"oxygen_farm": "Oxygen Farm",
+				"reactor": "Plasma Reactor",
+				"solar_panel": "Solar Panel",
+				"refinery": "Refinery",
+				"fabricator": "Fabricator",
+			}.get(structure_node.id), Runtime.COLOR_GRAY)
 		world.call_deferred("add_child", structure_node)
 
 
-func _on_player_assebly_query(coords):
+func _on_player_assembly_query(coords):
 	var original_recipe = get_recipe(coords)
 	var assembly = normalize_recipe(original_recipe)
+
 	
 	###############################################################################
 	var rstring = "\n"

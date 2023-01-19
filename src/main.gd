@@ -14,7 +14,7 @@ func handle_temperature():
 			randomize()
 			var random_structure = structures[randi() % structures.size()]
 			random_structure.queue_free()
-			# TODO - tell player x has been destroyed
+			$Player.new_transmission("!%s has been destroyed" % Runtime.STRUCTURE_TITLE_MAP.get(random_structure.id), Runtime.COLOR_RED)
 	Cache.temperature = clamp(Cache.temperature - Runtime.TEMPERATURE_DROP_VALUE, Runtime.TEMPERATURE_MIN, Runtime.TEMPERATURE_MAX)
 
 		

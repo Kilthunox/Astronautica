@@ -17,14 +17,14 @@ const ASSEMBLER_SPEED: float = 1000.0
 const DRILL_RANGE: float = 100.0
 const DRILL_GATHERING_INTERVAL: int = 4
 const STARTING_TEMPERATURE: int = 0
-const STARTING_OXYGEN: int = 25
+const STARTING_OXYGEN: int = 100
 const STARTING_POWER: int = 25
 const STARTING_FUEL: int = 25
 const COMS_LINE_LIFETIME: float = 16.6
 const OXYGEN_MIN: float = 0.0
-const OXYGEN_MAX: float = 200.0
-const OXYGEN_LOSS_VALUE: float = 0.333
-const TICK_RATE: float = 3.3
+const OXYGEN_MAX: float = 100.0
+const OXYGEN_LOSS_VALUE: float = 0.33
+const TICK_RATE: float = 2.5
 const OXYGEN_FARM_PRODUCTION_VALUE: int = 3
 const OXYGEN_FARM_PRODUCTION_RATE: float = 3.3
 const OXYGEN_FARM_POWER_CONSUMPTION: int = 3
@@ -54,17 +54,30 @@ const SAVING_CHANCE: int = 3
 const MAX_DRILLS: int = 100
 const MIN_DRILLS: int = 0
 const RECIPE_RECURSION_LIMIT: int = 1001
-
-enum STRUCTURE {
-	BASE_STATION,
-	SHUTTLE,
-	POWER_PLANT,
-	OXYGEN_FARM,
-	REFINERY,
-	VAPOR_COLLECTOR
+const COLOR_GRAY: Color = Color(0.6, 0.6, 0.6)
+const COLOR_RED: Color = Color(1, 0.3, 0.3)
+const POWER_WARNING_VALUE: float = 20.0
+const POWER_CRITICAL_WARNING_VALUE: float = 5.0
+const FUEL_WARNING_VALUE: float = 20.0
+const FUEL_CRITICAL_WARNING_VALUE: float = 5.0
+const TEMPERATURE_WARNING_VALUE: float = 80.0
+const TEMPERATURE_CRITICAL_WARNING_VALUE: float = 95.0
+const OXYGEN_WARNING_VALUE: float = 20.0
+const OXYGEN_CRITICAL_WARNING_VALUE: float = 5.0
+const STRUCTURE_TITLE_MAP: Dictionary = {
+	"oxygen_farm": "Oxygen Farm",
+	"reactor": "Plasma Reactor",
+	"solar_panel": "Solar Panel",
+	"refinery": "Refinery",
+	"fabricator": "Fabricator",
 }
-
-
+const RESOURCE_TITLE_MAP: Dictionary = {
+	"ore": "Tilium Ore",
+	"bio": "Biomass",
+	"gas": "Plasma Gas",
+	"cry": "Warp Crystal"
+}
+			
 var RESOURCES = ["ore", "gas", "bio",  "cry"]
 var RECIPE: Dictionary = {
 	{
@@ -93,18 +106,18 @@ var RECIPE: Dictionary = {
 		Vector2i(0, -1): "ore",
 	}: "reactor",
 	{
-		Vector2i(-1, -1): "ore",
-		Vector2i(-2, -2): "ore",
-		Vector2i(-3, -3): "ore",
-		Vector2i(-4, -4): "ore",
 		Vector2i(-5, -3): "ore",
-		Vector2i(-6, -2): "ore",
-		Vector2i(-5, -1): "ore",
+		Vector2i(-4, -4): "ore",
+		Vector2i(-3, -3): "ore",
 		Vector2i(-4, -2): "gas",
-		Vector2i(-3, -1): "ore",
+		Vector2i(-5, -1): "ore",
+		Vector2i(-6, -2): "ore",
 		Vector2i(-4, 0): "ore",
+		Vector2i(-3, -1): "ore",
+		Vector2i(-2, -2): "ore",
 		Vector2i(-1, -3): "ore",
-		Vector2i(0, -2): "ore",
+		Vector2i(0, -2): "bio",
+		Vector2i(-1, -1): "ore",
 	}: "refinery",
 	{
 		Vector2i(0, -1): "ore",
@@ -215,6 +228,7 @@ func make_solar_panel_node():
 	timer.wait_time = Runtime.SOLAR_PANEL_PRODUCTION_RATE
 	timer.autostart = true
 	solar_panel_node.add_child(timer)
+	solar_panel_node.add_to_group("solar_panel")
 	solar_panel_node.add_to_group("resource")
 	return solar_panel_node
 	

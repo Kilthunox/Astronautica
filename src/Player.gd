@@ -10,18 +10,25 @@ const STAGED_COLLISIONS = [[], []]
 @onready var Line: PackedScene = preload("res://src/line.tscn")
 var emitting = false
 var just_canceled: bool = false
+var transmission_cooling_down: bool = true
 
 var invalid_assembly_placement: bool = false
 
-signal assebly_query(coords)
+signal assembly_query(coords)
 signal drill_placed(coords)
 
-func new_transmission(text: String):
-	var line = Line.instantiate()
-	line.set_text(text)
-	coms.add_child(line)
+func new_transmission(text: String, color: Color = Color(1, 1, 1)):
+	if !transmission_cooling_down:
+		transmission_cooling_down = true
+		$TransmissionCooldown.start()
+		var line = Line.instantiate()
+		line.set("theme_override_colors/font_color", color)
+		line.uppercase = true
+		line.set_text(text)
+		coms.add_child(line)
 
 func _ready():
+	$TransmissionCooldown.start()
 	make_player_actor_node()
 
 func _physics_process(_delta):
@@ -109,12 +116,16 @@ func stage_assembly(id: String):
 		assembly_node.add_child(timer)
 		stage_node_in_front(assembly_node)
 	else:
-		new_transmission("Not enough %s." % Cache.selected_resource)
+		new_transmission(">insuffucient %s" % {
+			"ore": "Tilium Ore",
+			"gas": "Plasma Gas",
+			"bio": "Biomass",
+			"cry": "Warp Crystal(s)"
+		}.get(Cache.selected_resource), Color(1, 0.5, 0))
 
 func handle_body_entered_staged_assembly(_body):
 	invalid_assembly_placement = true
 	get_staged_node().get_node("Sprite").set_modulate(Runtime.INVALID_COLOR)
-	# TODO - tell player bad assign
 		
 func handle_body_exited_staged_assembly(_body):
 	invalid_assembly_placement = false
@@ -143,8 +154,14 @@ func compute_node_self_destruct(args: Dictionary):
 	if !emitting:
 		args["self"].queue_free()
 
-func handle_destructor_contact(body):
-	body.queue_free()
+func handle_destructor_contact(node):
+	match node.id:
+		"drill":
+			new_transmission("-Drill recalled", Runtime.COLOR_GRAY)
+		_:
+			if node.id in Runtime.RECIPE.values():
+				new_transmission("-%s recalled" % Runtime.STRUCTURE_TITLE_MAP.get(node.id), Runtime.COLOR_GRAY)
+	node.queue_free()
 		
 func destructor_emission():
 	if !world.get_node_or_null(Runtime.DESTRUCTOR_ACTOR_ID):
@@ -168,9 +185,9 @@ func destructor_emission():
 		destructor_node.add_child(timer)
 		world.add_child(destructor_node)
 		
-func handle_assembler_contact(body):
+func handle_assembler_contact(node):
 	if world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID):
-		assebly_query.emit(body.coords)
+		assembly_query.emit(node.coords)
 		world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID).queue_free()
 		
 func assembler_emission():
@@ -214,6 +231,7 @@ func stage_drill():
 	
 func make_drill():
 	if !invalid_assembly_placement and Cache.drills > 0:
+		new_transmission("+Drill deployed", Runtime.COLOR_GRAY)
 		var drill_node = Runtime.call("make_drill_node")
 		drill_node.set_collision_layer_value(2, 1)
 		drill_node.set_collision_layer_value(3, 1)
@@ -256,5 +274,10 @@ func handle_action_input():
 	if Input.is_action_just_pressed("switch_right"):
 		var index = (Runtime.RESOURCES.find(Cache.selected_resource) + 1) % Runtime.RESOURCES.size()
 		Cache.selected_resource = Runtime.RESOURCES[index]
+		new_transmission("> loading %s" % Runtime.RESOURCE_TITLE_MAP.get(Cache.selected_resource))
 		
 		
+
+
+func _on_transmission_cooldown_timeout():
+	transmission_cooling_down = false
