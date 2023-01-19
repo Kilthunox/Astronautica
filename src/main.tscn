@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=19 format=3 uid="uid://brdta3nf448ru"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
 [ext_resource type="Script" path="res://src/Assembly.gd" id="2_liovd"]
@@ -12,11 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://ohollwyhljwn" path="res://assets/biomass_icon.png" id="9_oi4p3"]
 [ext_resource type="Texture2D" uid="uid://cns0cnqn4g76i" path="res://assets/warp_crystal_icon.png" id="10_ukdop"]
 [ext_resource type="Texture2D" uid="uid://c330wkjhjdf1c" path="res://assets/drill_icon.png" id="11_mh6i4"]
-[ext_resource type="Texture2D" uid="uid://dhblcinl4t3y5" path="res://assets/assembler_icon.png" id="11_nc54i"]
 [ext_resource type="FontFile" uid="uid://dyyh8np4ys2qg" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_icons_silhouette.ttf" id="12_uhvb6"]
 [ext_resource type="FontFile" uid="uid://l6k4pwwm24wq" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_small_plain.ttf" id="13_muxra"]
-[ext_resource type="Texture2D" uid="uid://bhfjubewpnh8w" path="res://assets/destructor_icon.png" id="13_ouebj"]
-[ext_resource type="Texture2D" uid="uid://61jvjvivbox0" path="res://assets/loader_icon.png" id="14_mx7vx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3a52o"]
 bg_color = Color(1, 1, 0, 1)
@@ -274,7 +271,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("12_uhvb6")
-text = "ab"
+text = "a"
 alignment = 2
 
 [node name="Button5" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -282,8 +279,9 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("11_nc54i")
-alignment = 2
+theme_override_font_sizes/font_size = 4
+text = "ASSEMBLER"
+icon_alignment = 1
 
 [node name="Button6" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -299,17 +297,16 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("13_muxra")
-theme_override_font_sizes/font_size = 8
-icon = ExtResource("14_mx7vx")
-alignment = 2
+theme_override_font_sizes/font_size = 4
+text = "LOADER"
 
 [node name="Button8" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("13_ouebj")
-alignment = 2
+theme_override_font_sizes/font_size = 4
+text = "DESTRUCTOR"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="assembly_query" from="Player" to="Assembly" method="_on_player_assembly_query"]

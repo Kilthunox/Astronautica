@@ -38,11 +38,12 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-offset_left = 488.0
+offset_left = 536.0
 offset_top = 310.0
-offset_right = 656.0
+offset_right = 608.0
 offset_bottom = 329.0
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7pek4")
-text = "You have been lost..."
+text = "GAME OVER"
 horizontal_alignment = 1
+uppercase = true

@@ -39,6 +39,14 @@ func _ready():
 func _physics_process(_delta):
 	handle_action_input()
 	handle_movement_input()
+	handle_heading_while_staging()
+	
+func handle_heading_while_staging():
+	var staged_node = get_staged_node()
+	if staged_node:
+		get_player_actor().set_heading(get_player_actor().position.direction_to(staged_node.position))
+	elif get_player_actor().state == "tool" and !world.get_node_or_null(Runtime.EMITTER_ACTOR_ID):
+		get_player_actor().set_state("idle")
 
 func make_player_actor_node():
 	var player_actor_node = IsoKit.make_actor(Runtime.ASSETS, {
@@ -104,6 +112,7 @@ func make_assembly(id: String):
 func stage_assembly(id: String):
 	free_staged_assembly()
 	if Cache.get(Cache.selected_resource) > 0:
+		get_player_actor().set_state("tool")
 		var assembly_node = Runtime.call("make_%s_node" % id)
 		assembly_node.get_node("Area").set_collision_layer_value(2, 1)
 		assembly_node.get_node("Area").set_collision_mask_value(1, 1)
@@ -125,7 +134,7 @@ func stage_assembly(id: String):
 			"ore": "Tilium Ore",
 			"gas": "Plasma Gas",
 			"bio": "Biomass",
-			"cry": "Warp Crystal(s)"
+			"cry": "Warp Crystal"
 		}.get(Cache.selected_resource), Color(1, 0.5, 0))
 
 func handle_body_entered_staged_assembly(_body):
@@ -169,10 +178,11 @@ func handle_destructor_contact(node):
 	node.queue_free()
 		
 func destructor_emission():
-	if !world.get_node_or_null(Runtime.DESTRUCTOR_ACTOR_ID):
+	if !world.get_node_or_null(Runtime.EMITTER_ACTOR_ID):
+		get_player_actor().set_state("tool")
 		var destructor_node = IsoKit.make_actor(Runtime.ASSETS, {
-			"id": Runtime.DESTRUCTOR_ACTOR_ID,
-			"name": Runtime.DESTRUCTOR_ACTOR_ID,
+			"id": Runtime.EMITTER_ACTOR_ID,
+			"name": Runtime.EMITTER_ACTOR_ID,
 			"sprite": "destructor_sprite.sprite",
 		})
 		destructor_node.add_compute("ComputeDestructorNodePlacement", compute_node_placement)
@@ -189,17 +199,18 @@ func destructor_emission():
 		timer.connect("timeout", compute_increase_temperature)		
 		destructor_node.add_child(timer)
 		world.add_child(destructor_node)
-		
+	
 func handle_assembler_contact(node):
-	if world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID):
+	if world.get_node_or_null(Runtime.EMITTER_ACTOR_ID):
 		assembly_query.emit(node.coords)
-		world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID).queue_free()
+		world.get_node_or_null(Runtime.EMITTER_ACTOR_ID).queue_free()
 		
 func assembler_emission():
-	if !world.get_node_or_null(Runtime.ASSEMBLER_ACTOR_ID):
+	if !world.get_node_or_null(Runtime.EMITTER_ACTOR_ID):
+		get_player_actor().set_state("tool")
 		var assembler_node = IsoKit.make_actor(Runtime.ASSETS, {
-			"id": Runtime.ASSEMBLER_ACTOR_ID,
-			"name": Runtime.ASSEMBLER_ACTOR_ID,
+			"id": Runtime.EMITTER_ACTOR_ID,
+			"name": Runtime.EMITTER_ACTOR_ID,
 			"sprite": "assembler_sprite.sprite",
 		})
 		assembler_node.add_compute("ComputeAssemblerNodePlacement", compute_node_placement)
@@ -219,13 +230,15 @@ func assembler_emission():
 		world.add_child(assembler_node)
 	
 func revoke_destructor_emission():
-	var destructor_node = world.get_node_or_null(Runtime.DESTRUCTOR_ACTOR_ID)
+	var destructor_node = world.get_node_or_null(Runtime.EMITTER_ACTOR_ID)
 	if destructor_node:
 		destructor_node.queue_free()
 		
 func stage_drill():
 	free_staged_assembly()
 	if Cache.drills > 0:
+
+		get_player_actor().set_state("tool")
 		var drill_node = Runtime.call("make_drill_node")	
 		drill_node.get_node("Area").set_collision_layer_value(2, 1)
 		drill_node.get_node("Area").set_collision_mask_value(1, 1)

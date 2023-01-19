@@ -5,7 +5,6 @@ var zone: String = "main.zone"
 var tilemap: String = "main.tilemap"
 
 var assembler_lock: bool = false
-
 var drills: int = 1
 var selected_resource: String = "ore"
 var ore: int = 0

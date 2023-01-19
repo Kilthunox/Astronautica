@@ -82,7 +82,7 @@ func handle_animation():
 
 
 func handle_movement(delta):
-	if (destination.distance_to(position) > 0):
+	if (destination.distance_to(position) > 0) and state in ["idle", "run"]:
 		velocity = heading * speed * delta * max(Self.isometric_factor(heading.angle()), 0.70)
 	else:
 		velocity = Vector2(0, 0)
