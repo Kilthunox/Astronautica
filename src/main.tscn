@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=19 format=3 uid="uid://brdta3nf448ru"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
 [ext_resource type="Script" path="res://src/Assembly.gd" id="2_liovd"]
@@ -7,11 +7,13 @@
 [ext_resource type="Script" path="res://src/UserInterface.gd" id="5_2lyn2"]
 [ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="5_7hmsa"]
 [ext_resource type="Texture2D" uid="uid://cg1wd4kdffuj4" path="res://assets/tilium_ore_icon.png" id="6_ktn2w"]
+[ext_resource type="FontFile" uid="uid://grvkqsdedjli" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_thin_plain.ttf" id="7_3yt1e"]
 [ext_resource type="Texture2D" uid="uid://y2makqocgma" path="res://assets/plasma_gas_icon.png" id="8_h0sjl"]
 [ext_resource type="Texture2D" uid="uid://ohollwyhljwn" path="res://assets/biomass_icon.png" id="9_oi4p3"]
 [ext_resource type="Texture2D" uid="uid://cns0cnqn4g76i" path="res://assets/warp_crystal_icon.png" id="10_ukdop"]
 [ext_resource type="Texture2D" uid="uid://c330wkjhjdf1c" path="res://assets/drill_icon.png" id="11_mh6i4"]
 [ext_resource type="Texture2D" uid="uid://dhblcinl4t3y5" path="res://assets/assembler_icon.png" id="11_nc54i"]
+[ext_resource type="FontFile" uid="uid://dyyh8np4ys2qg" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_icons_silhouette.ttf" id="12_uhvb6"]
 [ext_resource type="FontFile" uid="uid://l6k4pwwm24wq" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_small_plain.ttf" id="13_muxra"]
 [ext_resource type="Texture2D" uid="uid://bhfjubewpnh8w" path="res://assets/destructor_icon.png" id="13_ouebj"]
 [ext_resource type="Texture2D" uid="uid://61jvjvivbox0" path="res://assets/loader_icon.png" id="14_mx7vx"]
@@ -217,8 +219,9 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("6_ktn2w")
-alignment = 2
+clip_text = true
 icon_alignment = 1
 
 [node name="Button1" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -226,8 +229,9 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("8_h0sjl")
-alignment = 2
+clip_text = true
 icon_alignment = 1
 
 [node name="Button2" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -235,8 +239,9 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("9_oi4p3")
-alignment = 2
+clip_text = true
 icon_alignment = 1
 
 [node name="Button3" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -244,8 +249,9 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("10_ukdop")
-alignment = 2
+clip_text = true
 icon_alignment = 1
 
 [node name="Button4" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -253,7 +259,9 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-text = "<   >"
+theme_override_fonts/font = ExtResource("12_uhvb6")
+text = "ab"
+clip_text = true
 icon_alignment = 1
 
 [node name="Button5" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -262,7 +270,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("11_nc54i")
-alignment = 2
+clip_text = true
 icon_alignment = 1
 
 [node name="Button6" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -271,7 +279,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("11_mh6i4")
-alignment = 2
+clip_text = true
 icon_alignment = 1
 
 [node name="Button7" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -282,6 +290,7 @@ mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("13_muxra")
 theme_override_font_sizes/font_size = 8
 icon = ExtResource("14_mx7vx")
+clip_text = true
 icon_alignment = 1
 
 [node name="Button8" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
@@ -290,7 +299,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("13_ouebj")
-alignment = 2
+clip_text = true
 icon_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

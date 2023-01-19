@@ -1,7 +1,7 @@
 {
     "id": "cry",
     "name": "WarpCrystalSprite",
-    "source": "warp_crystal_sprite.png",
+    "source": "resources.png",
     "columns": 1,
     "size": [32, 32],
     "margin": [0, 8],
@@ -9,24 +9,24 @@
     "animations": {
 		
 		"idle": {
-			"S": [0],
-			"NW": [0],
-			"E": [0],
-			"N": [0],
-			"W": [0],
-			"SE": [0],
-			"NE": [0],
-			"SW": [0]
+			"S": [4],
+			"NW": [4],
+			"E": [4],
+			"N": [4],
+			"W": [4],
+			"SE": [4],
+			"NE": [4],
+			"SW": [4]
 		},
 		"run":  {
-			"S": [0],
-			"NW": [0],
-			"E": [0],
-			"N": [0],
-			"W": [0],
-			"SE": [0],
-			"NE": [0],
-			"SW": [0]
+			"S": [4],
+			"NW": [4],
+			"E": [4],
+			"N": [4],
+			"W": [4],
+			"SE": [4],
+			"NE": [4],
+			"SW": [4]
 		}
 
 	}

@@ -45,11 +45,11 @@ func _process(_delta):
 	power_meter.value = Cache.power
 	fuel_meter.value = Cache.fuel
 	temperature_meter.value = Cache.temperature
-	ore_button.set_text(str(Cache.ore) + " ")
-	gas_button.set_text(str(Cache.gas) + " ")
-	bio_button.set_text(str(Cache.bio) + " ")
-	cry_button.set_text(str(Cache.cry) + " ")
-	drill_button.set_text(str(Cache.drills) + " ")
+	ore_button.set_text(str(Cache.ore))
+	gas_button.set_text(str(Cache.gas))
+	bio_button.set_text(str(Cache.bio))
+	cry_button.set_text(str(Cache.cry))
+	drill_button.set_text(str(Cache.drills))
 
 
 func _on_button_0_button_down():

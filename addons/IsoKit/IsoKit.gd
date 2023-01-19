@@ -117,15 +117,6 @@ func snap_radial(radians: float) -> int:
 func snap_to_grid(position, at: Vector2, grid_size: Vector2i, offset: Vector2i):
 	position.x = snapped(at.x, grid_size.x) - offset.x
 	position.y = snapped(at.y, grid_size.y) + offset.y
-#	if position.x < at.x:
-#		position.x = snapped(at.x, grid_size.x) - offset.x
-#	else:
-#		position.x = snapped(at.x, grid_size.x) + offset.x
-#	if position.y < at.y:
-#		position.y = snapped(at.y, grid_size.y) - offset.y
-#	else:
-#		position.y = snapped(at.y, grid_size.y) + offset.y
-#
 	return position
 
 func map_radial(radians: float) -> String:

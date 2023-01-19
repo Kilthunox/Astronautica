@@ -21,4 +21,8 @@ func populate_zone(path: String):
 			actor_node.snap_to_grid(Vector2i(x, y), Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 			actor_node.add_to_group(actor_data.get("id"))
 			actor_node.add_to_group("resource")
+			var x_coord = int(actor_node.position.x) / int(Runtime.GRID_SIZE.x)
+			var y_coord = int(actor_node.position.y) / int(Runtime.GRID_SIZE.y)	
+			actor_node.coords = Vector2i(x_coord, y_coord)
+			actor_node.add_to_group(str(actor_node.coords))
 			add_child(actor_node)

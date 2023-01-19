@@ -224,34 +224,62 @@ func make_drill_node():
 	
 	
 func make_ore_node():
-	return IsoKit.make_actor(Runtime.ASSETS, {
+	var ore_node = IsoKit.make_actor(Runtime.ASSETS, {
 		"id": "ore",
 		"name": "TiliumOreActor0",
 		"sprite": "tilium_ore.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	ore_node.add_to_group("resource")
+	return ore_node
 
 
 func make_gas_node():
-	return IsoKit.make_actor(Runtime.ASSETS, {
+	var gas_node = IsoKit.make_actor(Runtime.ASSETS, {
 		"id": "gas",
 		"name": "PlasmaGasActor0",
 		"sprite": "plasma_gas.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	gas_node.add_to_group("resource")
+	return gas_node
 	
 func make_bio_node():
-	return IsoKit.make_actor(Runtime.ASSETS, {
+	var bio_node = IsoKit.make_actor(Runtime.ASSETS, {
 		"id": "bio",
 		"name": "BioMassActor0",
 		"sprite": "biomass.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	bio_node.add_to_group("resource")
+	return bio_node
 	
 func make_cry_node():
-	return IsoKit.make_actor(Runtime.ASSETS, {
+	var cry_node = IsoKit.make_actor(Runtime.ASSETS, {
 		"id": "cry",
 		"name": "WarpCrystalActor0",
 		"sprite": "warp_crystal.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	cry_node.add_to_group("resource")
+	return cry_node
+	
+func make_dirt_node():
+	var dirt_node = IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "dirt",
+		"name": "DirtActor",
+		"sprite": "dirt.sprite"
+	})
+	dirt_node.add_to_group("resource")
+	return dirt_node
+	
+func make_rock_node():
+	var rock_node = IsoKit.make_actor(Runtime.ASSETS, {
+		"id": "rock",
+		"name": "RockActor",
+		"sprite": "rock.sprite"
+	})
+	rock_node.add_to_group("resource")
+	return rock_node
+	
+	

@@ -1,7 +1,5 @@
 extends Timer
 
-signal pulse(drill)
-
 func _ready():
 	get_parent().set_state("drilling")
 	Cache.drills -= 1
@@ -16,31 +14,29 @@ func drill_gathers_resource(drill):
 		get_parent().set_state("drilling")
 		randomize()
 		Cache.power = clamp(Cache.power - (randi() % Runtime.DRILL_CONSUMPTION_VALUE), Runtime.POWER_MIN, Runtime.POWER_MAX)
+		var nodes_in_range: Array
 		for resource_node in get_tree().get_nodes_in_group("resource"):
 			var isofactor = IsoKit.isometric_factor(drill.position.angle_to(resource_node.position))
 			var distance = drill.position.distance_to(resource_node.position)
 			if distance * isofactor <= Runtime.DRILL_RANGE:
-				match resource_node.id:
-					"ore":
-						randomize()
-						Cache.ore += (randi() % Runtime.ORE_QUANTITY_RANGE) + 1
-						resource_node.queue_free()
-						break
-					"gas":
-						randomize()
-						Cache.gas += (randi() % Runtime.GAS_QUANTITY_RANGE) + 1
-						resource_node.queue_free()
-						break
-					"bio":
-						randomize()
-						Cache.bio += (randi() % Runtime.BIO_QUANTITY_RANGE) + 1
-						resource_node.queue_free()
-						break
-					"cry":
-						randomize()
-						Cache.cry += (randi() % Runtime.CRY_QUANTITY_RANGE) + 1
-						resource_node.queue_free()
-						break
+				nodes_in_range.append(resource_node)
+		randomize()
+		if nodes_in_range:
+			var resource_node = nodes_in_range[randi() % nodes_in_range.size()]
+			match resource_node.id:
+				"ore":
+					Cache.ore += 1
+					resource_node.queue_free()
+				"gas":
+					Cache.gas += 1
+					resource_node.queue_free()
+				"bio":
+					Cache.bio += 1
+					resource_node.queue_free()
+				"cry":
+					resource_node.queue_free()
+				_:
+					resource_node.queue_free()
 						
 
 
