@@ -45,6 +45,7 @@ WorldNodePath = NodePath("../World")
 ComsNodePath = NodePath("../UserInterface/MarginContainer/HBox/VBox1/Coms")
 
 [node name="TransmissionCooldown" type="Timer" parent="Player"]
+wait_time = 0.1
 one_shot = true
 
 [node name="World" type="Node2D" parent="."]

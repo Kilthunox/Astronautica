@@ -1,6 +1,7 @@
 extends Node
 
 const INT64_LIMIT: int = -9223372036854775807
+const TRANSMISSIONS_QUEUE_SIZE: int = 6
 const ASSETS: String = "res://assets/"
 const PLAYER_ACTOR_ID: String = "PlayerActor"
 const PLAYER_SPEED: float = 4500.0

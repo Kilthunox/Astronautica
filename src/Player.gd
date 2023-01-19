@@ -24,8 +24,13 @@ func new_transmission(text: String, color: Color = Color(1, 1, 1)):
 		var line = Line.instantiate()
 		line.set("theme_override_colors/font_color", color)
 		line.uppercase = true
-		line.set_text(text)
+		line.text = text
 		coms.add_child(line)
+		var n_lines = coms.get_child_count()
+		while n_lines > Runtime.TRANSMISSIONS_QUEUE_SIZE:
+			n_lines -= 1
+			coms.get_child(0).queue_free()
+
 
 func _ready():
 	$TransmissionCooldown.start()
@@ -116,7 +121,7 @@ func stage_assembly(id: String):
 		assembly_node.add_child(timer)
 		stage_node_in_front(assembly_node)
 	else:
-		new_transmission(">insuffucient %s" % {
+		new_transmission("> insuffucient %s" % {
 			"ore": "Tilium Ore",
 			"gas": "Plasma Gas",
 			"bio": "Biomass",
@@ -157,10 +162,10 @@ func compute_node_self_destruct(args: Dictionary):
 func handle_destructor_contact(node):
 	match node.id:
 		"drill":
-			new_transmission("-Drill recalled", Runtime.COLOR_GRAY)
+			new_transmission("- Drill", Runtime.COLOR_GRAY)
 		_:
 			if node.id in Runtime.RECIPE.values():
-				new_transmission("-%s recalled" % Runtime.STRUCTURE_TITLE_MAP.get(node.id), Runtime.COLOR_GRAY)
+				new_transmission("- %s" % Runtime.STRUCTURE_TITLE_MAP.get(node.id), Runtime.COLOR_GRAY)
 	node.queue_free()
 		
 func destructor_emission():
@@ -231,7 +236,7 @@ func stage_drill():
 	
 func make_drill():
 	if !invalid_assembly_placement and Cache.drills > 0:
-		new_transmission("+Drill deployed", Runtime.COLOR_GRAY)
+		new_transmission("+ Drill", Runtime.COLOR_GRAY)
 		var drill_node = Runtime.call("make_drill_node")
 		drill_node.set_collision_layer_value(2, 1)
 		drill_node.set_collision_layer_value(3, 1)
