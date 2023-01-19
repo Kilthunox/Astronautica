@@ -11,11 +11,12 @@ func get_actor_by_coord(coord: Vector2i):
 
 func get_origin(keys):
 	var origin: Vector2i
+	var sum_x: int = 0
+	var sum_y: int = 0
 	for coords in keys:
-		if coords.x < 0:
-			origin = min(origin, coords)
-		else:
-			origin = max(origin, coords)
+		sum_x += coords.x
+		sum_y += coords.y
+	origin = Vector2i(sum_x / keys.size(), sum_y / keys.size())
 	return origin
 
 func get_neighbors(coords: Vector2i) -> PackedVector2Array:
@@ -24,6 +25,7 @@ func get_neighbors(coords: Vector2i) -> PackedVector2Array:
 		Vector2i(coords.x + 0, coords.y - 1),
 		Vector2i(coords.x + 1, coords.y - 1),
 		Vector2i(coords.x - 1, coords.y + 0),
+		Vector2i(coords.x - 0, coords.y + 0),
 		Vector2i(coords.x + 1, coords.y + 0),
 		Vector2i(coords.x - 1, coords.y + 1),
 		Vector2i(coords.x + 0, coords.y + 1),
@@ -31,13 +33,25 @@ func get_neighbors(coords: Vector2i) -> PackedVector2Array:
 	])
 	
 func normalize_recipe(recipe: Dictionary):
-	var origin = get_origin(recipe.keys())
+#	var origin = get_origin(recipe.keys())
+#	var result: Dictionary = {}
+#	for coord in recipe.keys():
+#		result[coord - origin] = recipe[coord]
+#	return result
 	var result: Dictionary = {}
-	for coord in recipe.keys():
-		result[abs(coord - origin)] = recipe[coord]
+	var max_x: int = Runtime.INT64_LIMIT
+	var max_y: int = Runtime.INT64_LIMIT
+	for key in recipe.keys():
+		max_x = max(key.x, max_x)
+		max_y = max(key.y, max_y)
+	for key in recipe.keys():
+		result[Vector2i(key.x - max_x, key.y - max_y)] = recipe[key]
 	return result
-
-func get_recipe(coords: Vector2i, recipe: Dictionary={}):
+	
+func get_recipe(coords: Vector2i, recipe: Dictionary={}, nloops: int = 0):
+	nloops += 1
+	if nloops > Runtime.RECIPE_RECURSION_LIMIT:
+		return recipe
 	if coords not in recipe.keys():
 		var actor = get_actor_by_coord(coords)
 		if actor:
@@ -66,7 +80,13 @@ func compile_assembly(resources, structure_id: String):
 func _on_player_assebly_query(coords):
 	var original_recipe = get_recipe(coords)
 	var assembly = normalize_recipe(original_recipe)
-	print(assembly)
+	
+	###############################################################################
+	var rstring = "\n"
+	for k in assembly.keys():
+		rstring += "\n\t\tVector2i(%s, %s): \"%s\"," % [k.x, k.y, assembly[k]]
+	print(rstring)
+	##############################################################################
 	for recipe in Runtime.RECIPE.keys():
 		if recipe == assembly:
 			compile_assembly(original_recipe.keys(), Runtime.RECIPE[recipe])

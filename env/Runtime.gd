@@ -1,5 +1,6 @@
 extends Node
 
+const INT64_LIMIT: int = -9223372036854775807
 const ASSETS: String = "res://assets/"
 const PLAYER_ACTOR_ID: String = "PlayerActor"
 const PLAYER_SPEED: float = 4500.0
@@ -50,12 +51,9 @@ const ASSEMBLER_POWER_CONSUMPTION_VALUE: int = 3
 const ASSEMBLER_POWER_CONSUMPTION_RATE: float = 0.333
 const TEMPERATURE_DROP_VALUE: int = 3
 const SAVING_CHANCE: int = 3
-const ORE_QUANTITY_RANGE: int = 3
-const GAS_QUANTITY_RANGE: int = 2
-const BIO_QUANTITY_RANGE: int = 1
-const CRY_QUANTITY_RANGE: int = 1
-const MAX_DRILLS: int = 12
+const MAX_DRILLS: int = 100
 const MIN_DRILLS: int = 0
+const RECIPE_RECURSION_LIMIT: int = 1001
 
 enum STRUCTURE {
 	BASE_STATION,
@@ -70,39 +68,55 @@ enum STRUCTURE {
 var RESOURCES = ["ore", "gas", "bio",  "cry"]
 var RECIPE: Dictionary = {
 	{
-		Vector2i(0, 2): "ore",
-		Vector2i(0, 0): "ore", 
-		Vector2i(1, 1): "bio", 
-		Vector2i(2, 2): "ore",
-		Vector2i(2, 0): "ore",
+		Vector2i(-3, -3): "ore",
+		Vector2i(-4, -4): "bio",
+		Vector2i(-2, -2): "bio",
+		Vector2i(-1, -3): "ore",
+		Vector2i(0, -4): "bio",
+		Vector2i(-3, -1): "ore",
+		Vector2i(-4, 0): "bio",
+		Vector2i(-1, -1): "ore",
+		Vector2i(0, 0): "bio",
 	}: "oxygen_farm",
 		{
-		Vector2i(0, 2): "ore",
-		Vector2i(0, 0): "ore", 
-		Vector2i(1, 1): "gas", 
-		Vector2i(2, 2): "ore",
-		Vector2i(2, 0): "ore",
+		Vector2i(-3, -4): "ore",
+		Vector2i(-4, -3): "ore",
+		Vector2i(-3, -2): "gas",
+		Vector2i(-2, -3): "gas",
+		Vector2i(-1, -4): "ore",
+		Vector2i(0, -3): "ore",
+		Vector2i(-1, -2): "gas",
+		Vector2i(-2, -1): "gas",
+		Vector2i(-3, 0): "ore",
+		Vector2i(-4, -1): "ore",
+		Vector2i(-1, 0): "ore",
+		Vector2i(0, -1): "ore",
 	}: "reactor",
 	{
-		Vector2i(0, 2): "gas",
-		Vector2i(0, 0): "gas", 
-		Vector2i(1, 1): "ore", 
-		Vector2i(2, 2): "gas",
-		Vector2i(2, 0): "gas",
+		Vector2i(-1, -1): "ore",
+		Vector2i(-2, -2): "ore",
+		Vector2i(-3, -3): "ore",
+		Vector2i(-4, -4): "ore",
+		Vector2i(-5, -3): "ore",
+		Vector2i(-6, -2): "ore",
+		Vector2i(-5, -1): "ore",
+		Vector2i(-4, -2): "gas",
+		Vector2i(-3, -1): "ore",
+		Vector2i(-4, 0): "ore",
+		Vector2i(-1, -3): "ore",
+		Vector2i(0, -2): "ore",
 	}: "refinery",
 	{
-		Vector2i(0, 2): "ore",
-		Vector2i(0, 0): "ore", 
-		Vector2i(1, 1): "ore", 
-		Vector2i(2, 2): "ore",
-		Vector2i(2, 0): "ore",
+		Vector2i(0, -1): "ore",
+		Vector2i(-1, -2): "ore", 
+		Vector2i(-2, -1): "ore", 
+		Vector2i(-1, 0): "ore",
 	}: "fabricator",
 	{
-		Vector2i(0, 2): "ore",
-		Vector2i(0, 0): "ore", 
-		Vector2i(1, 1): "cry", 
-		Vector2i(2, 2): "ore",
-		Vector2i(2, 0): "ore",
+		Vector2i(-2, -1): "cry",
+		Vector2i(-1, -2): "ore",
+		Vector2i(0, -1): "cry",
+		Vector2i(-1, 0): "ore",
 	}: "solar_panel",
 }
 
@@ -127,6 +141,7 @@ func make_oxygen_farm_node():
 	timer.wait_time = Runtime.OXYGEN_FARM_PRODUCTION_RATE
 	timer.autostart = true
 	oxygen_farm_node.add_child(timer)
+	oxygen_farm_node.add_to_group("resource")
 	return oxygen_farm_node
 	
 func make_refinery_node():
@@ -153,6 +168,7 @@ func make_refinery_node():
 	timer.wait_time = Runtime.REFINERY_PRODUCTION_RATE
 	timer.autostart = true
 	refinery_node.add_child(timer)
+	refinery_node.add_to_group("resource")
 	return refinery_node
 
 func make_reactor_node():
@@ -175,6 +191,7 @@ func make_reactor_node():
 	timer.wait_time = Runtime.REACTOR_PRODUCTION_RATE
 	timer.autostart = true
 	reactor_node.add_child(timer)
+	reactor_node.add_to_group("resource")
 	return reactor_node
 	
 	
@@ -198,6 +215,7 @@ func make_solar_panel_node():
 	timer.wait_time = Runtime.SOLAR_PANEL_PRODUCTION_RATE
 	timer.autostart = true
 	solar_panel_node.add_child(timer)
+	solar_panel_node.add_to_group("resource")
 	return solar_panel_node
 	
 func make_fabricator_node():
@@ -211,6 +229,7 @@ func make_fabricator_node():
 	fabricator_node.add_to_group("structure")
 	fabricator_node.connect("tree_entered", func(): Cache.drills = min(Cache.drills + 1, Runtime.MAX_DRILLS))
 	fabricator_node.connect("tree_exiting", func(): Cache.drills = max(Cache.drills - 1, Runtime.MIN_DRILLS))
+	fabricator_node.add_to_group("resource")
 	return fabricator_node
 
 

@@ -221,8 +221,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("6_ktn2w")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button1" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -231,8 +230,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("8_h0sjl")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button2" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -241,8 +239,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("9_oi4p3")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button3" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -251,8 +248,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("7_3yt1e")
 icon = ExtResource("10_ukdop")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button4" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -261,8 +257,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("12_uhvb6")
 text = "ab"
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button5" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -270,8 +265,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("11_nc54i")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button6" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -279,8 +273,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("11_mh6i4")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button7" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -290,8 +283,7 @@ mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("13_muxra")
 theme_override_font_sizes/font_size = 8
 icon = ExtResource("14_mx7vx")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [node name="Button8" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
@@ -299,8 +291,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("13_ouebj")
-clip_text = true
-icon_alignment = 1
+alignment = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="assebly_query" from="Player" to="Assembly" method="_on_player_assebly_query"]
