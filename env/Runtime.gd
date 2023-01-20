@@ -1,7 +1,7 @@
 extends Node
 
 const INT64_LIMIT: int = -9223372036854775807
-const TRANSMISSIONS_QUEUE_SIZE: int = 3
+const TRANSMISSIONS_QUEUE_SIZE: int = 1
 const ASSETS: String = "res://assets/"
 const PLAYER_ACTOR_ID: String = "PlayerActor"
 const PLAYER_SPEED: float = 4500.0
@@ -17,21 +17,21 @@ const ASSEMBLER_SPEED: float = 1000.0
 const DRILL_RANGE: float = 100.0
 const DRILL_GATHERING_INTERVAL: int = 4
 const STARTING_TEMPERATURE: int = 0
-const STARTING_OXYGEN: int = 100
-const STARTING_POWER: int = 25
-const STARTING_FUEL: int = 25
+const STARTING_OXYGEN: int = 50
+const STARTING_POWER: int = 50
+const STARTING_FUEL: int = 50
 const COMS_LINE_LIFETIME: float = 16.6
 const OXYGEN_MIN: float = 0.0
 const OXYGEN_MAX: float = 100.0
 const OXYGEN_LOSS_VALUE: float = 0.33
 const TICK_RATE: float = 2.5
-const OXYGEN_FARM_PRODUCTION_VALUE: int = 3
+const OXYGEN_FARM_PRODUCTION_VALUE: int = 4
 const OXYGEN_FARM_PRODUCTION_RATE: float = 3.3
-const OXYGEN_FARM_POWER_CONSUMPTION: int = 3
-const REACTOR_PRODUCTION_VALUE: int = 3
+const OXYGEN_FARM_POWER_CONSUMPTION: int = 2
+const REACTOR_PRODUCTION_VALUE: int = 6
 const REACTOR_PRODUCTION_RATE: float = 3.3
-const REACTOR_CONSUMPTION_VALUE: int = 3
-const REFINERY_PRODUCTION_VALUE: int = 3
+const REACTOR_CONSUMPTION_VALUE: int = 6
+const REFINERY_PRODUCTION_VALUE: int = 8
 const REFINERY_PRODUCTION_RATE: float = 3.3
 const SOLAR_PANEL_PRODUCTION_VALUE: int = 3
 const SOLAR_PANEL_PRODUCTION_RATE: float = 3.3
@@ -168,7 +168,7 @@ func make_refinery_node():
 	refinery_node.add_to_group("structure")
 	var timer = Timer.new()
 	var compute_produce_fuel = func produce_fuel():
-		if Cache.gas > 0 and Cache.ore > 0:
+		if Cache.gas > 0 or Cache.bio > 0:
 			randomize()
 			Cache.fuel = clamp(Cache.fuel + (randi() % Runtime.REFINERY_PRODUCTION_VALUE), Runtime.FUEL_MIN, Runtime.FUEL_MAX)
 			randomize()
@@ -176,7 +176,7 @@ func make_refinery_node():
 				randomize()
 				Cache.gas = max(Cache.gas - (randi() % 2), 0)
 				randomize()
-				Cache.ore = max(Cache.ore - (randi() % 2), 0)
+				Cache.bio = max(Cache.ore - (randi() % 2), 0)
 	timer.connect("timeout", compute_produce_fuel)
 	timer.wait_time = Runtime.REFINERY_PRODUCTION_RATE
 	timer.autostart = true

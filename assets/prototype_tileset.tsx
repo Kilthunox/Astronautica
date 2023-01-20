@@ -9,11 +9,11 @@
  <image source="prototype_tilemap_1x7_32x32.png" width="224" height="32"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
-   <object id="1" class="collision" x="0.5" y="24">
-    <polygon points="0,0 15.375,7.625 31,-0.125 15.125,-8.25"/>
-   </object>
    <object id="2" class="origin" x="15.5" y="24.625">
     <point/>
+   </object>
+   <object id="5" class="collision" x="0.875" y="7.75">
+    <polygon points="0,0 15,-7.625 30.125,-0.125 30.25,16.125 15.25,23.75 -0.375,16.25"/>
    </object>
   </objectgroup>
  </tile>

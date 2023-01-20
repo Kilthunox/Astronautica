@@ -82,6 +82,7 @@ func free_staged_assembly():
 	invalid_assembly_placement = false
 	for staged_node in get_tree().get_nodes_in_group(Runtime.STAGED):
 		staged_node.queue_free()
+	just_canceled = false
 
 func stage_node_in_front(node: Node2D):
 	free_staged_assembly()
@@ -91,22 +92,19 @@ func stage_node_in_front(node: Node2D):
 	world.add_child(node) 
 	
 func make_assembly(id: String):
-	if just_canceled:
-		just_canceled = false
-		return
-
-	if !invalid_assembly_placement and Cache.get(Cache.selected_resource) > 0:
-		Cache.set(Cache.selected_resource, Cache.get(Cache.selected_resource) - 1)
+	if !invalid_assembly_placement and Cache.get(Cache.selected_resource) > 0 and !just_canceled:
 		var assembly_node = Runtime.call("make_%s_node" % id)
 		assembly_node.set_collision_layer_value(2, 1)
 		assembly_node.set_collision_layer_value(3, 1)
 		assembly_node.set_collision_layer_value(4, 1)
-		place_node_in_front(assembly_node)
+
 		assembly_node.snap_to_grid(assembly_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 		var x_coord = int(assembly_node.position.x) / int(Runtime.GRID_SIZE.x)
 		var y_coord = int(assembly_node.position.y) / int(Runtime.GRID_SIZE.y)
 		assembly_node.coords = Vector2i(x_coord, y_coord)
 		assembly_node.add_to_group(str(assembly_node.coords))
+		assembly_node.connect("tree_entered", func(): Cache.set(Cache.selected_resource, Cache.get(Cache.selected_resource) ))
+		place_node_in_front(assembly_node)
 	free_staged_assembly()
 	
 func stage_assembly(id: String):

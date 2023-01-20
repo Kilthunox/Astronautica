@@ -26,8 +26,8 @@
     {
       "id": "ore",
       "position": [
-        -17.5,
-        764.5
+        -64,
+        664
       ]
     },
     {
@@ -40,8 +40,8 @@
     {
       "id": "ore",
       "position": [
-        51.5,
-        771
+        -96,
+        664
       ]
     },
     {
@@ -54,26 +54,26 @@
     {
       "id": "ore",
       "position": [
-        22.5,
-        752
+        -64,
+        680
       ]
     },
     {
       "id": "ore",
       "position": [
-        -56,
-        780
+        -96,
+        680
       ]
     },
     {
-      "id": "gas",
+      "id": "dirt",
       "position": [
         -225.334,
         588
       ]
     },
     {
-      "id": "gas",
+      "id": "dirt",
       "position": [
         -253.33300000000003,
         587.3335
@@ -201,15 +201,15 @@
     {
       "id": "bio",
       "position": [
-        -156,
-        928
+        -48,
+        656
       ]
     },
     {
       "id": "bio",
       "position": [
-        -126.66700000000003,
-        907.3335
+        -80,
+        672
       ]
     },
     {
@@ -222,8 +222,8 @@
     {
       "id": "bio",
       "position": [
-        -103.33400000000006,
-        906
+        -112,
+        688
       ]
     },
     {
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "cry",
+      "id": "dirt",
       "position": [
         -435.99999999999994,
         679.333
@@ -346,290 +346,913 @@
       ]
     },
     {
-      "id": "rock",
+      "id": "dirt",
+      "position": [
+        -256,
+        760
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -240,
+        736
+      ]
+    },
+    {
+      "id": "ore",
       "position": [
         -320,
         744
       ]
     },
     {
-      "id": "dirt",
+      "id": "ore",
       "position": [
-        -184,
-        739.3333333333333
+        -224,
+        696
       ]
     },
     {
-      "id": "rock",
-      "position": [
-        -304,
-        752
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -288,
-        760
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -272,
-        768
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -256,
-        776
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -240,
-        784
-      ]
-    },
-    {
-      "id": "rock",
+      "id": "ore",
       "position": [
         -288,
         744
       ]
     },
     {
-      "id": "rock",
-      "position": [
-        -272,
-        752
-      ]
-    },
-    {
-      "id": "rock",
+      "id": "ore",
       "position": [
         -256,
-        760
+        712
       ]
     },
     {
-      "id": "rock",
+      "id": "ore",
       "position": [
-        -240,
-        768
+        -288,
+        728
       ]
     },
     {
-      "id": "rock",
+      "id": "ore",
       "position": [
-        -224,
-        776
+        -353.25,
+        760.625
       ]
     },
     {
-      "id": "rock",
+      "id": "bio",
       "position": [
-        -208,
-        784
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -256,
-        744
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -240,
-        752
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -224,
-        760
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -208,
-        768
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -192,
-        776
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -176,
-        784
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -224,
-        744
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -208,
-        752
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -192,
-        760
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -176,
-        768
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -160,
-        776
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -144,
-        784
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -192,
-        744
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -176,
-        752
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -160,
-        760
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -144,
-        768
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -128,
-        776
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -112,
-        784
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -160,
-        648
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -144,
-        656
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -128,
-        664
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -112,
-        672
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -96,
-        680
-      ]
-    },
-    {
-      "id": "rock",
-      "position": [
-        -144,
+        -48,
         688
       ]
     },
     {
-      "id": "rock",
+      "id": "bio",
       "position": [
         -112,
-        704
+        656
       ]
     },
     {
-      "id": "rock",
+      "id": "dirt",
       "position": [
-        -58.66666666666674,
-        674.6666666666666
+        -288,
+        760
       ]
     },
     {
-      "id": "rock",
+      "id": "dirt",
       "position": [
-        -205.33333333333326,
+        -269.66666666666674,
+        751.6666666666666
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -240,
+        752
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -270.66666666666674,
+        765.6666666666666
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -224,
+        744
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -208,
+        736
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -193.66666666666674,
+        727.6666666666666
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -192,
+        712
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -208,
+        720
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -222.66666666666674,
+        722
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -176,
+        720
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -176,
+        736
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -176,
+        768
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -224,
+        776
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -192,
+        744
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -224,
+        760
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -205.66699999999992,
+        783.6665
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -176,
+        784
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -160,
+        776
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -144,
+        768
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -129.66699999999992,
+        759.6665
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -128,
+        744
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -144,
+        752
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -158.66599999999994,
+        754
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -112,
+        752
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -112,
+        768
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -288,
+        808
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -336,
+        816
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -304,
+        784
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -336,
+        800
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -317.6669999999999,
+        823.6665
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -288,
+        824
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -272,
+        816
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -256,
+        808
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -241.66699999999992,
+        799.6665
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -240,
+        784
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -256,
+        792
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -270.66599999999994,
+        794
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -224,
+        792
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -224,
+        808
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -256,
+        632
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -240,
+        640
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -272,
+        640
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -256,
+        648
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -288,
+        648
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -272,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -304,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -288,
+        664
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -224,
+        648
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -208,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -240,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -224,
+        664
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -256,
+        664
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -240,
         672
       ]
     },
     {
-      "id": "rock",
+      "id": "dirt",
       "position": [
-        -174,
-        678.6666666666666
+        -272,
+        672
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -256,
+        680
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -384,
+        632
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -368,
+        640
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -400,
+        640
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -384,
+        648
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -416,
+        648
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -400,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -432,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -416,
+        664
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -352,
+        648
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -336,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -368,
+        656
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -352,
+        664
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -384,
+        664
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -368,
+        672
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -400,
+        672
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -384,
+        680
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -320,
+        664
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -304,
+        672
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -336,
+        672
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -320,
+        680
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -352,
+        680
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -336,
+        688
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -368,
+        688
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -352,
+        696
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -288,
+        680
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -272,
+        688
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -304,
+        688
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -288,
+        696
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -320,
+        696
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -304,
+        704
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -336,
+        704
+      ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        -320,
+        712
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -192,
+        600
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -176,
+        608
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -208,
+        608
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -192,
+        616
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -224,
+        616
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -208,
+        624
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -240,
+        624
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -224,
+        632
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -160,
+        616
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -144,
+        624
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -176,
+        624
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -160,
+        632
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -192,
+        632
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -176,
+        640
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -208,
+        640
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -192,
+        648
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -128,
+        568
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -112,
+        576
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -144,
+        576
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -128,
+        584
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -160,
+        584
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -144,
+        592
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -176,
+        592
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -160,
+        600
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -96,
+        584
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -80,
+        592
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -112,
+        592
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -96,
+        600
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -128,
+        600
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -112,
+        608
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -144,
+        608
+      ]
+    },
+    {
+      "id": "dirt",
+      "position": [
+        -128,
+        616
       ]
     }
   ],
