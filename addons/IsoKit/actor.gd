@@ -20,6 +20,8 @@ var rect: Rect2
 var on_area_entered_hooks: Array[Callable] = []
 var on_area_exited_hooks: Array[Callable] = []
 
+signal state_change(state)
+
 class ComputeProcess extends Node:
 		var function: Callable
 		var args: Dictionary
@@ -75,6 +77,7 @@ func set_heading(value: Vector2):
 	
 func set_state(value: String) -> void:
 	state = value
+	state_change.emit(value)
 
 
 func handle_animation():

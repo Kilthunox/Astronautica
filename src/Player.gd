@@ -8,6 +8,8 @@ const STAGED_COLLISIONS = [[], []]
 @onready var coms: Node = get_node_or_null(ComsNodePath)
 @onready var DrillTimer: PackedScene = preload("res://src/drill_timer.tscn")
 @onready var Line: PackedScene = preload("res://src/line.tscn")
+@onready var PlayerActorMixer = preload("res://src/player_actor_mixer.tscn")
+@onready var DrillAudio = preload("res://src/drill_audio.tscn")
 var emitting = false
 var just_canceled: bool = false
 var transmission_cooling_down: bool = true
@@ -16,6 +18,11 @@ var invalid_assembly_placement: bool = false
 
 signal assembly_query(coords)
 signal drill_placed(coords)
+
+func player_actor_mixer_stop():
+	for track in get_player_actor().get_node("PlayerActorMixer").get_children():
+		if track.name != "Listener":
+			track.stop()
 
 func new_transmission(text: String, color: Color = Color(1, 1, 1)):
 	if !transmission_cooling_down:
@@ -61,8 +68,10 @@ func make_player_actor_node():
 	player_actor_node.set_collision_layer_value(1, 1)
 	player_actor_node.set_collision_mask_value(2, 1)
 	player_actor_node.set_collision_mask_value(4, 1)
+	var mixer = PlayerActorMixer.instantiate()
+	player_actor_node.add_child(mixer)
 	world.add_child(player_actor_node)
-	
+
 func get_player_actor():
 	return world.get_node_or_null(Runtime.PLAYER_ACTOR_ID)
 	
@@ -97,14 +106,14 @@ func make_assembly(id: String):
 		assembly_node.set_collision_layer_value(2, 1)
 		assembly_node.set_collision_layer_value(3, 1)
 		assembly_node.set_collision_layer_value(4, 1)
-
+		place_node_in_front(assembly_node)
 		assembly_node.snap_to_grid(assembly_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 		var x_coord = int(assembly_node.position.x) / int(Runtime.GRID_SIZE.x)
 		var y_coord = int(assembly_node.position.y) / int(Runtime.GRID_SIZE.y)
 		assembly_node.coords = Vector2i(x_coord, y_coord)
 		assembly_node.add_to_group(str(assembly_node.coords))
 		assembly_node.connect("tree_entered", func(): Cache.set(Cache.selected_resource, Cache.get(Cache.selected_resource) ))
-		place_node_in_front(assembly_node)
+
 	free_staged_assembly()
 	
 func stage_assembly(id: String):
@@ -160,6 +169,7 @@ func handle_movement_input():
 		get_staged_node().set_heading(heading)
 		
 func compute_node_placement(args: Dictionary):
+
 	args["self"].position = get_player_actor().get_front(Vector2(16, 16))
 	
 func compute_node_self_destruct(args: Dictionary):
@@ -177,6 +187,7 @@ func handle_destructor_contact(node):
 		
 func destructor_emission():
 	if !world.get_node_or_null(Runtime.EMITTER_ACTOR_ID):
+		get_player_actor().get_node("PlayerActorMixer/Quake").play()
 		get_player_actor().set_state("tool")
 		var destructor_node = IsoKit.make_actor(Runtime.ASSETS, {
 			"id": Runtime.EMITTER_ACTOR_ID,
@@ -190,11 +201,12 @@ func destructor_emission():
 		var timer = Timer.new()
 		timer.autostart = true
 		timer.wait_time = Runtime.DESTRUCTOR_TEMPERATURE_CONSUMPTION_RATE
-		var compute_increase_temperature = func increase_temperature():
+		var compute_increase_temperature = func():
 			Cache.temperature = clamp(Cache.temperature + Runtime.DESTRUCTOR_TEMPERATURE_CONSUMPTION_VALUE, Runtime.TEMPERATURE_MIN, Runtime.TEMPERATURE_MAX)
 			if Cache.temperature >= Runtime.TEMPERATURE_MAX:
 				destructor_node.queue_free()
 		timer.connect("timeout", compute_increase_temperature)		
+#		destructor_node.connect("tree_entered", player_actor_mixer_stop)
 		destructor_node.add_child(timer)
 		world.add_child(destructor_node)
 	
@@ -205,6 +217,7 @@ func handle_assembler_contact(node):
 		
 func assembler_emission():
 	if !world.get_node_or_null(Runtime.EMITTER_ACTOR_ID):
+		get_player_actor().get_node("PlayerActorMixer/Quake").play()
 		get_player_actor().set_state("tool")
 		var assembler_node = IsoKit.make_actor(Runtime.ASSETS, {
 			"id": Runtime.EMITTER_ACTOR_ID,
@@ -235,7 +248,6 @@ func revoke_destructor_emission():
 func stage_drill():
 	free_staged_assembly()
 	if Cache.drills > 0:
-
 		get_player_actor().set_state("tool")
 		var drill_node = Runtime.call("make_drill_node")	
 		drill_node.get_node("Area").set_collision_layer_value(2, 1)
@@ -246,6 +258,7 @@ func stage_drill():
 		stage_node_in_front(drill_node)
 	
 func make_drill():
+	player_actor_mixer_stop()
 	if !invalid_assembly_placement and Cache.drills > 0:
 		new_transmission("+ Drill", Runtime.COLOR_GRAY)
 		var drill_node = Runtime.call("make_drill_node")
@@ -260,6 +273,8 @@ func make_drill():
 		drill_placed.emit(drill_node.coords)
 		var timer = DrillTimer.instantiate()
 		drill_node.add_child(timer)
+		drill_node.add_child(DrillAudio.instantiate())
+		AudioStreamPlayer2D
 	free_staged_assembly()
 
 func handle_action_input():
@@ -267,20 +282,26 @@ func handle_action_input():
 		stage_drill()
 	elif Input.is_action_just_released("action_1"):
 		make_drill()
+		player_actor_mixer_stop()
 
-	
 	if Input.is_action_just_pressed("action_2"):
 		stage_assembly(Cache.selected_resource)
 	elif Input.is_action_just_released("action_2"):
 		make_assembly(Cache.selected_resource)
+		player_actor_mixer_stop()
 
 		
 	emitting = Input.is_action_pressed("action_3") or Input.is_action_pressed("action_4")
 	if !Input.is_action_pressed("action_3") or !Input.is_action_pressed("action_4"):
 		if Input.is_action_pressed("action_3"):
 			destructor_emission()
+		elif Input.is_action_just_released("action_3"):
+			player_actor_mixer_stop()
 		if Input.is_action_just_pressed("action_4"):
 			assembler_emission()
+		elif Input.is_action_just_released("action_4"):
+			player_actor_mixer_stop()
+			
 	
 	
 	if Input.is_action_just_released("cancel"):

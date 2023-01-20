@@ -9,8 +9,11 @@ func _ready():
 func drill_gathers_resource(drill):
 	if Cache.power <= Runtime.POWER_MIN:
 		get_parent().set_state("idle")
-		# TODO - notify player that drill x has stopped
+		get_parent().get_node("DrillAudio").get_node("Quake").stop()
 	else:
+		var quake = get_parent().get_node("DrillAudio").get_node("Quake")
+		if !quake.playing:
+			quake.play()
 		get_parent().set_state("drilling")
 		randomize()
 		Cache.power = clamp(Cache.power - (randi() % Runtime.DRILL_CONSUMPTION_VALUE), Runtime.POWER_MIN, Runtime.POWER_MAX)

@@ -28,3 +28,7 @@ func handle_oxygen():
 func _on_timer_timeout():
 	handle_oxygen()
 	handle_temperature()
+
+
+func _on_audio_timer_timeout():
+	$BackgroundAudio.play()
