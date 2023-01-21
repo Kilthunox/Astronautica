@@ -1,15 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://jgbsejljrgri"]
+[gd_scene load_steps=7 format=3 uid="uid://jgbsejljrgri"]
 
 [ext_resource type="Script" path="res://src/player_actor_mixer.gd" id="1_ce5q2"]
 [ext_resource type="AudioStream" uid="uid://cl7j2r0j5pw5w" path="res://assets/audio/footsteps.wav" id="1_i7m1j"]
 [ext_resource type="AudioStream" uid="uid://bwbp343h7rild" path="res://assets/audio/quake.wav" id="3_ibn2p"]
+[ext_resource type="AudioStream" uid="uid://dmh51e371sa82" path="res://assets/audio/place_structure.wav" id="4_3nyem"]
+[ext_resource type="AudioStream" uid="uid://bfnric3dvf3yq" path="res://assets/audio/place_block.wav" id="5_wbafs"]
+[ext_resource type="AudioStream" uid="uid://bovpmcavso4ni" path="res://assets/audio/notification1.wav" id="6_hmonw"]
 
 [node name="PlayerActorMixer" type="Node"]
 script = ExtResource("1_ce5q2")
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_i7m1j")
-volume_db = -15.0
+volume_db = 15.0
 
 [node name="Quake" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ibn2p")
+volume_db = 20.0
+pitch_scale = 2.0
+
+[node name="StructurePlaced" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3nyem")
+volume_db = 10.0
+
+[node name="BlockPlaced" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wbafs")
+volume_db = 10.0
+
+[node name="Notification" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_hmonw")
+volume_db = -20.0

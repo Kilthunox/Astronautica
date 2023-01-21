@@ -20,12 +20,13 @@ signal assembly_query(coords)
 signal drill_placed(coords)
 
 func player_actor_mixer_stop():
-	for track in get_player_actor().get_node("PlayerActorMixer").get_children():
-		if track.name != "Listener":
-			track.stop()
+	get_player_actor().get_node("PlayerActorMixer/Quake").stop()
+	get_player_actor().get_node("PlayerActorMixer/Footsteps").stop()
 
 func new_transmission(text: String, color: Color = Color(1, 1, 1)):
 	if !transmission_cooling_down:
+		if color != Runtime.COLOR_GRAY:
+			get_player_actor().get_node("PlayerActorMixer/Notification").play()
 		transmission_cooling_down = true
 		$TransmissionCooldown.start()
 		var line = Line.instantiate()
@@ -78,6 +79,7 @@ func get_player_actor():
 func place_node_in_front(node: Node2D):
 	var staged = get_staged_node()
 	if staged:
+		get_player_actor().get_node("PlayerActorMixer/BlockPlaced").play()
 		node.position = staged.position
 		world.add_child(node)
 	
@@ -213,6 +215,7 @@ func destructor_emission():
 func handle_assembler_contact(node):
 	if world.get_node_or_null(Runtime.EMITTER_ACTOR_ID):
 		assembly_query.emit(node.coords)
+		get_player_actor().get_node("PlayerActorMixer/StructurePlaced").play()
 		world.get_node_or_null(Runtime.EMITTER_ACTOR_ID).queue_free()
 		
 func assembler_emission():
@@ -311,7 +314,7 @@ func handle_action_input():
 	if Input.is_action_just_pressed("switch_right"):
 		var index = (Runtime.RESOURCES.find(Cache.selected_resource) + 1) % Runtime.RESOURCES.size()
 		Cache.selected_resource = Runtime.RESOURCES[index]
-		new_transmission("> loading %s" % Runtime.RESOURCE_TITLE_MAP.get(Cache.selected_resource))
+		new_transmission("> loading %s" % Runtime.RESOURCE_TITLE_MAP.get(Cache.selected_resource), Runtime.COLOR_GRAY)
 		
 		
 
