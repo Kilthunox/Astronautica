@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://coa5b70tq1vl4"]
+
+[ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="1_7guf6"]
+[ext_resource type="Script" path="res://src/splash.gd" id="2_dobhi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxvx1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qb3dy"]
+
+[node name="Splash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7guf6")
+script = ExtResource("2_dobhi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+offset_left = 480.0
+offset_right = 672.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+offset_top = 295.0
+offset_right = 192.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hxvx1")
+text = "ASTRONAUTICA"
+
+[node name="Prompt" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+offset_top = 334.0
+offset_right = 192.0
+offset_bottom = 353.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qb3dy")
+text = "- start - "
+horizontal_alignment = 1
+vertical_alignment = 1

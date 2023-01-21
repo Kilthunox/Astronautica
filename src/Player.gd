@@ -10,6 +10,7 @@ const STAGED_COLLISIONS = [[], []]
 @onready var Line: PackedScene = preload("res://src/line.tscn")
 @onready var PlayerActorMixer = preload("res://src/player_actor_mixer.tscn")
 @onready var DrillAudio = preload("res://src/drill_audio.tscn")
+
 var emitting = false
 var just_canceled: bool = false
 var transmission_cooling_down: bool = true
@@ -43,10 +44,12 @@ func new_transmission(text: String, color: Color = Color(1, 1, 1)):
 func _ready():
 	$TransmissionCooldown.start()
 	make_player_actor_node()
+	
 
 func _physics_process(_delta):
-	handle_action_input()
-	handle_movement_input()
+	if !$"../UserInterface".has_node("InGameMenu"):
+		handle_action_input()
+		handle_movement_input()
 	handle_heading_while_staging()
 	
 func handle_heading_while_staging():
@@ -61,8 +64,8 @@ func make_player_actor_node():
 		"id": Runtime.PLAYER_ACTOR_ID,
 		"name": Runtime.PLAYER_ACTOR_ID,
 		"sprite": "astronaut.sprite",
-		"zone": "main.zone",
-		"spawn": "spawn",
+		"zone": Cache.zone,
+		"spawn": "player",
 		"speed": Runtime.PLAYER_SPEED,
 	})
 	player_actor_node.camera_lock()
@@ -108,14 +111,15 @@ func make_assembly(id: String):
 		assembly_node.set_collision_layer_value(2, 1)
 		assembly_node.set_collision_layer_value(3, 1)
 		assembly_node.set_collision_layer_value(4, 1)
+		assembly_node.connect("tree_entered", func(): Cache.set(Cache.selected_resource, Cache.get(Cache.selected_resource) - 1))
 		place_node_in_front(assembly_node)
 		assembly_node.snap_to_grid(assembly_node.position, Runtime.GRID_SIZE, Runtime.GRID_OFFSET)
 		var x_coord = int(assembly_node.position.x) / int(Runtime.GRID_SIZE.x)
 		var y_coord = int(assembly_node.position.y) / int(Runtime.GRID_SIZE.y)
 		assembly_node.coords = Vector2i(x_coord, y_coord)
 		assembly_node.add_to_group(str(assembly_node.coords))
-		assembly_node.connect("tree_entered", func(): Cache.set(Cache.selected_resource, Cache.get(Cache.selected_resource) ))
 
+		assembly_node.connect("tree_exiting", get_player_actor().get_node("PlayerActorMixer/BlockRemoved").play)
 	free_staged_assembly()
 	
 func stage_assembly(id: String):
@@ -128,6 +132,7 @@ func stage_assembly(id: String):
 		assembly_node.get_node("Area").set_collision_mask_value(2, 1)
 		assembly_node.on_area_entered_hooks.append(handle_body_entered_staged_assembly)
 		assembly_node.on_area_exited_hooks.append(handle_body_exited_staged_assembly)
+		assembly_node.remove_from_group("resource")
 		var timer = Timer.new()
 		timer.autostart = true
 		timer.wait_time = Runtime.LOADER_TEMPERATURE_CONSUMPTION_RATE
@@ -203,11 +208,12 @@ func destructor_emission():
 		var timer = Timer.new()
 		timer.autostart = true
 		timer.wait_time = Runtime.DESTRUCTOR_TEMPERATURE_CONSUMPTION_RATE
-		var compute_increase_temperature = func():
+		var compute = func():
 			Cache.temperature = clamp(Cache.temperature + Runtime.DESTRUCTOR_TEMPERATURE_CONSUMPTION_VALUE, Runtime.TEMPERATURE_MIN, Runtime.TEMPERATURE_MAX)
-			if Cache.temperature >= Runtime.TEMPERATURE_MAX:
+			Cache.fuel = clamp(Cache.fuel - Runtime.DESTRUCTOR_FUEL_CONSUMPTION_VALUE, Runtime.FUEL_MIN, Runtime.FUEL_MAX)
+			if Cache.temperature >= Runtime.TEMPERATURE_MAX or Cache.fuel <= Runtime.FUEL_MIN:
 				destructor_node.queue_free()
-		timer.connect("timeout", compute_increase_temperature)		
+		timer.connect("timeout", compute)		
 #		destructor_node.connect("tree_entered", player_actor_mixer_stop)
 		destructor_node.add_child(timer)
 		world.add_child(destructor_node)
@@ -315,6 +321,13 @@ func handle_action_input():
 		var index = (Runtime.RESOURCES.find(Cache.selected_resource) + 1) % Runtime.RESOURCES.size()
 		Cache.selected_resource = Runtime.RESOURCES[index]
 		new_transmission("> loading %s" % Runtime.RESOURCE_TITLE_MAP.get(Cache.selected_resource), Runtime.COLOR_GRAY)
+		
+	if Input.is_action_just_pressed("switch_left"):
+		var index = (Runtime.RESOURCES.find(Cache.selected_resource) - 1) % Runtime.RESOURCES.size()
+		Cache.selected_resource = Runtime.RESOURCES[index]
+		new_transmission("> loading %s" % Runtime.RESOURCE_TITLE_MAP.get(Cache.selected_resource), Runtime.COLOR_GRAY)
+		
+		
 		
 		
 

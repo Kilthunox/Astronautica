@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdd5or0lkuqqb"]
+[gd_scene load_steps=4 format=3 uid="uid://bdd5or0lkuqqb"]
 
 [ext_resource type="Script" path="res://addons/IsoKit/actor.gd" id="1_deb66"]
+[ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="2_kayv4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ct2fq"]
 
 [node name="Actor" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -20,6 +23,16 @@ disable_mode = 2
 collision_layer = 0
 collision_mask = 0
 linear_damp = 0.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -97.0
+offset_top = 1.0
+offset_right = 98.0
+offset_bottom = 12.0
+theme = ExtResource("2_kayv4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ct2fq")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

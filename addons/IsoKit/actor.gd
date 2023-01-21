@@ -32,6 +32,9 @@ class ComputeProcess extends Node:
 				self.queue_free()
 
 
+func set_text(value: String) -> void:
+	$Label.set_text(value)
+
 func add_compute(id: String, function: Callable, args: Dictionary = {}):
 	var cprocess: ComputeProcess = ComputeProcess.new()
 	cprocess.args = args

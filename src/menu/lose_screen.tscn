@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://j0ej1m5kjg3t"]
+[gd_scene load_steps=4 format=3 uid="uid://j0ej1m5kjg3t"]
 
 [ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="1_uo0ka"]
+[ext_resource type="Script" path="res://src/menu/lose_screen.gd" id="2_uox23"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pek4"]
 
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_uo0ka")
+script = ExtResource("2_uox23")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://fa2uag8fv3w1"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://fa2uag8fv3w1"]
 
 [ext_resource type="FontFile" uid="uid://l6k4pwwm24wq" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_small_plain.ttf" id="1_pvcit"]
 
@@ -18,6 +18,9 @@ bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3dv7"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tel5o"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.498039)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78haa"]
@@ -47,6 +50,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_fqdad")
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_pvcit")
 Label/styles/normal = SubResource("StyleBoxFlat_j3dv7")
+Panel/styles/panel = SubResource("StyleBoxFlat_tel5o")
 ProgressBar/font_sizes/font_size = 8
 ProgressBar/fonts/font = ExtResource("1_pvcit")
 ProgressBar/styles/background = SubResource("StyleBoxEmpty_78haa")

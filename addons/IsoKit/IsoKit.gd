@@ -38,6 +38,8 @@ func build_frame(dir: String, index: int, columns: int, size: Vector2, source: S
 
 func make_actor(dir, data: Dictionary, threat: int = 0):
 	var actor_node = actor_packed_scene.instantiate()
+	if data.get("text"):
+		actor_node.set_text(data.get("text"))
 	if data.get("id"):
 		actor_node.id = data.get("id", "")
 	if data.get("name"):
@@ -51,7 +53,6 @@ func make_actor(dir, data: Dictionary, threat: int = 0):
 			if actor.get("id") == data.get("spawn"):
 				actor_node.position = Vector2(actor.get("position", [0])[0], actor.get("position", [0, 0])[1])
 				break
-				# TODO - Find a better way to set spawn. 
 				
 	actor_node.threat = data.get("threat", 0)
 	actor_node.speed = data.get("speed", 0)
@@ -153,7 +154,8 @@ func initialize_tileatlas(dir, path, size: Vector2i):
 	
 func initalize_tileatlas_tiles(n_columns: int, tiles: Array): 
 	for tile in tiles:
-		var coords = Vector2i(int(tile.get("id")) % n_columns, int(tile.get("id")) / n_columns)
+		var coords
+		coords = Vector2i(int(tile.get("id")) % n_columns, int(tile.get("id")) / n_columns)
 		tileatlas_node.set("%s:%s/0/y_sort_origin" % [coords.x, coords.y], tile.get("origin", 0))
 		if tile.get("collision", []):
 			var polygon_data = tile.get("collision")

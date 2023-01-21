@@ -1,0 +1,14 @@
+{
+  "id": "mission3",
+  "name": "mission3",
+  "actors": [
+    {
+      "id": "player",
+      "position": [
+        -611.3330000000001,
+        650.3335
+      ]
+    }
+  ],
+  "threat": 1
+}

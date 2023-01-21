@@ -1,23 +1,23 @@
-[gd_scene load_steps=23 format=3 uid="uid://brdta3nf448ru"]
+[gd_scene load_steps=23 format=3 uid="uid://lbcvujonfqbi"]
 
-[ext_resource type="Script" path="res://src/main.gd" id="1_g3jcb"]
-[ext_resource type="Script" path="res://src/Assembly.gd" id="2_liovd"]
-[ext_resource type="Script" path="res://src/Player.gd" id="2_nyc2x"]
-[ext_resource type="Script" path="res://src/World.gd" id="3_yneie"]
-[ext_resource type="Script" path="res://src/UserInterface.gd" id="5_2lyn2"]
-[ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="5_7hmsa"]
-[ext_resource type="Texture2D" uid="uid://cg1wd4kdffuj4" path="res://assets/tilium_ore_icon.png" id="6_ktn2w"]
-[ext_resource type="FontFile" uid="uid://grvkqsdedjli" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_thin_plain.ttf" id="7_3yt1e"]
-[ext_resource type="Texture2D" uid="uid://y2makqocgma" path="res://assets/plasma_gas_icon.png" id="8_h0sjl"]
-[ext_resource type="Texture2D" uid="uid://ohollwyhljwn" path="res://assets/biomass_icon.png" id="9_oi4p3"]
-[ext_resource type="Texture2D" uid="uid://cns0cnqn4g76i" path="res://assets/warp_crystal_icon.png" id="10_ukdop"]
-[ext_resource type="Texture2D" uid="uid://c330wkjhjdf1c" path="res://assets/drill_icon.png" id="11_mh6i4"]
-[ext_resource type="FontFile" uid="uid://dyyh8np4ys2qg" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_icons_silhouette.ttf" id="12_uhvb6"]
-[ext_resource type="FontFile" uid="uid://l6k4pwwm24wq" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_small_plain.ttf" id="13_muxra"]
-[ext_resource type="Texture2D" uid="uid://dhblcinl4t3y5" path="res://assets/assembler_icon.png" id="13_q24ce"]
-[ext_resource type="Texture2D" uid="uid://bhfjubewpnh8w" path="res://assets/destructor_icon.png" id="16_0y3io"]
-[ext_resource type="Texture2D" uid="uid://61jvjvivbox0" path="res://assets/loader_icon.png" id="16_xv01a"]
-[ext_resource type="AudioStream" uid="uid://da04dumlhatjt" path="res://assets/audio/abyss.wav" id="18_7i2ck"]
+[ext_resource type="Script" path="res://src/instance.gd" id="1_0eg2f"]
+[ext_resource type="AudioStream" uid="uid://da04dumlhatjt" path="res://assets/audio/abyss.wav" id="2_pn2re"]
+[ext_resource type="Script" path="res://src/Assembly.gd" id="3_7r2t8"]
+[ext_resource type="Script" path="res://src/Player.gd" id="4_k1h5m"]
+[ext_resource type="Script" path="res://src/World.gd" id="5_r4504"]
+[ext_resource type="Script" path="res://src/UserInterface.gd" id="6_0t2cp"]
+[ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="7_2pv6w"]
+[ext_resource type="FontFile" uid="uid://grvkqsdedjli" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_thin_plain.ttf" id="8_m7yoa"]
+[ext_resource type="Texture2D" uid="uid://cg1wd4kdffuj4" path="res://assets/tilium_ore_icon.png" id="9_sp6sx"]
+[ext_resource type="Texture2D" uid="uid://y2makqocgma" path="res://assets/plasma_gas_icon.png" id="10_tulyq"]
+[ext_resource type="Texture2D" uid="uid://ohollwyhljwn" path="res://assets/biomass_icon.png" id="11_5dine"]
+[ext_resource type="Texture2D" uid="uid://cns0cnqn4g76i" path="res://assets/warp_crystal_icon.png" id="12_ky2u3"]
+[ext_resource type="FontFile" uid="uid://dyyh8np4ys2qg" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_icons_silhouette.ttf" id="13_wty4p"]
+[ext_resource type="Texture2D" uid="uid://dhblcinl4t3y5" path="res://assets/assembler_icon.png" id="14_ynyqr"]
+[ext_resource type="Texture2D" uid="uid://c330wkjhjdf1c" path="res://assets/drill_icon.png" id="15_mhswt"]
+[ext_resource type="FontFile" uid="uid://l6k4pwwm24wq" path="res://assets/fonts/pxlxxl/omelette_font/assets/ttf/om_small_plain.ttf" id="16_1ewut"]
+[ext_resource type="Texture2D" uid="uid://61jvjvivbox0" path="res://assets/loader_icon.png" id="17_6rbdr"]
+[ext_resource type="Texture2D" uid="uid://bhfjubewpnh8w" path="res://assets/destructor_icon.png" id="18_v1y34"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3a52o"]
 bg_color = Color(1, 1, 0, 1)
@@ -31,17 +31,26 @@ bg_color = Color(0, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib3h8"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="Main" type="Node"]
-script = ExtResource("1_g3jcb")
+[node name="Instance" type="Node"]
+script = ExtResource("1_0eg2f")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pn2re")
+volume_db = -40.0
+autoplay = true
+
+[node name="AudioTrackTimer" type="Timer" parent="BackgroundAudio"]
+wait_time = 180.0
+autostart = true
+
+[node name="TickRateTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="Assembly" type="Node" parent="."]
-script = ExtResource("2_liovd")
+script = ExtResource("3_7r2t8")
 
 [node name="Player" type="Node" parent="."]
-script = ExtResource("2_nyc2x")
+script = ExtResource("4_k1h5m")
 WorldNodePath = NodePath("../World")
 ComsNodePath = NodePath("../UserInterface/MarginContainer/HBox/VBox1/Coms")
 
@@ -52,10 +61,10 @@ one_shot = true
 [node name="World" type="Node2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
-script = ExtResource("3_yneie")
+script = ExtResource("5_r4504")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
-script = ExtResource("5_2lyn2")
+script = ExtResource("6_0t2cp")
 OxygenMeterNodePath = NodePath("MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter/ProgressBar")
 PowerMeterNodePath = NodePath("MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter/ProgressBar")
 FuelMeterNodePath = NodePath("MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter/ProgressBar")
@@ -68,256 +77,326 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("5_7hmsa")
+theme = ExtResource("7_2pv6w")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="HBox" type="HBoxContainer" parent="UserInterface/MarginContainer"]
-layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 1148.0
+offset_bottom = 644.0
 mouse_filter = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
-layout_mode = 2
+offset_right = 378.0
+offset_bottom = 640.0
 size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0"]
-layout_mode = 2
+offset_right = 378.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0"]
-layout_mode = 2
+offset_top = 322.0
+offset_right = 378.0
+offset_bottom = 640.0
 size_flags_vertical = 3
 mouse_filter = 2
 alignment = 2
 
 [node name="HBox0" type="HBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1"]
-layout_mode = 2
+offset_right = 378.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0"]
-layout_mode = 2
+offset_right = 187.0
+offset_bottom = 318.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 3
 alignment = 2
 
 [node name="PowerMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
-layout_mode = 2
+offset_top = 277.0
+offset_right = 187.0
+offset_bottom = 285.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter"]
-layout_mode = 2
+offset_right = 187.0
+offset_bottom = 11.0
 text = "POWER"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/PowerMeter"]
-layout_mode = 2
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_3a52o")
 value = 100.0
 show_percentage = false
 
 [node name="TemperatureMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
-layout_mode = 2
+offset_top = 288.0
+offset_right = 187.0
+offset_bottom = 296.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter"]
-layout_mode = 2
+offset_right = 187.0
+offset_bottom = 11.0
 text = "TEMPERATURE"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/TemperatureMeter"]
-layout_mode = 2
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_aqp0i")
 value = 50.0
 show_percentage = false
 
 [node name="FuelMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
-layout_mode = 2
+offset_top = 299.0
+offset_right = 187.0
+offset_bottom = 307.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter"]
-layout_mode = 2
+offset_right = 187.0
+offset_bottom = 11.0
 text = "FUEL"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/FuelMeter"]
-layout_mode = 2
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_f3u0c")
 value = 50.0
 show_percentage = false
 
 [node name="OxygenMeter" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0"]
-layout_mode = 2
+offset_top = 310.0
+offset_right = 187.0
+offset_bottom = 318.0
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter"]
-layout_mode = 2
+offset_right = 187.0
+offset_bottom = 11.0
 text = "OXYGEN"
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0/VBox0/OxygenMeter"]
-layout_mode = 2
+offset_top = 7.0
+offset_right = 187.0
+offset_bottom = 8.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ib3h8")
 value = 50.0
 show_percentage = false
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox0/VBox1/HBox0"]
-layout_mode = 2
+offset_left = 191.0
+offset_right = 378.0
+offset_bottom = 318.0
 size_flags_horizontal = 3
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
-layout_mode = 2
+offset_left = 382.0
+offset_right = 761.0
+offset_bottom = 640.0
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 1
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
-layout_mode = 2
+offset_right = 379.0
+offset_bottom = 210.0
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
-layout_mode = 2
+offset_top = 214.0
+offset_right = 379.0
+offset_bottom = 425.0
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="Coms" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox1"]
-layout_mode = 2
+offset_top = 429.0
+offset_right = 379.0
+offset_bottom = 640.0
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 2
 
 [node name="VBox2" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox"]
-layout_mode = 2
+offset_left = 765.0
+offset_right = 1144.0
+offset_bottom = 640.0
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2"]
-layout_mode = 2
+offset_right = 379.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="VBox1" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2"]
-layout_mode = 2
+offset_top = 322.0
+offset_right = 379.0
+offset_bottom = 640.0
 size_flags_vertical = 3
 mouse_filter = 2
 alignment = 2
 
 [node name="VBox0" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1"]
-layout_mode = 2
+offset_right = 379.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 alignment = 2
 
 [node name="Margin0" type="MarginContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0"]
-layout_mode = 2
+offset_right = 379.0
+offset_bottom = 157.0
 size_flags_vertical = 3
 
 [node name="HBox0" type="HBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0"]
-layout_mode = 2
+offset_top = 161.0
+offset_right = 379.0
+offset_bottom = 318.0
 size_flags_vertical = 3
 alignment = 2
 
 [node name="Margin0" type="MarginContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0"]
-layout_mode = 2
+offset_right = 307.0
+offset_bottom = 157.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBox" type="VBoxContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0"]
-layout_mode = 2
+offset_left = 311.0
+offset_right = 379.0
+offset_bottom = 157.0
 alignment = 2
 
 [node name="Grid" type="GridContainer" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox"]
-layout_mode = 2
+offset_top = 89.0
+offset_right = 68.0
+offset_bottom = 157.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
 
 [node name="Button0" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("7_3yt1e")
-icon = ExtResource("6_ktn2w")
+theme_override_fonts/font = ExtResource("8_m7yoa")
+icon = ExtResource("9_sp6sx")
 alignment = 2
 
 [node name="Button1" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_left = 24.0
+offset_right = 44.0
+offset_bottom = 20.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("7_3yt1e")
-icon = ExtResource("8_h0sjl")
+theme_override_fonts/font = ExtResource("8_m7yoa")
+icon = ExtResource("10_tulyq")
 alignment = 2
 
 [node name="Button2" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_left = 48.0
+offset_right = 68.0
+offset_bottom = 20.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("7_3yt1e")
-icon = ExtResource("9_oi4p3")
+theme_override_fonts/font = ExtResource("8_m7yoa")
+icon = ExtResource("11_5dine")
 alignment = 2
 
 [node name="Button3" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_top = 24.0
+offset_right = 20.0
+offset_bottom = 44.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("7_3yt1e")
-icon = ExtResource("10_ukdop")
+theme_override_fonts/font = ExtResource("8_m7yoa")
+icon = ExtResource("12_ky2u3")
 alignment = 2
 
 [node name="Button4" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 44.0
+offset_bottom = 44.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("12_uhvb6")
+theme_override_fonts/font = ExtResource("13_wty4p")
 text = "a"
 alignment = 2
 
 [node name="Button5" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 68.0
+offset_bottom = 44.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 4
-icon = ExtResource("13_q24ce")
+icon = ExtResource("14_ynyqr")
 alignment = 2
 
 [node name="Button6" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_top = 48.0
+offset_right = 20.0
+offset_bottom = 68.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 8
-icon = ExtResource("11_mh6i4")
+icon = ExtResource("15_mhswt")
 alignment = 2
 
 [node name="Button7" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 44.0
+offset_bottom = 68.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("13_muxra")
+theme_override_fonts/font = ExtResource("16_1ewut")
 theme_override_font_sizes/font_size = 4
-icon = ExtResource("16_xv01a")
+icon = ExtResource("17_6rbdr")
 
 [node name="Button8" type="Button" parent="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid"]
 custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 68.0
+offset_bottom = 68.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 4
-icon = ExtResource("16_0y3io")
+icon = ExtResource("18_v1y34")
 
-[node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_7i2ck")
-autoplay = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BackgroundAudio/AudioTrackTimer" to="." method="_on_audio_track_timer_timeout"]
+[connection signal="timeout" from="TickRateTimer" to="." method="_on_timer_timeout"]
 [connection signal="assembly_query" from="Player" to="Assembly" method="_on_player_assembly_query"]
 [connection signal="timeout" from="Player/TransmissionCooldown" to="Player" method="_on_transmission_cooldown_timeout"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button0" to="UserInterface" method="_on_button_0_button_down"]

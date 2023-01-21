@@ -12,11 +12,11 @@ script = ExtResource("1_ce5q2")
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_i7m1j")
-volume_db = 15.0
+volume_db = 5.0
 
 [node name="Quake" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ibn2p")
-volume_db = 20.0
+volume_db = 10.0
 pitch_scale = 2.0
 
 [node name="StructurePlaced" type="AudioStreamPlayer2D" parent="."]
@@ -27,6 +27,11 @@ volume_db = 10.0
 stream = ExtResource("5_wbafs")
 volume_db = 10.0
 
+[node name="BlockRemoved" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wbafs")
+volume_db = 10.0
+pitch_scale = 0.75
+
 [node name="Notification" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_hmonw")
-volume_db = -20.0
+volume_db = -25.0

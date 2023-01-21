@@ -6,8 +6,8 @@
  <properties>
   <property name="source" value="prototype_tilemap_1x7_32x32.png"/>
  </properties>
- <image source="prototype_tilemap_1x7_32x32.png" width="224" height="32"/>
- <tile id="0">
+ <image source="planet_tileset.png" width="224" height="32"/>
+ <tile id="0" class="empty">
   <objectgroup draworder="index" id="2">
    <object id="2" class="origin" x="15.5" y="24.625">
     <point/>

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd3n47vp2un8c"]
+
+[ext_resource type="Script" path="res://Settings.gd" id="1_ev6e3"]
+[ext_resource type="PackedScene" uid="uid://bri3qsfonbejf" path="res://src/morph_button.tscn" id="2_5irit"]
+
+[node name="Settings" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ev6e3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="VBoxContainer0" type="VBoxContainer" parent="HBoxContainer"]
+offset_left = 512.0
+offset_right = 640.0
+offset_bottom = 648.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="FullscreenToggle" parent="HBoxContainer/VBoxContainer0" instance=ExtResource("2_5irit")]
+offset_top = 324.0
+offset_right = 128.0
+offset_bottom = 324.0
+text = "WINDOWED"
+start_with_focus = true
+
+[connection signal="button_down" from="HBoxContainer/VBoxContainer0/FullscreenToggle" to="." method="_on_fullscreen_toggle_button_down"]

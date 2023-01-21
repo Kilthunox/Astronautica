@@ -4,8 +4,8 @@ const INT64_LIMIT: int = -9223372036854775807
 const TRANSMISSIONS_QUEUE_SIZE: int = 1
 const ASSETS: String = "res://assets/"
 const PLAYER_ACTOR_ID: String = "PlayerActor"
-const PLAYER_SPEED: float = 4500.0
-const LOADER_SPEED: float = 4500.0
+const PLAYER_SPEED: float = 5500.0
+const LOADER_SPEED: float = 3500.0
 const EMITTER_ACTOR_ID: String = "EmitterActor"
 const GRID_SIZE: Vector2i = Vector2i(16, 8)
 const GRID_OFFSET: Vector2i = Vector2i(0, 0)
@@ -28,6 +28,7 @@ const TICK_RATE: float = 2.5
 const OXYGEN_FARM_PRODUCTION_VALUE: int = 4
 const OXYGEN_FARM_PRODUCTION_RATE: float = 3.3
 const OXYGEN_FARM_POWER_CONSUMPTION: int = 2
+const OXYGEN_FARM_BIO_CONSUMPTION_CHANCE: int = 4
 const REACTOR_PRODUCTION_VALUE: int = 6
 const REACTOR_PRODUCTION_RATE: float = 3.3
 const REACTOR_CONSUMPTION_VALUE: int = 6
@@ -41,10 +42,12 @@ const POWER_MAX: float = 100.0
 const FUEL_MIN: float = 0.0
 const FUEL_MAX: float = 100.0
 const DRILL_CONSUMPTION_VALUE: int = 2
+const DRILL_TEMP_INCREASE_VALUE: int = 1
 const TEMPERATURE_MIN: float = 0.0
 const TEMPERATURE_MAX: float = 100.0
 const DESTRUCTOR_TEMPERATURE_CONSUMPTION_VALUE: int = 6
 const DESTRUCTOR_TEMPERATURE_CONSUMPTION_RATE: float = 0.333
+const DESTRUCTOR_FUEL_CONSUMPTION_VALUE: int = 1
 const LOADER_TEMPERATURE_CONSUMPTION_VALUE: int = 3
 const LOADER_TEMPERATURE_CONSUMPTION_RATE: float = 1.0
 const ASSEMBLER_POWER_CONSUMPTION_VALUE: int = 3
@@ -77,6 +80,20 @@ const RESOURCE_TITLE_MAP: Dictionary = {
 	"gas": "Plasma Gas",
 	"cry": "Warp Crystal"
 }
+const STATIC_ACTORS: Array = [
+	"ore",
+	"bio",
+	"cry",
+	"gas",
+	"dirt",
+	"rock",
+	"oxygen_farm",
+	"refinery",
+	"reactor",
+	"solar_panel",
+	"fabricator",
+	"drill",
+]
 			
 var RESOURCES = ["ore", "gas", "bio",  "cry"]
 var RECIPE: Dictionary = {
@@ -91,19 +108,33 @@ var RECIPE: Dictionary = {
 		Vector2i(-1, -1): "ore",
 		Vector2i(0, 0): "bio",
 	}: "oxygen_farm",
-		{
+	{
+		Vector2i(-1, -4): "ore",
+		Vector2i(-2, -3): "gas",
+		Vector2i(-3, -4): "ore",
+		Vector2i(-4, -3): "ore",
+		Vector2i(-3, -2): "cry",
+		Vector2i(-4, -1): "ore",
+		Vector2i(-3, 0): "ore",
+		Vector2i(-2, -1): "gas",
+		Vector2i(-1, -2): "cry",
+		Vector2i(0, -3): "ore",
+		Vector2i(0, -1): "ore",
+		Vector2i(-1, 0): "ore",
+	}: "reactor",
+	{
+		Vector2i(-1, -4): "ore",
+		Vector2i(-2, -3): "cry",
 		Vector2i(-3, -4): "ore",
 		Vector2i(-4, -3): "ore",
 		Vector2i(-3, -2): "gas",
-		Vector2i(-2, -3): "gas",
-		Vector2i(-1, -4): "ore",
-		Vector2i(0, -3): "ore",
-		Vector2i(-1, -2): "gas",
-		Vector2i(-2, -1): "gas",
-		Vector2i(-3, 0): "ore",
 		Vector2i(-4, -1): "ore",
-		Vector2i(-1, 0): "ore",
+		Vector2i(-3, 0): "ore",
+		Vector2i(-2, -1): "cry",
+		Vector2i(-1, -2): "gas",
+		Vector2i(0, -3): "ore",
 		Vector2i(0, -1): "ore",
+		Vector2i(-1, 0): "ore",
 	}: "reactor",
 	{
 		Vector2i(-5, -3): "ore",
@@ -116,7 +147,7 @@ var RECIPE: Dictionary = {
 		Vector2i(-3, -1): "ore",
 		Vector2i(-2, -2): "ore",
 		Vector2i(-1, -3): "ore",
-		Vector2i(0, -2): "bio",
+		Vector2i(0, -2): "gas",
 		Vector2i(-1, -1): "ore",
 	}: "refinery",
 	{
@@ -130,6 +161,12 @@ var RECIPE: Dictionary = {
 		Vector2i(-1, -2): "ore",
 		Vector2i(0, -1): "cry",
 		Vector2i(-1, 0): "ore",
+	}: "solar_panel",
+	{
+		Vector2i(-1, 0): "cry",
+		Vector2i(-2, -1): "ore",
+		Vector2i(-1, -2): "cry",
+		Vector2i(0, -1): "ore",
 	}: "solar_panel",
 }
 
@@ -150,6 +187,9 @@ func make_oxygen_farm_node():
 			Cache.oxygen = clamp(Cache.oxygen + (randi() % Runtime.OXYGEN_FARM_PRODUCTION_VALUE), Runtime.OXYGEN_MIN, Runtime.OXYGEN_MAX)
 			randomize()
 			Cache.power = clamp(Cache.power - (randi() % Runtime.OXYGEN_FARM_POWER_CONSUMPTION), Runtime.POWER_MIN, Runtime.POWER_MAX)
+			randomize()
+			if randi() % Runtime.OXYGEN_FARM_BIO_CONSUMPTION_CHANCE == 0:
+				Cache.bio -= 1
 	timer.connect("timeout", compute_produce_oxygen)
 	timer.wait_time = Runtime.OXYGEN_FARM_PRODUCTION_RATE
 	timer.autostart = true
@@ -263,6 +303,7 @@ func make_ore_node():
 		"sprite": "tilium_ore.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	ore_node.add_to_group("ore")
 	ore_node.add_to_group("resource")
 	return ore_node
 
@@ -274,6 +315,7 @@ func make_gas_node():
 		"sprite": "plasma_gas.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	gas_node.add_to_group("gas")
 	gas_node.add_to_group("resource")
 	return gas_node
 	
@@ -284,6 +326,7 @@ func make_bio_node():
 		"sprite": "biomass.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	bio_node.add_to_group("bio")
 	bio_node.add_to_group("resource")
 	return bio_node
 	
@@ -294,6 +337,7 @@ func make_cry_node():
 		"sprite": "warp_crystal.sprite",
 		"speed": Runtime.LOADER_SPEED,
 	})
+	cry_node.add_to_group("cry")
 	cry_node.add_to_group("resource")
 	return cry_node
 	
@@ -303,6 +347,7 @@ func make_dirt_node():
 		"name": "DirtActor",
 		"sprite": "dirt.sprite"
 	})
+	dirt_node.add_to_group("dirt")
 	dirt_node.add_to_group("resource")
 	return dirt_node
 	
@@ -312,6 +357,7 @@ func make_rock_node():
 		"name": "RockActor",
 		"sprite": "rock.sprite"
 	})
+	rock_node.add_to_group("rock")
 	rock_node.add_to_group("resource")
 	return rock_node
 	

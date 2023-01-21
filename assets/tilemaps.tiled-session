@@ -1,0 +1,92 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "isometric_planet.tsx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "Actors.tsx": {
+            "dynamicWrapping": true
+        },
+        "isometric_planet.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "mission0.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1125.5,
+                "y": 587
+            }
+        },
+        "mission1.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1427,
+                "y": 622
+            }
+        },
+        "mission2.tmx": {
+            "scale": 0.308453125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1603.1609340965504,
+                "y": 800.7699711260827
+            }
+        },
+        "mission3.tmx": {
+            "scale": 0.308453125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1603.1609340965504,
+                "y": 800.7699711260827
+            }
+        },
+        "prototype_tilemap.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1820.5,
+                "y": 746
+            }
+        },
+        "prototype_tileset.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "/home/kalen/dev/godot-wild-jam-53/assets",
+    "last.imagePath": "/home/kalen/dev/godot-wild-jam-53/assets",
+    "lastUsedTilesetExportFilter": "isometric-toolset (*.tileset)",
+    "map.height": 100,
+    "map.lastUsedExportFilter": "isometric-toolset (*.tilemap)",
+    "map.lastUsedFormat": "tmx",
+    "map.orientation": null,
+    "map.tileHeight": 16,
+    "map.width": 100,
+    "openFiles": [
+        "isometric_planet.tsx",
+        "prototype_tilemap.tmx"
+    ],
+    "project": "tilemaps.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "prototype_tilemap.tmx",
+        "isometric_planet.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}

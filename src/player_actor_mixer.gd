@@ -10,5 +10,3 @@ func _process(_delta):
 				$Footsteps.playing = true
 		_: 
 			$Footsteps.playing = false
-	
-	
