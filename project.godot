@@ -26,6 +26,7 @@ Cache="*res://env/cache.gd"
 
 [display]
 
+window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/scale=2.0
 

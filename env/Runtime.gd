@@ -208,15 +208,14 @@ func make_refinery_node():
 	refinery_node.add_to_group("structure")
 	var timer = Timer.new()
 	var compute_produce_fuel = func produce_fuel():
-		if Cache.gas > 0 or Cache.bio > 0:
+		if Cache.gas > 0:
 			randomize()
 			Cache.fuel = clamp(Cache.fuel + (randi() % Runtime.REFINERY_PRODUCTION_VALUE), Runtime.FUEL_MIN, Runtime.FUEL_MAX)
 			randomize()
 			if randi() % 3 == 0:
 				randomize()
 				Cache.gas = max(Cache.gas - (randi() % 2), 0)
-				randomize()
-				Cache.bio = max(Cache.ore - (randi() % 2), 0)
+				
 	timer.connect("timeout", compute_produce_fuel)
 	timer.wait_time = Runtime.REFINERY_PRODUCTION_RATE
 	timer.autostart = true

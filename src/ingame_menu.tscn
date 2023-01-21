@@ -22,13 +22,13 @@
 [ext_resource type="Texture2D" uid="uid://csuo2uqx8m3j0" path="res://assets/solar_panel_recipe.png" id="20_rx6l6"]
 [ext_resource type="Texture2D" uid="uid://cah7ve8uu0uqg" path="res://assets/solar_panel.png" id="21_d3f0t"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtpeq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3sywf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cabsq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5vdmn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtv3k"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_viub8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmgbf"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k0c0h"]
 
 [node name="InGameMenu" type="MarginContainer"]
 z_index = 10
@@ -45,61 +45,49 @@ theme_override_constants/margin_bottom = 156
 script = ExtResource("2_julww")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 2
 
 [node name="Main" type="VBoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(180, 180)
-layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
 [node name="MissionButton" parent="Main" instance=ExtResource("2_lvuu0")]
-layout_mode = 2
 text = "MISSION"
 start_with_focus = true
 
 [node name="ControlsButton" parent="Main" instance=ExtResource("2_lvuu0")]
-layout_mode = 2
 text = "CONTROLS"
 start_with_focus = false
 
 [node name="GaugesButton" parent="Main" instance=ExtResource("2_lvuu0")]
-layout_mode = 2
 text = "GAUGES"
 start_with_focus = true
 
 [node name="ToolsButton" parent="Main" instance=ExtResource("2_lvuu0")]
-layout_mode = 2
 text = "TOOLS"
 start_with_focus = false
 
 [node name="ResourcesButton" parent="Main" instance=ExtResource("2_lvuu0")]
-layout_mode = 2
 text = "RESOURCES"
 start_with_focus = false
 
 [node name="StructuresButton" parent="Main" instance=ExtResource("2_lvuu0")]
-layout_mode = 2
 text = "STRUCTURES"
 start_with_focus = false
 
 [node name="ExitButton" parent="Main" instance=ExtResource("2_lvuu0")]
-layout_mode = 2
 text = "EXIT"
 start_with_focus = false
 
 [node name="Controls" type="VBoxContainer" parent="."]
 visible = false
-layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Controls"]
 custom_minimum_size = Vector2(256, 256)
-layout_mode = 2
 
 [node name="Controls" type="Label" parent="Controls/MarginContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_wtpeq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3sywf")
 text = "(Xbox Controller / Keyboard)
 ____________________________________
 (Left Joystick / arrow keys) -> Move
@@ -114,139 +102,109 @@ ____________________________________
 
 [node name="Mission" type="VBoxContainer" parent="."]
 visible = false
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Mission"]
-layout_mode = 2
 
 [node name="Resources" type="VBoxContainer" parent="."]
 visible = false
-layout_mode = 2
 
 [node name="HBox0" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Resources/HBox0"]
-layout_mode = 2
 texture = ExtResource("4_xl8ar")
 
 [node name="Label" type="Label" parent="Resources/HBox0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "TILIUM ORE:
 - Core building material used by all structure recipes."
 
 [node name="HBox1" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Resources/HBox1"]
-layout_mode = 2
 texture = ExtResource("5_w4x7f")
 
 [node name="Label" type="Label" parent="Resources/HBox1"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "BIOMASS:
 - Used to create and is consumed by Oxygen Farms."
 
 [node name="HBox2" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Resources/HBox2"]
-layout_mode = 2
 texture = ExtResource("6_5iqsn")
 
 [node name="Label" type="Label" parent="Resources/HBox2"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "PLASMA GAS:
 - Used to create fuel."
 
 [node name="HBox3" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Resources/HBox3"]
-layout_mode = 2
 texture = ExtResource("7_bemw7")
 
 [node name="Label" type="Label" parent="Resources/HBox3"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "WARP CRYSTAL:
 - Used to create Solar Panels and Plasma Reactors."
 
 [node name="Tools" type="VBoxContainer" parent="."]
 visible = false
-layout_mode = 2
 
 [node name="HBox0" type="HBoxContainer" parent="Tools"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Tools/HBox0"]
-layout_mode = 2
 texture = ExtResource("8_a3wsl")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Tools/HBox0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "DRILL: 
 Used to automatically mine resources around it. Drills require Power to run. 
 Be carful where drills are placed as they will destroy structures and resources alike."
 
 [node name="HBox1" type="HBoxContainer" parent="Tools"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Tools/HBox1"]
-layout_mode = 2
 texture = ExtResource("9_qwean")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Tools/HBox1"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "LOADER: 
 The loader will place stored resources and a new location but will consume
 a small amount of power and 
 increase temperature while manuevering."
 
 [node name="HBox2" type="HBoxContainer" parent="Tools"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Tools/HBox2"]
-layout_mode = 2
 texture = ExtResource("10_4ox1n")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Tools/HBox2"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "DESTRUCTOR: 
 The destructor will destroy resources and structures on contact. Consumes fuel and 
 increases temperature rapidly while in use."
 
 [node name="HBox3" type="HBoxContainer" parent="Tools"]
-layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Tools/HBox3"]
-layout_mode = 2
 texture = ExtResource("11_dhnef")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Tools/HBox3"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "ASSEMBLER: 
 Used to assemble structrues when resources are placed in a valid structure 
 recipe. Consumes power while in use."
 
 [node name="Gauges" type="VBoxContainer" parent="."]
 visible = false
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Gauges"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cabsq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5vdmn")
 text = "POWER: 
 - Created by Plasma Reactors and Solar Panels.
 - Consumed by Oxygen Farms and drilling. 
@@ -272,178 +230,140 @@ OXYGEN:
 "
 
 [node name="Structures" type="HBoxContainer" parent="."]
-layout_mode = 2
 
 [node name="LeftButton" type="Button" parent="Structures"]
-layout_mode = 2
 text = "<"
 
 [node name="Struct0" type="VBoxContainer" parent="Structures"]
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Structures/Struct0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_rtv3k")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_viub8")
 text = "OXYGEN FARM"
 horizontal_alignment = 1
 
 [node name="HBox0" type="HBoxContainer" parent="Structures/Struct0"]
-layout_mode = 2
 
 [node name="Recipe" type="TextureRect" parent="Structures/Struct0/HBox0"]
-layout_mode = 2
 texture = ExtResource("14_b6lgr")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Structures/Struct0/HBox0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "->"
 
 [node name="Result" type="TextureRect" parent="Structures/Struct0/HBox0"]
-layout_mode = 2
 texture = ExtResource("15_hgx1l")
 
 [node name="Desc" type="Label" parent="Structures/Struct0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "The Oxygen Farm produces Oxygen while consuming Power and Biomass."
 horizontal_alignment = 1
 
 [node name="Struct1" type="VBoxContainer" parent="Structures"]
 visible = false
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Structures/Struct1"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_rtv3k")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_viub8")
 text = "PLASMA REACTOR"
 horizontal_alignment = 1
 
 [node name="HBox0" type="HBoxContainer" parent="Structures/Struct1"]
-layout_mode = 2
 
 [node name="Recipe" type="TextureRect" parent="Structures/Struct1/HBox0"]
-layout_mode = 2
 texture = ExtResource("12_ojly6")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Structures/Struct1/HBox0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "->"
 
 [node name="Result" type="TextureRect" parent="Structures/Struct1/HBox0"]
-layout_mode = 2
 texture = ExtResource("12_bpxw6")
 
 [node name="Desc" type="Label" parent="Structures/Struct1"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "The Plasma Reactor generates Power but costs fuel and increases temperature."
 horizontal_alignment = 1
 
 [node name="Struct2" type="VBoxContainer" parent="Structures"]
 visible = false
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Structures/Struct2"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_rtv3k")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_viub8")
 text = "FABRICATOR"
 horizontal_alignment = 1
 
 [node name="HBox0" type="HBoxContainer" parent="Structures/Struct2"]
-layout_mode = 2
 
 [node name="Recipe" type="TextureRect" parent="Structures/Struct2/HBox0"]
-layout_mode = 2
 texture = ExtResource("16_co0t8")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Structures/Struct2/HBox0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "->"
 
 [node name="Result" type="TextureRect" parent="Structures/Struct2/HBox0"]
-layout_mode = 2
 texture = ExtResource("17_ime67")
 
 [node name="Desc" type="Label" parent="Structures/Struct2"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "The Fabricator increases the maximum amount of Drills by one."
 horizontal_alignment = 1
 
 [node name="Struct3" type="VBoxContainer" parent="Structures"]
 visible = false
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Structures/Struct3"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_rtv3k")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_viub8")
 text = "REFINERY"
 horizontal_alignment = 1
 
 [node name="HBox0" type="HBoxContainer" parent="Structures/Struct3"]
-layout_mode = 2
 
 [node name="Recipe" type="TextureRect" parent="Structures/Struct3/HBox0"]
-layout_mode = 2
 texture = ExtResource("18_0a7gr")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Structures/Struct3/HBox0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "->"
 
 [node name="Result" type="TextureRect" parent="Structures/Struct3/HBox0"]
-layout_mode = 2
 texture = ExtResource("19_a0bn2")
 
 [node name="Desc" type="Label" parent="Structures/Struct3"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "The Refinery produces Fuel and consumes Plasma Gas."
 horizontal_alignment = 1
 
 [node name="Struct4" type="VBoxContainer" parent="Structures"]
 visible = false
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Structures/Struct4"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_rtv3k")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_viub8")
 text = "SOLAR PANEL"
 horizontal_alignment = 1
 
 [node name="HBox0" type="HBoxContainer" parent="Structures/Struct4"]
-layout_mode = 2
 
 [node name="Recipe" type="TextureRect" parent="Structures/Struct4/HBox0"]
-layout_mode = 2
 texture = ExtResource("20_rx6l6")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Structures/Struct4/HBox0"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "->"
 
 [node name="Result" type="TextureRect" parent="Structures/Struct4/HBox0"]
-layout_mode = 2
 texture = ExtResource("21_d3f0t")
 
 [node name="Desc" type="Label" parent="Structures/Struct4"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cmgbf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k0c0h")
 text = "The Solar Panel produces a small amount of Power."
 horizontal_alignment = 1
 
 [node name="RightButton" type="Button" parent="Structures"]
-layout_mode = 2
 text = ">"
 
 [connection signal="button_down" from="Main/MissionButton" to="." method="_on_mission_button_button_down"]

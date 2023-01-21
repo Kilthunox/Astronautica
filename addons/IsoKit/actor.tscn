@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/IsoKit/actor.gd" id="1_deb66"]
 [ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="2_kayv4"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ct2fq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pewvm"]
 
 [node name="Actor" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -30,7 +30,7 @@ offset_top = 1.0
 offset_right = 98.0
 offset_bottom = 12.0
 theme = ExtResource("2_kayv4")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ct2fq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pewvm")
 horizontal_alignment = 1
 autowrap_mode = 3
 
