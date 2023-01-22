@@ -31,27 +31,33 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 0.75,
+            "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1742,
-                "y": 365.3333333333333
+                "x": 1651.5,
+                "y": 386
             }
         },
         "mission2.tmx": {
-            "scale": 0.308453125,
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1603.1609340965504,
-                "y": 800.7699711260827
+                "x": 1779.875,
+                "y": 267.75
             }
         },
         "mission3.tmx": {
-            "scale": 0.308453125,
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1603.1609340965504,
-                "y": 800.7699711260827
+                "x": 1594.5,
+                "y": 1338
             }
         },
         "prototype_tilemap.tmx": {
@@ -73,7 +79,7 @@
     "last.imagePath": "/home/kalen/dev/godot-wild-jam-53/assets",
     "lastUsedTilesetExportFilter": "isometric-toolset (*.tileset)",
     "map.height": 100,
-    "map.lastUsedExportFilter": "isometric-toolset (*.tilemap)",
+    "map.lastUsedExportFilter": "isometric-toolset (*.zone)",
     "map.lastUsedFormat": "tmx",
     "map.orientation": null,
     "map.tileHeight": 16,
