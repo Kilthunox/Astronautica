@@ -322,6 +322,10 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 4
 icon = ExtResource("18_v1y34")
 
+[node name="WinTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="win" from="." to="." method="_on_win"]
 [connection signal="timeout" from="BackgroundAudio/AudioTrackTimer" to="." method="_on_audio_track_timer_timeout"]
 [connection signal="timeout" from="TickRateTimer" to="." method="_on_timer_timeout"]
 [connection signal="assembly_query" from="Player" to="Assembly" method="_on_player_assembly_query"]
@@ -331,3 +335,4 @@ icon = ExtResource("18_v1y34")
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button2" to="UserInterface" method="_on_button_2_button_down"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button3" to="UserInterface" method="_on_button_3_button_down"]
 [connection signal="button_down" from="UserInterface/MarginContainer/HBox/VBox2/VBox1/VBox0/HBox0/VBox/Grid/Button4" to="UserInterface" method="_on_button_4_button_down"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

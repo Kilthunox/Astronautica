@@ -7,6 +7,9 @@ signal button_down()
 signal on_focus()
 signal text_changed(new_text)
 
+func focus():
+	$Control/Button.grab_focus()
+
 func set_text(new_text):
 	text = new_text
 	text_changed.emit(new_text)

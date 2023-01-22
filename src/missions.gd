@@ -39,6 +39,10 @@ func _on_mission_button_3_on_focus():
 func _on_mission_button_0_button_down():
 	Cache.zone = "mission0.zone"
 	Cache.tilemap = "mission0.tilemap"
+	Cache.win_conditions = {
+		"fabricator": 1,
+		"oxygen_farm": 1,
+	}
 	get_tree().change_scene_to_file("res://src/instance.tscn")
 
 

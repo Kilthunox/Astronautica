@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://berxhq15brqvw"]
+
+[ext_resource type="Theme" uid="uid://fa2uag8fv3w1" path="res://assets/main_theme.tres" id="1_4i35q"]
+[ext_resource type="Script" path="res://src/popup_notification.gd" id="2_hk4ld"]
+[ext_resource type="PackedScene" uid="uid://bri3qsfonbejf" path="res://src/morph_button.tscn" id="3_u5bn5"]
+
+[node name="PopupNotification" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4i35q")
+script = ExtResource("2_hk4ld")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+offset_top = 316.0
+offset_right = 1152.0
+offset_bottom = 324.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" parent="VBoxContainer" instance=ExtResource("3_u5bn5")]
+offset_left = 512.0
+offset_top = 328.0
+offset_right = 640.0
+offset_bottom = 328.0
+
+[node name="ExitButton" parent="VBoxContainer" instance=ExtResource("3_u5bn5")]
+offset_left = 512.0
+offset_top = 332.0
+offset_right = 640.0
+offset_bottom = 332.0
+
+[node name="WinDelay" type="Timer" parent="."]
+
+[connection signal="button_down" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_button_down"]
+[connection signal="timeout" from="WinDelay" to="." method="_on_win_delay_timeout"]

@@ -18,7 +18,7 @@ func drill_gathers_resource(drill):
 		randomize()
 		Cache.power = clamp(Cache.power - (randi() % Runtime.DRILL_CONSUMPTION_VALUE), Runtime.POWER_MIN, Runtime.POWER_MAX)
 		Cache.temperature = clamp(Cache.temperature + (randi() % Runtime.DRILL_TEMP_INCREASE_VALUE), Runtime.TEMPERATURE_MIN, Runtime.TEMPERATURE_MAX)
-		var nodes_in_range: Array
+		var nodes_in_range: Array = []
 		for resource_node in get_tree().get_nodes_in_group("resource"):
 			var isofactor = IsoKit.isometric_factor(drill.position.angle_to(resource_node.position))
 			var distance = drill.position.distance_to(resource_node.position)

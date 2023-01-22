@@ -282,7 +282,6 @@ func make_drill():
 		var timer = DrillTimer.instantiate()
 		drill_node.add_child(timer)
 		drill_node.add_child(DrillAudio.instantiate())
-		AudioStreamPlayer2D
 	free_staged_assembly()
 
 func handle_action_input():

@@ -1,5 +1,4 @@
 extends Node
-var params: Dictionary = {}
 var offset: Vector2
 var zone: String = ""
 var tilemap: String = ""
@@ -19,4 +18,5 @@ var oxygen: int = Runtime.STARTING_OXYGEN
 var power: int = Runtime.STARTING_POWER
 var fuel: int = Runtime.STARTING_FUEL
 
-var mission_description = "Test mission desc"
+var mission_description = ""
+var win_conditions: Dictionary = {}

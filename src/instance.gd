@@ -1,8 +1,23 @@
 extends Node
 @onready var InGameMenu: PackedScene = preload("res://src/ingame_menu.tscn")
+@onready var WinScreen: PackedScene = preload("res://src/win_screen.tscn")
+var has_won = false
+
+signal win
 
 func _ready():
 	$TickRateTimer.wait_time = Runtime.TICK_RATE
+
+func reset_win_conditions():
+	Cache.win_conditions = {}
+
+func _process(_delta):	
+	var results = 0
+	for condition in Cache.win_conditions.keys():
+		if Cache.win_conditions[condition] <= get_tree().get_nodes_in_group(condition).size():
+			results += 1
+	if results >= Cache.win_conditions.size() and Cache.win_conditions.size() > 0:
+		win.emit()		
 
 func handle_temperature():
 	if Cache.temperature >= Runtime.TEMPERATURE_MAX - 1:
@@ -45,3 +60,14 @@ func _input(_event):
 	if Input.is_action_just_pressed("start"):
 		toggle_menu()
 		
+
+
+func _on_win():
+	if $WinTimer.is_stopped():
+		$WinTimer.start()
+
+
+func _on_win_timer_timeout():
+	$Player.new_transmission("MISSISON COMPLETE!", Color(0.3, 1, 0.3))
+	Cache.win_conditions = {}
+	$UserInterface.add_child(WinScreen.instantiate())
