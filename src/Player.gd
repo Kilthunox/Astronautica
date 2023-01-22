@@ -47,7 +47,7 @@ func _ready():
 	
 
 func _physics_process(_delta):
-	if !$"../UserInterface".has_node("InGameMenu"):
+	if !$"../UserInterface".has_node("InGameMenu") and !$"../UserInterface".has_node("WinScreen"):
 		handle_action_input()
 		handle_movement_input()
 	handle_heading_while_staging()
