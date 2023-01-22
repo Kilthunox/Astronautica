@@ -458,21 +458,21 @@ ____________________________________
    </properties>
    <point/>
   </object>
-  <object id="24" name="Tilium Ore" x="880" y="384">
+  <object id="24" name="Tilium Ore" x="912" y="400">
    <properties>
     <property name="id" value="ore"/>
     <property name="text" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="25" name="Tilium Ore" x="880" y="368">
+  <object id="25" name="Tilium Ore" x="912" y="384">
    <properties>
     <property name="id" value="ore"/>
     <property name="text" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="26" name="Tilium Ore" x="896" y="368">
+  <object id="26" name="Tilium Ore" x="928" y="384">
    <properties>
     <property name="id" value="ore"/>
     <property name="text" value=""/>
@@ -486,35 +486,35 @@ ____________________________________
    </properties>
    <point/>
   </object>
-  <object id="28" name="Tilium Ore" x="896" y="384">
+  <object id="28" name="Tilium Ore" x="928" y="400">
    <properties>
     <property name="id" value="ore"/>
     <property name="text" value="The Fabricator increases the maximum amount of Drills by one."/>
    </properties>
    <point/>
   </object>
-  <object id="30" name="Tilium Ore" x="928" y="320">
+  <object id="30" name="Tilium Ore" x="880" y="288">
    <properties>
     <property name="id" value="ore"/>
     <property name="text" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="31" name="Tilium Ore" x="944" y="304">
+  <object id="31" name="Tilium Ore" x="896" y="272">
    <properties>
     <property name="id" value="ore"/>
     <property name="text" value=""/>
    </properties>
    <point/>
   </object>
-  <object id="32" name="Warp Crystal" x="944" y="320">
+  <object id="32" name="Warp Crystal" x="896" y="288">
    <properties>
     <property name="id" value="cry"/>
-    <property name="text" value="The Solar Panel produces a small amount of Power.m"/>
+    <property name="text" value="The Solar Panel produces a small amount of Power."/>
    </properties>
    <point/>
   </object>
-  <object id="33" name="Warp Crystal" x="928" y="304">
+  <object id="33" name="Warp Crystal" x="880" y="272">
    <properties>
     <property name="id" value="cry"/>
     <property name="text" value=""/>
@@ -601,7 +601,7 @@ ____________________________________
   <object id="49" name="Plasma Gas" x="1008" y="256">
    <properties>
     <property name="id" value="gas"/>
-    <property name="text" value="The Fabricator increases the maximum amount of Drills by one."/>
+    <property name="text" value=""/>
    </properties>
    <point/>
   </object>
@@ -685,7 +685,7 @@ ____________________________________
   <object id="61" name="Plasma Gas" x="1168" y="304">
    <properties>
     <property name="id" value="gas"/>
-    <property name="text" value="PLASMA GAS"/>
+    <property name="text" value=""/>
    </properties>
    <point/>
   </object>

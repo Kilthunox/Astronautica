@@ -6,10 +6,10 @@ var tilemap: String = ""
 var assembler_lock: bool = false
 var drills: int = 1
 var selected_resource: String = "ore"
-var ore: int = 0 + 10
-var gas: int = 0 + 10
-var bio: int = 0 + 10
-var cry: int = 0 + 10
+var ore: int = 0 
+var gas: int = 0
+var bio: int = 0 
+var cry: int = 0
 
 
 

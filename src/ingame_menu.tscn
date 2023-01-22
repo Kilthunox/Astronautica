@@ -99,9 +99,9 @@ offset_bottom = 492.0
 custom_minimum_size = Vector2(256, 256)
 
 [node name="Controls" type="Label" parent="Controls/MarginContainer"]
-offset_top = 95.0
+offset_top = 78.0
 offset_right = 256.0
-offset_bottom = 161.0
+offset_bottom = 177.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3jg3w")
 text = "(Xbox Controller / Keyboard)
 ____________________________________

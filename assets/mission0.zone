@@ -140,16 +140,8 @@
     {
       "id": "ore",
       "position": [
-        512,
-        632
-      ],
-      "text": ""
-    },
-    {
-      "id": "ore",
-      "position": [
         528,
-        624
+        656
       ],
       "text": ""
     },
@@ -157,7 +149,15 @@
       "id": "ore",
       "position": [
         544,
-        632
+        648
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        560,
+        656
       ],
       "text": ""
     },
@@ -172,40 +172,40 @@
     {
       "id": "ore",
       "position": [
-        528,
-        640
+        544,
+        664
       ],
       "text": "The Fabricator increases the maximum amount of Drills by one."
     },
     {
       "id": "ore",
       "position": [
-        624,
-        624
+        608,
+        584
       ],
       "text": ""
     },
     {
       "id": "ore",
       "position": [
-        656,
-        624
+        640,
+        584
       ],
       "text": ""
     },
     {
       "id": "cry",
       "position": [
-        640,
-        632
+        624,
+        592
       ],
-      "text": "The Solar Panel produces a small amount of Power.m"
+      "text": "The Solar Panel produces a small amount of Power."
     },
     {
       "id": "cry",
       "position": [
-        640,
-        616
+        624,
+        576
       ],
       "text": ""
     },
@@ -303,7 +303,7 @@
         768,
         632
       ],
-      "text": "The Fabricator increases the maximum amount of Drills by one."
+      "text": ""
     },
     {
       "id": "gas",
@@ -399,7 +399,7 @@
         880,
         736
       ],
-      "text": "PLASMA GAS"
+      "text": ""
     },
     {
       "id": "dirt",

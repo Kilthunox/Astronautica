@@ -51,10 +51,10 @@ func _on_mission_button_0_button_down():
 	Cache.power = 100
 	Cache.fuel = 100
 	Cache.temperature = 0
-	Cache.ore = 0
-	Cache.bio = 0
-	Cache.cry = 0
-	Cache.gas = 0
+	Cache.ore = 3
+	Cache.bio = 3
+	Cache.cry = 3
+	Cache.gas = 3
 	get_tree().change_scene_to_file("res://src/instance.tscn")
 
 
@@ -63,11 +63,10 @@ func _on_mission_button_1_button_down():
 	Cache.zone = "mission1.zone"
 	Cache.tilemap = "mission1.tilemap"
 	Cache.win_conditions = {
-		"oxygen_farm": 3,
+		"oxygen_farm": 2,
 		"refinery": 1,
-		"plasma_reactor": 1,
 	}
-	Cache.oxygen = 75
+	Cache.oxygen = 90
 	Cache.power = 50
 	Cache.fuel = 50
 	Cache.temperature = 0
@@ -85,13 +84,12 @@ func _on_mission_button_2_button_down():
 	Cache.win_conditions = {
 		"fabricator": 6,
 		"oxygen_farm": 1,
-		"solar_panel": 2,
 		"refinery": 1,
 		"plasma_reactor": 1,
 	}
-	Cache.oxygen = 50
+	Cache.oxygen = 80
 	Cache.power = 25
-	Cache.fuel = 25
+	Cache.fuel = 10
 	Cache.temperature = 0
 	Cache.ore = 0
 	Cache.bio = 0
@@ -111,7 +109,7 @@ func _on_mission_button_3_button_down():
 		"refinery": 0,
 		"plasma_reactor": 0,
 	}
-	Cache.oxygen = 25
+	Cache.oxygen = 50
 	Cache.power = 20
 	Cache.fuel = 10
 	Cache.temperature = 0

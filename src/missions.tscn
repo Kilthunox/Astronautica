@@ -58,7 +58,7 @@ alignment = 1
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "MISSION TRAINING:
+text = "MISSION TRAINING(TUTORIAL):
 
 A simple tutorial mission that 
 introduces you to Astronautica concepts.
@@ -74,26 +74,24 @@ OBJECTIVES:
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "COLONIZATION PREPERATION:
+text = "COLONIZATION PREPERATION(EASY):
 Create Oxygen Farms and power them 
 for new colonizers before they arrive. 
 
 OBJECTIVES:
-- Oxygen Farm: 3
-- Refinery: 1
+- Oxygen Farm: 2
 - Plasma Reactor: 1"
 
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer1/HBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "MINING OPERATIONS:
+text = "MINING OPERATIONS(NORMAL):
 Create a long-term mining camp on a potent astroid.
 
 OBJECTIVES:
 - Fabriactor: 6
 - Oxygen Farm: 1
-- Solar Panel: 2
 - Plasma Reactor: 1
 - Refinery: 1"
 
@@ -101,7 +99,7 @@ OBJECTIVES:
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "STAR FARMING:
+text = "STAR FARMING(HARD):
 
 Provide long-term power to surrounding colonies.
 

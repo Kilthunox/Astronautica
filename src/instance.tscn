@@ -36,7 +36,7 @@ script = ExtResource("1_0eg2f")
 
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_pn2re")
-volume_db = -40.0
+volume_db = -10.0
 autoplay = true
 
 [node name="AudioTrackTimer" type="Timer" parent="BackgroundAudio"]

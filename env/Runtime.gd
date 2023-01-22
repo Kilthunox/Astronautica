@@ -23,18 +23,18 @@ const STARTING_FUEL: int = 50
 const COMS_LINE_LIFETIME: float = 6.6
 const OXYGEN_MIN: float = 0.0
 const OXYGEN_MAX: float = 100.0
-const OXYGEN_LOSS_VALUE: float = 0.33
-const TICK_RATE: float = 2.5
-const OXYGEN_FARM_PRODUCTION_VALUE: int = 4
+const OXYGEN_LOSS_VALUE: float = 0.25
+const TICK_RATE: float = 4.4
+const OXYGEN_FARM_PRODUCTION_VALUE: int = 3
 const OXYGEN_FARM_PRODUCTION_RATE: float = 3.3
 const OXYGEN_FARM_POWER_CONSUMPTION: int = 2
-const OXYGEN_FARM_BIO_CONSUMPTION_CHANCE: int = 4
-const REACTOR_PRODUCTION_VALUE: int = 6
+const OXYGEN_FARM_BIO_CONSUMPTION_CHANCE: int = 12
+const REACTOR_PRODUCTION_VALUE: int = 3
 const REACTOR_PRODUCTION_RATE: float = 3.3
-const REACTOR_CONSUMPTION_VALUE: int = 6
-const REFINERY_PRODUCTION_VALUE: int = 8
+const REACTOR_CONSUMPTION_VALUE: int = 3
+const REFINERY_PRODUCTION_VALUE: int = 2
 const REFINERY_PRODUCTION_RATE: float = 3.3
-const SOLAR_PANEL_PRODUCTION_VALUE: int = 3
+const SOLAR_PANEL_PRODUCTION_VALUE: int = 1
 const SOLAR_PANEL_PRODUCTION_RATE: float = 3.3
 const SOLAR_PANEL_PRODUCTION_CHANCE: int = 3
 const POWER_MIN: float = 0.0
@@ -182,14 +182,14 @@ func make_oxygen_farm_node():
 	oxygen_farm_node.add_to_group("structure")
 	var timer = Timer.new()
 	var compute_produce_oxygen = func produce_oxygen():
-		if Cache.power > Runtime.POWER_MIN:
+		if Cache.power > Runtime.POWER_MIN and Cache.bio > 0:
 			randomize()
 			Cache.oxygen = clamp(Cache.oxygen + (randi() % Runtime.OXYGEN_FARM_PRODUCTION_VALUE), Runtime.OXYGEN_MIN, Runtime.OXYGEN_MAX)
 			randomize()
 			Cache.power = clamp(Cache.power - (randi() % Runtime.OXYGEN_FARM_POWER_CONSUMPTION), Runtime.POWER_MIN, Runtime.POWER_MAX)
 			randomize()
 			if randi() % Runtime.OXYGEN_FARM_BIO_CONSUMPTION_CHANCE == 0:
-				Cache.bio -= 1
+				Cache.bio = max(Cache.bio - 1, 0)
 	timer.connect("timeout", compute_produce_oxygen)
 	timer.wait_time = Runtime.OXYGEN_FARM_PRODUCTION_RATE
 	timer.autostart = true
