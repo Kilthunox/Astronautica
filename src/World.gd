@@ -16,6 +16,8 @@ func populate_zone(path: String):
 	for actor_data in zone_data.get("actors", []):
 		if actor_data.get("id") in Runtime.STATIC_ACTORS:  ### Make the runtime attrrs inclusive
 			var actor_node = Runtime.call("make_%s_node" % actor_data.get("id"))
+			if actor_data.get("text"):
+				actor_node.set_text(actor_data.text)
 			actor_node.set_collision_layer_value(2, 1)
 			actor_node.set_collision_layer_value(3, 1)
 			actor_node.set_collision_layer_value(4, 1)

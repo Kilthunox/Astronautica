@@ -45,10 +45,18 @@ theme_override_constants/margin_bottom = 156
 script = ExtResource("2_julww")
 
 [node name="Panel" type="Panel" parent="."]
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 
 [node name="Main" type="VBoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(180, 180)
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 theme_override_constants/separation = 24
 alignment = 1
 
@@ -82,11 +90,18 @@ start_with_focus = false
 
 [node name="Controls" type="VBoxContainer" parent="."]
 visible = false
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Controls"]
 custom_minimum_size = Vector2(256, 256)
 
 [node name="Controls" type="Label" parent="Controls/MarginContainer"]
+offset_top = 95.0
+offset_right = 256.0
+offset_bottom = 161.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3jg3w")
 text = "(Xbox Controller / Keyboard)
 ____________________________________
@@ -102,11 +117,19 @@ ____________________________________
 
 [node name="Mission" type="VBoxContainer" parent="."]
 visible = false
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 
 [node name="Label" type="Label" parent="Mission"]
 
 [node name="Resources" type="VBoxContainer" parent="."]
 visible = false
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 
 [node name="HBox0" type="HBoxContainer" parent="Resources"]
 
@@ -150,6 +173,10 @@ text = "WARP CRYSTAL:
 
 [node name="Tools" type="VBoxContainer" parent="."]
 visible = false
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 
 [node name="HBox0" type="HBoxContainer" parent="Tools"]
 
@@ -202,6 +229,10 @@ recipe. Consumes power while in use."
 
 [node name="Gauges" type="VBoxContainer" parent="."]
 visible = false
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 
 [node name="Label" type="Label" parent="Gauges"]
 theme_override_styles/normal = SubResource("StyleBoxEmpty_axq2f")
@@ -230,31 +261,57 @@ OXYGEN:
 "
 
 [node name="Structures" type="HBoxContainer" parent="."]
+offset_left = 360.0
+offset_top = 156.0
+offset_right = 792.0
+offset_bottom = 492.0
 
 [node name="LeftButton" type="Button" parent="Structures"]
+offset_right = 4.0
+offset_bottom = 336.0
 text = "<"
 
 [node name="Struct0" type="VBoxContainer" parent="Structures"]
+offset_left = 8.0
+offset_right = 272.0
+offset_bottom = 336.0
 
 [node name="Label" type="Label" parent="Structures/Struct0"]
+offset_right = 264.0
+offset_bottom = 11.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_bne8d")
 text = "OXYGEN FARM"
 horizontal_alignment = 1
 
 [node name="HBox0" type="HBoxContainer" parent="Structures/Struct0"]
+offset_top = 15.0
+offset_right = 264.0
+offset_bottom = 80.0
 
 [node name="Recipe" type="TextureRect" parent="Structures/Struct0/HBox0"]
+offset_right = 96.0
+offset_bottom = 65.0
 texture = ExtResource("14_b6lgr")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Structures/Struct0/HBox0"]
+offset_left = 100.0
+offset_top = 27.0
+offset_right = 108.0
+offset_bottom = 38.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sw2dj")
 text = "->"
 
 [node name="Result" type="TextureRect" parent="Structures/Struct0/HBox0"]
+offset_left = 112.0
+offset_right = 176.0
+offset_bottom = 65.0
 texture = ExtResource("15_hgx1l")
 
 [node name="Desc" type="Label" parent="Structures/Struct0"]
+offset_top = 84.0
+offset_right = 264.0
+offset_bottom = 95.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sw2dj")
 text = "The Oxygen Farm produces Oxygen while consuming Power and Biomass."
 horizontal_alignment = 1
@@ -359,11 +416,16 @@ text = "->"
 texture = ExtResource("21_d3f0t")
 
 [node name="Desc" type="Label" parent="Structures/Struct4"]
+offset_right = 196.0
+offset_bottom = 11.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sw2dj")
 text = "The Solar Panel produces a small amount of Power."
 horizontal_alignment = 1
 
 [node name="RightButton" type="Button" parent="Structures"]
+offset_left = 276.0
+offset_right = 280.0
+offset_bottom = 336.0
 text = ">"
 
 [connection signal="button_down" from="Main/MissionButton" to="." method="_on_mission_button_button_down"]

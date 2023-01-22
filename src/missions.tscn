@@ -18,75 +18,95 @@ theme_override_constants/margin_bottom = 8
 script = ExtResource("1_mitac")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 1144.0
-offset_bottom = 640.0
+layout_mode = 2
 
 [node name="VBoxContainer0" type="VBoxContainer" parent="HBoxContainer"]
-offset_right = 128.0
-offset_bottom = 632.0
+layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="MissionButton0" parent="HBoxContainer/VBoxContainer0" instance=ExtResource("1_oksqg")]
-offset_top = 286.0
-offset_right = 128.0
-offset_bottom = 286.0
+layout_mode = 2
 text = "MISSION 0"
 start_with_focus = true
 
 [node name="MissionButton1" parent="HBoxContainer/VBoxContainer0" instance=ExtResource("1_oksqg")]
-offset_top = 306.0
-offset_right = 128.0
-offset_bottom = 306.0
+layout_mode = 2
 text = "MISSION 1"
 start_with_focus = false
 
 [node name="MissionButton2" parent="HBoxContainer/VBoxContainer0" instance=ExtResource("1_oksqg")]
-offset_top = 326.0
-offset_right = 128.0
-offset_bottom = 326.0
+layout_mode = 2
 text = "MISSION 2"
 start_with_focus = false
 
 [node name="MissionButton3" parent="HBoxContainer/VBoxContainer0" instance=ExtResource("1_oksqg")]
-offset_top = 346.0
-offset_right = 128.0
-offset_bottom = 346.0
+layout_mode = 2
 text = "MISSION 3"
 start_with_focus = false
 
 [node name="VBoxContainer1" type="VBoxContainer" parent="HBoxContainer"]
-offset_left = 132.0
-offset_right = 1136.0
-offset_bottom = 632.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer1"]
-offset_right = 1004.0
-offset_bottom = 632.0
+layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Label0" type="Label" parent="HBoxContainer/VBoxContainer1/HBoxContainer"]
 visible = false
-offset_right = 128.0
-offset_bottom = 19.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "MISSION TRAINING"
+text = "MISSION TRAINING:
+
+A simple tutorial mission that 
+introduces you to Astronautica concepts.
+
+OBJECTIVES:
+- Fabricator: 1
+- Oxygen Farm: 1
+- Solar Panel: 1
+- Refinery: 1
+- Plasma Reactor: 1"
 
 [node name="Label1" type="Label" parent="HBoxContainer/VBoxContainer1/HBoxContainer"]
 visible = false
+layout_mode = 2
 theme_override_font_sizes/font_size = 16
+text = "COLONIZATION PREPERATION:
+Create Oxygen Farms and power them 
+for new colonizers before they arrive. 
+
+OBJECTIVES:
+- Oxygen Farm: 3
+- Refinery: 1
+- Plasma Reactor: 1"
 
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer1/HBoxContainer"]
 visible = false
+layout_mode = 2
 theme_override_font_sizes/font_size = 16
+text = "MINING OPERATIONS:
+Create a long-term mining camp on a potent astroid.
+
+OBJECTIVES:
+- Fabriactor: 6
+- Oxygen Farm: 1
+- Solar Panel: 2
+- Plasma Reactor: 1
+- Refinery: 1"
 
 [node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer1/HBoxContainer"]
 visible = false
+layout_mode = 2
 theme_override_font_sizes/font_size = 16
+text = "STAR FARMING:
+
+Provide long-term power to surrounding colonies.
+
+OBJECTIVES:
+- Solar Panel: 12"
 
 [connection signal="button_down" from="HBoxContainer/VBoxContainer0/MissionButton0" to="." method="_on_mission_button_0_button_down"]
 [connection signal="on_focus" from="HBoxContainer/VBoxContainer0/MissionButton0" to="." method="_on_mission_button_0_on_focus"]

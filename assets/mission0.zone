@@ -3,11 +3,443 @@
   "name": "mission0",
   "actors": [
     {
+      "id": "ore",
+      "position": [
+        368,
+        1008
+      ],
+      "text": "TILIUIM ORE"
+    },
+    {
+      "id": "gas",
+      "position": [
+        304,
+        1008
+      ],
+      "text": "PLASMA GAS"
+    },
+    {
+      "id": "cry",
+      "position": [
+        240,
+        1008
+      ],
+      "text": "WARP CRYSTAL"
+    },
+    {
+      "id": "bio",
+      "position": [
+        176,
+        1008
+      ],
+      "text": "BIOMASS"
+    },
+    {
       "id": "player",
       "position": [
-        -611.3330000000001,
-        650.3335
+        0,
+        1416
       ]
+    },
+    {
+      "id": "ore",
+      "position": [
+        0,
+        1304
+      ],
+      "text": "Welcome to Astronautica Mission 0!  This level will show you the basics of deep space survival. If you need a reminder of any of the skills you learn here, press (Start / Esscape) to view the guide. \n Don't run out of Oxygen!"
+    },
+    {
+      "id": "ore",
+      "position": [
+        0,
+        1432
+      ],
+      "text": "(Xbox Controller / Keyboard)\n____________________________________\n(Left Joystick / arrow keys) -> Move\n(Press Left Joystick / Space Bar) -> Cancel placement\n(X / q) ->  Hold and let go to place Drill\n(Y / w) -> Hold and let go use Loader and place Block\n(B / e) -> Use Destructor\n(A / r) -> Use Assembler\n(L / Tab) -> Toggle Loader resource to the left\n(R) -> Toggle Loader resource to the right\n(Start / Escape) -> Open Menu"
+    },
+    {
+      "id": "ore",
+      "position": [
+        240,
+        1072
+      ],
+      "text": "Use the drill (X / W) to mine resources nearby! Manuever the drill by holding (X / Q) and using the (Left Joystick / Arrow Keys) to place it!"
+    },
+    {
+      "id": "bio",
+      "position": [
+        592,
+        720
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        608,
+        728
+      ],
+      "text": ""
+    },
+    {
+      "id": "bio",
+      "position": [
+        656,
+        752
+      ],
+      "text": "The Oxygen Farm produces Oxygen while consuming Power and Biomass."
+    },
+    {
+      "id": "ore",
+      "position": [
+        640,
+        744
+      ],
+      "text": ""
+    },
+    {
+      "id": "bio",
+      "position": [
+        624,
+        736
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        608,
+        744
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        640,
+        728
+      ],
+      "text": ""
+    },
+    {
+      "id": "bio",
+      "position": [
+        592,
+        752
+      ],
+      "text": ""
+    },
+    {
+      "id": "bio",
+      "position": [
+        656,
+        720
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        512,
+        632
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        528,
+        624
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        544,
+        632
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        624,
+        816
+      ],
+      "text": "Use the assembler (A / R) to assemble these buildings! "
+    },
+    {
+      "id": "ore",
+      "position": [
+        528,
+        640
+      ],
+      "text": "The Fabricator increases the maximum amount of Drills by one."
+    },
+    {
+      "id": "ore",
+      "position": [
+        624,
+        624
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        656,
+        624
+      ],
+      "text": ""
+    },
+    {
+      "id": "cry",
+      "position": [
+        640,
+        632
+      ],
+      "text": "The Solar Panel produces a small amount of Power.m"
+    },
+    {
+      "id": "cry",
+      "position": [
+        640,
+        616
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        736,
+        632
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        752,
+        640
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        784,
+        640
+      ],
+      "text": "The Plasma Reactor generates Power but costs fuel and increases temperature."
+    },
+    {
+      "id": "ore",
+      "position": [
+        800,
+        632
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        736,
+        616
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        752,
+        608
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        784,
+        608
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        800,
+        616
+      ],
+      "text": ""
+    },
+    {
+      "id": "cry",
+      "position": [
+        752,
+        624
+      ],
+      "text": ""
+    },
+    {
+      "id": "gas",
+      "position": [
+        768,
+        616
+      ],
+      "text": ""
+    },
+    {
+      "id": "cry",
+      "position": [
+        784,
+        624
+      ],
+      "text": ""
+    },
+    {
+      "id": "gas",
+      "position": [
+        768,
+        632
+      ],
+      "text": "The Fabricator increases the maximum amount of Drills by one."
+    },
+    {
+      "id": "gas",
+      "position": [
+        816,
+        736
+      ],
+      "text": "PLASMA GAS"
+    },
+    {
+      "id": "ore",
+      "position": [
+        800,
+        728
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        816,
+        720
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        800,
+        744
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        784,
+        736
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        816,
+        752
+      ],
+      "text": "The Refinery produces Fuel and consumes Plasma Gas.e"
+    },
+    {
+      "id": "ore",
+      "position": [
+        832,
+        744
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        832,
+        728
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        848,
+        736
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        864,
+        728
+      ],
+      "text": ""
+    },
+    {
+      "id": "ore",
+      "position": [
+        864,
+        744
+      ],
+      "text": ""
+    },
+    {
+      "id": "gas",
+      "position": [
+        880,
+        736
+      ],
+      "text": "PLASMA GAS"
+    },
+    {
+      "id": "dirt",
+      "position": [
+        416,
+        888
+      ],
+      "text": ""
+    },
+    {
+      "id": "rock",
+      "position": [
+        432,
+        896
+      ],
+      "text": ""
+    },
+    {
+      "id": "dirt",
+      "position": [
+        448,
+        904
+      ],
+      "text": ""
+    },
+    {
+      "id": "rock",
+      "position": [
+        464,
+        912
+      ],
+      "text": ""
+    },
+    {
+      "id": "dirt",
+      "position": [
+        480,
+        920
+      ],
+      "text": "Sometimes debree will block the path. Use the destructor (B / E) to remove debree or pickup the drill."
     }
   ],
   "threat": 1
