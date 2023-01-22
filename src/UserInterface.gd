@@ -18,6 +18,11 @@ extends CanvasLayer
 @export var TemperatureMeterNodePath: NodePath
 @onready var temperature_meter = get_node(TemperatureMeterNodePath)
 
+var prev_oxygen: float = 0.0
+var prev_temperature: float = 0.0
+var prev_fuel: float = 0.0
+var prev_power: float = 0.0
+
 func _ready():
 	oxygen_meter.set_max(Runtime.OXYGEN_MAX)
 	oxygen_meter.set_min(Runtime.OXYGEN_MIN)
@@ -55,32 +60,44 @@ func _process(_delta):
 	handle_warning_transmissions()
 	
 func handle_warning_transmissions():
-	if is_equal_approx(power_meter.value, Runtime.POWER_WARNING_VALUE):
+	if is_equal_approx(power_meter.value, Runtime.POWER_WARNING_VALUE) and !is_equal_approx(Cache.power, prev_power):
+		prev_power = Cache.power
 		player.new_transmission("> power levels at %s percent" % ((Cache.power / Runtime.POWER_MAX) * 100))
-	elif is_equal_approx(power_meter.value, Runtime.POWER_CRITICAL_WARNING_VALUE):
+	elif is_equal_approx(power_meter.value, Runtime.POWER_CRITICAL_WARNING_VALUE) and  !is_equal_approx(Cache.power, prev_power):
+		prev_power = Cache.power
 		player.new_transmission("! power levels at %s percent" % ((Cache.power / Runtime.POWER_MAX) * 100), Runtime.COLOR_RED)
-	elif is_equal_approx(power_meter.value, Runtime.POWER_MIN + 1):
+	elif is_equal_approx(power_meter.value, Runtime.POWER_MIN + 1) and !is_equal_approx(Cache.power, prev_power):
+		prev_power = Cache.power
 		player.new_transmission("! power lost, shutting down drilling and oxygen production", Runtime.COLOR_RED)
 		
-	if is_equal_approx(temperature_meter.value, Runtime.TEMPERATURE_WARNING_VALUE):
+	if is_equal_approx(temperature_meter.value, Runtime.TEMPERATURE_WARNING_VALUE) and !is_equal_approx(Cache.temperature, prev_temperature):
+		prev_temperature = Cache.temperature
 		player.new_transmission("> temperature levels at %s percent" % ((Cache.temperature / Runtime.TEMPERATURE_MAX) * 100))
-	elif is_equal_approx(temperature_meter.value, Runtime.TEMPERATURE_CRITICAL_WARNING_VALUE):
+	elif is_equal_approx(temperature_meter.value, Runtime.TEMPERATURE_CRITICAL_WARNING_VALUE) and !is_equal_approx(Cache.temperature, prev_temperature):
+		prev_temperature = Cache.temperature
 		player.new_transmission("! temperature levels at %s percent" % ((Cache.temperature / Runtime.TEMPERATURE_MAX) * 100), Runtime.COLOR_RED)
-	elif is_equal_approx(temperature_meter.value, Runtime.TEMPERATURE_MAX):
+	elif is_equal_approx(temperature_meter.value, Runtime.TEMPERATURE_MAX) and !is_equal_approx(Cache.temperature, prev_temperature):
+		prev_temperature = Cache.temperature
 		player.new_transmission("! plasma reactor overheat", Runtime.COLOR_RED)
 		
-	if is_equal_approx(fuel_meter.value, Runtime.FUEL_WARNING_VALUE):
+	if is_equal_approx(fuel_meter.value, Runtime.FUEL_WARNING_VALUE) and !is_equal_approx(Cache.fuel, prev_fuel):
+		prev_fuel = Cache.fuel
 		player.new_transmission("> fuel levels at %s percent" % ((Cache.fuel / Runtime.FUEL_MAX) * 100))
-	elif is_equal_approx(fuel_meter.value, Runtime.FUEL_CRITICAL_WARNING_VALUE):
+	elif is_equal_approx(fuel_meter.value, Runtime.FUEL_CRITICAL_WARNING_VALUE) and !is_equal_approx(Cache.fuel, prev_fuel):
+		prev_fuel = Cache.fuel
 		player.new_transmission("! fuel levels at %s percent" % ((Cache.fuel / Runtime.FUEL_MAX) * 100), Runtime.COLOR_RED)
-	elif is_equal_approx(fuel_meter.value, Runtime.FUEL_MIN + 1):
+	elif is_equal_approx(fuel_meter.value, Runtime.FUEL_MIN + 1) and !is_equal_approx(Cache.fuel, prev_fuel):
+		prev_fuel = Cache.fuel
 		player.new_transmission("! fuel is empty, shutting down plasma reactors", Runtime.COLOR_RED)
 		
-	if is_equal_approx(oxygen_meter.value, Runtime.OXYGEN_WARNING_VALUE):
+	if is_equal_approx(oxygen_meter.value, Runtime.OXYGEN_WARNING_VALUE) and !is_equal_approx(Cache.oxygen, prev_oxygen):
+		prev_oxygen = Cache.oxygen
 		player.new_transmission("> oxygen levels at %s percent" % ((Cache.oxygen / Runtime.OXYGEN_MAX) * 100))
-	elif is_equal_approx(oxygen_meter.value, Runtime.OXYGEN_CRITICAL_WARNING_VALUE):
+	elif is_equal_approx(oxygen_meter.value, Runtime.OXYGEN_CRITICAL_WARNING_VALUE) and !is_equal_approx(Cache.oxygen, prev_oxygen):
+		prev_oxygen = Cache.oxygen
 		player.new_transmission("! oxygen levels at %s percent" % ((Cache.oxygen / Runtime.OXYGEN_MAX) * 100), Runtime.COLOR_RED)
-	elif is_equal_approx(oxygen_meter.value, Runtime.OXYGEN_MIN + 1):
+	elif is_equal_approx(oxygen_meter.value, Runtime.OXYGEN_MIN + 1) and !is_equal_approx(Cache.oxygen, prev_oxygen):
+		prev_oxygen = Cache.oxygen
 		player.new_transmission("! you have run out of oxygen", Runtime.COLOR_RED)
 
 func _on_button_0_button_down():

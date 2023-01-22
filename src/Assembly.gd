@@ -88,14 +88,6 @@ func compile_assembly(resources, structure_id: String):
 func _on_player_assembly_query(coords):
 	var original_recipe = get_recipe(coords)
 	var assembly = normalize_recipe(original_recipe)
-
-	
-	###############################################################################
-	var rstring = "\n"
-	for k in assembly.keys():
-		rstring += "\n\t\tVector2i(%s, %s): \"%s\"," % [k.x, k.y, assembly[k]]
-	print(rstring)
-	##############################################################################
 	for recipe in Runtime.RECIPE.keys():
 		if recipe == assembly:
 			compile_assembly(original_recipe.keys(), Runtime.RECIPE[recipe])

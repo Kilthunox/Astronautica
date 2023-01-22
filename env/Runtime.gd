@@ -1,7 +1,7 @@
 extends Node
 
 const INT64_LIMIT: int = -9223372036854775807
-const TRANSMISSIONS_QUEUE_SIZE: int = 1
+const TRANSMISSIONS_QUEUE_SIZE: int = 12
 const ASSETS: String = "res://assets/"
 const PLAYER_ACTOR_ID: String = "PlayerActor"
 const PLAYER_SPEED: float = 5500.0
@@ -20,7 +20,7 @@ const STARTING_TEMPERATURE: int = 0
 const STARTING_OXYGEN: int = 50
 const STARTING_POWER: int = 50
 const STARTING_FUEL: int = 50
-const COMS_LINE_LIFETIME: float = 16.6
+const COMS_LINE_LIFETIME: float = 6.6
 const OXYGEN_MIN: float = 0.0
 const OXYGEN_MAX: float = 100.0
 const OXYGEN_LOSS_VALUE: float = 0.33

@@ -214,7 +214,6 @@ func destructor_emission():
 			if Cache.temperature >= Runtime.TEMPERATURE_MAX or Cache.fuel <= Runtime.FUEL_MIN:
 				destructor_node.queue_free()
 		timer.connect("timeout", compute)		
-#		destructor_node.connect("tree_entered", player_actor_mixer_stop)
 		destructor_node.add_child(timer)
 		world.add_child(destructor_node)
 	
